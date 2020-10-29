@@ -70,7 +70,7 @@ setup. They can be controlled via the below environment variables.
 
    The protocol via which bitbucket is accessed. 
    
-   In certain cloud environments (specifically Kubernetes, Heroku and Cloud Foundry),
+   In certain cloud environments (specifically Kubernetes, Heroku and Cloud Foundry), this setting
    will be superseded by the value of the `X-Forwarded-Proto` request header if sent by a ingress or load balancer. 
    See `SERVER_FORWARD_HEADERS_STRATEGY` below to alter this behaviour.
 
