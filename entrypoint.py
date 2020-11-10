@@ -18,7 +18,7 @@ BITBUCKET_HOME = env['bitbucket_home']
 def start_full():
     logging.warning("Starting container with local ElasticSearch. "
                     "This is not recommended, and may cause issues with clean shutdown. "
-                    "It is recommended to run a separate ElasticSearch container, and set 'elasticsearch_enabled' to false.")
+                    "It is recommended to run a separate ElasticSearch container, and set 'ELASTICSEARCH_ENABLED' to false.")
     start_cmd = f"{BITBUCKET_INSTALL_DIR}/bin/start-bitbucket.sh -fg"
     start_app(start_cmd, BITBUCKET_HOME, name='Bitbucket Server')
 
@@ -72,24 +72,24 @@ def gen_jmx_opts():
     if JMX_REMOTE_AUTH == None:
         return ""
 
-    JMX_OPTS = f" -Dcom.sun.management.jmxremote.port={ os.getenv('JMX_REMOTE_PORT', '3333') }"
-               f" -Djava.rmi.server.hostname={ os.getenv('RMI_SERVER_HOSTNAME', '') }"
+    JMX_OPTS = f" -Dcom.sun.management.jmxremote.port={ os.getenv('JMX_REMOTE_PORT', '3333') }" \
+               f" -Djava.rmi.server.hostname={ os.getenv('RMI_SERVER_HOSTNAME', '') }" \
                f" -Dcom.sun.management.jmxremote.rmi.port={ os.getenv('JMX_REMOTE_RMI_PORT', '') }"
 
     if JMX_REMOTE_AUTH == 'password':
         logging.info("Using password JMX authentication, configuring ...")
-        JMX_OPTS += f" -Dcom.sun.management.jmxremote.password.file={ file_exists_or_exit('JMX_PASSWORD_FILE') }"
+        JMX_OPTS += f" -Dcom.sun.management.jmxremote.password.file={ file_exists_or_exit('JMX_PASSWORD_FILE') }" \
                     " -Dcom.sun.management.jmxremote.ssl=false"
         return JMX_OPTS
 
 
     elif JMX_REMOTE_AUTH == 'ssl':
         logging.info("Using SSL JMX authentication, configuring ...")
-        JMX_OPTS += f" -Djavax.net.ssl.keyStore={ file_exists_or_exit('JAVA_KEYSTORE') }"
-                    f" -Djavax.net.ssl.keyStorePassword={ exists_or_exit('JAVA_KEYSTORE_PASSWORD') }"
-                    f" -Djavax.net.ssl.trustStore={ file_exists_or_exit('JAVA_TRUSTSTORE') }"
-                    f" -Djavax.net.ssl.trustStorePassword={ exists_or_exit('JAVA_TRUSTSTORE_PASSWORD') }"
-                    " -Dcom.sun.management.jmxremote.authenticate=false"
+        JMX_OPTS += f" -Djavax.net.ssl.keyStore={ file_exists_or_exit('JAVA_KEYSTORE') }" \
+                    f" -Djavax.net.ssl.keyStorePassword={ exists_or_exit('JAVA_KEYSTORE_PASSWORD') }" \
+                    f" -Djavax.net.ssl.trustStore={ file_exists_or_exit('JAVA_TRUSTSTORE') }" \
+                    f" -Djavax.net.ssl.trustStorePassword={ exists_or_exit('JAVA_TRUSTSTORE_PASSWORD') }" \
+                    " -Dcom.sun.management.jmxremote.authenticate=false" \
                     " -Dcom.sun.management.jmxremote.ssl.need.client.auth=true"
 
     else:
