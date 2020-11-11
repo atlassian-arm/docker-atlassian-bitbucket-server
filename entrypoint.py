@@ -16,9 +16,11 @@ BITBUCKET_HOME = env['bitbucket_home']
 #################### Bitbucket + ES ####################
 
 def start_full():
-    logging.warning("Starting container with local ElasticSearch. "
-                    "This is not recommended, and may cause issues with clean shutdown. "
-                    "It is recommended to run a separate ElasticSearch container, and set 'ELASTICSEARCH_ENABLED' to false.")
+    print("#" * 78)
+    print("# Starting container with a local ElasticSearch. This is not recommended,")
+    print("# and may cause issues with clean shutdown. It is recommended to run a ")
+    print("# separate ElasticSearch container, and set 'ELASTICSEARCH_ENABLED' to false.")
+    print("#" * 78 + "\n")
     start_cmd = f"{ BITBUCKET_INSTALL_DIR }/bin/start-bitbucket.sh -fg"
     start_app(start_cmd, BITBUCKET_HOME, name='Bitbucket Server')
 
@@ -53,17 +55,17 @@ def create_log_dir():
 def exists_or_exit(var):
     val = os.getenv(var)
     if val == None:
-        logging.critical("JMX is enabled but { var } is not set.")
+        logging.critical(f"JMX is enabled but { var } is not set.")
         sys.exit(1)
     return val
 
 def file_exists_or_exit(var):
     fname = os.getenv(var)
     if fname == None:
-        logging.critical("JMX is enabled but { var } is not set. The Bitbucket webapp was not started.")
+        logging.critical(f"JMX is enabled but { var } is not set. The Bitbucket webapp was not started.")
         sys.exit(1)
     if not os.path.isfile(fname):
-        logging.critical("JMX is enabled but { fname } is not present. The Bitbucket webapp was not started.")
+        logging.critical(f"JMX is enabled but { fname } is not present. The Bitbucket webapp was not started.")
         sys.exit(1)
     return fname
 
@@ -93,7 +95,7 @@ def gen_jmx_opts():
         return JMX_OPTS
 
     else:
-        logging.critical("JMX authentication method (JMX_REMOTE_AUTH) was unknown.")
+        logging.critical(f"JMX authentication method (JMX_REMOTE_AUTH) was unknown.")
         sys.exit(1)
 
 def start_bb_only():
