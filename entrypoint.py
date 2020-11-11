@@ -119,9 +119,9 @@ def start_bb_only():
                  f"-Xms{ JVM_MINIMUM_MEMORY }", f"-Xmx{ JVM_MAXIMUM_MEMORY }", f"-XX:+UseG1GC"]
     JAVA_OPTS += gen_jmx_opts()
 
-    logging.info("Starting Bitbucket webapp")
-    logging.info(str.join(" ", JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"]))
-    os.execv(JAVA_BINARY, [JAVA_BINARY] + JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"])
+    START = [JAVA_BINARY] + JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"]
+    logging.info(f"Starting Bitbucket webapp with: { str.join(' ', START) }")
+    os.execv(JAVA_BINARY, START)
 
 
 #################### Go ####################
