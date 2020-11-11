@@ -31,21 +31,14 @@ def start_full():
 # control of the process off to tini so signals are propagated correctly.  See
 # DCD-1131 for some background.
 
+JRE_HOME = os.getenv('JRE_HOME')
+JAVA_BINARY = os.getenv('JAVA_BINARY')
 JVM_MINIMUM_MEMORY = os.getenv('JVM_MINIMUM_MEMORY', '512m')
 JVM_MAXIMUM_MEMORY = os.getenv('JVM_MAXIMUM_MEMORY', '1g');
 UMASK = 0o27
 MIN_FDS = 4096
 LOG_DIR = f"{ BITBUCKET_HOME }/log"
 
-BITBUCKET_ARGS=f"-Datlassian.standalone=BITBUCKET -Dbitbucket.home={ BITBUCKET_HOME } -Dbitbucket.install={ BITBUCKET_INSTALL_DIR }"
-JVM_LIBRARY_PATH=f"{ BITBUCKET_INSTALL_DIR }/lib/native;{ BITBUCKET_HOME }/lib/native"
-JVM_FILE_ENCODING_ARGS=f"-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8"
-JVM_JAVA_ARGS=f"-Djava.io.tmpdir={ BITBUCKET_HOME }/tmp -Djava.library.path={ JVM_LIBRARY_PATH }"
-JVM_MEMORY_ARGS=f"-Xms{ JVM_MINIMUM_MEMORY } -Xmx{ JVM_MAXIMUM_MEMORY } -XX:+UseG1GC"
-JVM_REQUIRED_ARGS=f"{ JVM_MEMORY_ARGS } { JVM_FILE_ENCODING_ARGS } { JVM_JAVA_ARGS }"
-JMX_OPTS = gen_jmx_opts()
-
-JAVA_OPTS=f"-classpath { BITBUCKET_INSTALL_DIR }/app { JAVA_OPTS } { BITBUCKET_ARGS } { JMX_OPTS } { JVM_REQUIRED_ARGS } { JVM_SUPPORT_RECOMMENDED_ARGS }"
 LAUNCHER="com.atlassian.bitbucket.internal.launcher.BitbucketServerLauncher"
 
 def create_log_dir():
@@ -77,26 +70,27 @@ def file_exists_or_exit(var):
 def gen_jmx_opts():
     JMX_REMOTE_AUTH = os.getenv('JMX_REMOTE_AUTH')
     if JMX_REMOTE_AUTH == None:
-        return ""
+        return []
 
-    JMX_OPTS = f" -Dcom.sun.management.jmxremote.port={ os.getenv('JMX_REMOTE_PORT', '3333') }" \
-               f" -Djava.rmi.server.hostname={ os.getenv('RMI_SERVER_HOSTNAME', '') }" \
-               f" -Dcom.sun.management.jmxremote.rmi.port={ os.getenv('JMX_REMOTE_RMI_PORT', '') }"
+    JMX_OPTS = [f"-Dcom.sun.management.jmxremote.port={ os.getenv('JMX_REMOTE_PORT', '3333') }",
+                f"-Djava.rmi.server.hostname={ os.getenv('RMI_SERVER_HOSTNAME', '') }",
+                f"-Dcom.sun.management.jmxremote.rmi.port={ os.getenv('JMX_REMOTE_RMI_PORT', '') }"]
 
     if JMX_REMOTE_AUTH == 'password':
         logging.info("Using password JMX authentication, configuring ...")
-        JMX_OPTS += f" -Dcom.sun.management.jmxremote.password.file={ file_exists_or_exit('JMX_PASSWORD_FILE') }" \
-                    f" -Dcom.sun.management.jmxremote.ssl=false"
+        JMX_OPTS += [f"-Dcom.sun.management.jmxremote.password.file={ file_exists_or_exit('JMX_PASSWORD_FILE') }",
+                     f"-Dcom.sun.management.jmxremote.ssl=false"]
         return JMX_OPTS
 
     elif JMX_REMOTE_AUTH == 'ssl':
         logging.info("Using SSL JMX authentication, configuring ...")
-        JMX_OPTS += f" -Djavax.net.ssl.keyStore={ file_exists_or_exit('JAVA_KEYSTORE') }" \
-                    f" -Djavax.net.ssl.keyStorePassword={ exists_or_exit('JAVA_KEYSTORE_PASSWORD') }" \
-                    f" -Djavax.net.ssl.trustStore={ file_exists_or_exit('JAVA_TRUSTSTORE') }" \
-                    f" -Djavax.net.ssl.trustStorePassword={ exists_or_exit('JAVA_TRUSTSTORE_PASSWORD') }" \
-                    f" -Dcom.sun.management.jmxremote.authenticate=false" \
-                    f" -Dcom.sun.management.jmxremote.ssl.need.client.auth=true"
+        JMX_OPTS += [f"-Djavax.net.ssl.keyStore={ file_exists_or_exit('JAVA_KEYSTORE') }",
+                     f"-Djavax.net.ssl.keyStorePassword={ exists_or_exit('JAVA_KEYSTORE_PASSWORD') }",
+                     f"-Djavax.net.ssl.trustStore={ file_exists_or_exit('JAVA_TRUSTSTORE') }",
+                     f"-Djavax.net.ssl.trustStorePassword={ exists_or_exit('JAVA_TRUSTSTORE_PASSWORD') }",
+                     f"-Dcom.sun.management.jmxremote.authenticate=false",
+                     f"-Dcom.sun.management.jmxremote.ssl.need.client.auth=true"]
+        return JMX_OPTS
 
     else:
         logging.critical("JMX authentication method (JMX_REMOTE_AUTH) was unknown.")
@@ -117,8 +111,17 @@ def start_bb_only():
         logging.critical("Could not create log directory. The Bitbucket webapp was not started.")
         sys.exit(1)
 
-    logging.info("Starting Bitbucket webapp")
 
+    JAVA_OPTS = [f"-classpath", f"{ BITBUCKET_INSTALL_DIR }/app",
+                 f"-Datlassian.standalone=BITBUCKET", f"-Dbitbucket.home={ BITBUCKET_HOME }", f"-Dbitbucket.install={ BITBUCKET_INSTALL_DIR }",
+                 f"-Dfile.encoding=UTF-8", f"-Dsun.jnu.encoding=UTF-8",
+                 f"-Djava.io.tmpdir={ BITBUCKET_HOME }/tmp", f"-Djava.library.path={ BITBUCKET_INSTALL_DIR }/lib/native:{ BITBUCKET_HOME }/lib/native",
+                 f"-Xms{ JVM_MINIMUM_MEMORY }", f"-Xmx{ JVM_MAXIMUM_MEMORY }", f"-XX:+UseG1GC"]
+    JAVA_OPTS += gen_jmx_opts()
+
+    logging.info("Starting Bitbucket webapp")
+    logging.info(str.join(" ", JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"]))
+    os.execv(JAVA_BINARY, [JAVA_BINARY] + JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"])
 
 
 #################### Go ####################

@@ -3,7 +3,6 @@ FROM $BASE_IMAGE
 
 ARG BITBUCKET_VERSION
 
-
 ENV RUN_USER                                        bitbucket
 ENV RUN_GROUP                                       bitbucket
 ENV RUN_UID                                         2003
@@ -14,6 +13,8 @@ ENV BITBUCKET_HOME                                  /var/atlassian/application-d
 ENV BITBUCKET_INSTALL_DIR                           /opt/atlassian/bitbucket
 ENV ELASTICSEARCH_ENABLED                           true
 ENV APPLICATION_MODE                                default
+ENV JRE_HOME                                        /opt/java/openjdk
+ENV JAVA_BINARY                                     ${JRE_HOME}/bin/java
 
 WORKDIR $BITBUCKET_HOME
 
