@@ -113,7 +113,6 @@ def start_bitbucket():
         logging.critical("Could not create log directory. The Bitbucket webapp was not started.")
         sys.exit(1)
 
-
     JAVA_OPTS = [f"-classpath", f"{ BITBUCKET_INSTALL_DIR }/app",
                  f"-Datlassian.standalone=BITBUCKET", f"-Dbitbucket.home={ BITBUCKET_HOME }", f"-Dbitbucket.install={ BITBUCKET_INSTALL_DIR }",
                  f"-Dfile.encoding=UTF-8", f"-Dsun.jnu.encoding=UTF-8",
