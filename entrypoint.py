@@ -98,7 +98,7 @@ def gen_jmx_opts():
         logging.critical(f"JMX authentication method (JMX_REMOTE_AUTH) was unknown.")
         sys.exit(1)
 
-def start_bb_only():
+def start_bitbucket():
     os.umask(UMASK)
 
     ulimit = resource.getrlimit(resource.RLIMIT_NOFILE)
@@ -129,6 +129,6 @@ def start_bb_only():
 #################### Go ####################
 
 if str2bool(env['elasticsearch_enabled']) is False or env['application_mode'] == 'mirror':
-    start_bb_only()
+    start_bitbucket()
 else:
     start_full()
