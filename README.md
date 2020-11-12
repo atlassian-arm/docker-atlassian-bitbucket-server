@@ -12,6 +12,13 @@ Learn more about Bitbucket Server: <https://www.atlassian.com/software/bitbucket
 This Docker container makes it easy to get an instance of Bitbucket up and
 running.
 
+** NOTE: For backwards-compatibility, by default the image will start both
+Bitbucket and an embedded ElasticSearch. However this is not a recommended
+configuration, especially in a clustered environment, and has known issues with
+shutdown. instead, we recommend running a separate ElasticSearch instance
+(possibly in another Docker container); see below for instructions on connecting
+to an external ElasticSearch cluster. **
+
 ** If running this image in a production environment, we strongly recommend you
 run this image using a specific version tag instead of latest. This is because
 the image referenced by the latest tag changes often and we cannot guarantee
