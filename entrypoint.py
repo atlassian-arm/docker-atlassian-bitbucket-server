@@ -40,6 +40,8 @@ JVM_MAXIMUM_MEMORY = os.getenv('JVM_MAXIMUM_MEMORY', '1g');
 UMASK = 0o27
 MIN_FDS = 4096
 LOG_DIR = f"{ BITBUCKET_HOME }/log"
+RUN_UID = int(os.getenv('RUN_UID'))
+RUN_GID = int(os.getenv('RUN_GID'))
 
 LAUNCHER="com.atlassian.bitbucket.internal.launcher.BitbucketServerLauncher"
 
@@ -47,9 +49,10 @@ def create_log_dir():
     if not os.path.isdir(LOG_DIR):
         try:
             os.mkdir(LOG_DIR)
+            os.chown(LOG_DIR, RUN_UID, RUN_GID)
             return True
-        except:
-            logging.warning(f"{ LOG_DIR } could not be created. Permissions issue?")
+        except Exception as e:
+            logging.warning(f"{ LOG_DIR } could not be created. Permissions issue? { e }")
             return False
 
 def exists_or_exit(var):
@@ -120,9 +123,9 @@ def start_bitbucket():
                  f"-Xms{ JVM_MINIMUM_MEMORY }", f"-Xmx{ JVM_MAXIMUM_MEMORY }", f"-XX:+UseG1GC"]
     JAVA_OPTS += gen_jmx_opts()
 
-    START = [JAVA_BINARY] + JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"]
-    logging.info(f"Starting Bitbucket webapp with: { str.join(' ', START) }")
-    os.execv(JAVA_BINARY, START)
+    START = str.join(' ', [JAVA_BINARY] + JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"])
+    logging.info(f"Starting Bitbucket webapp with: { START }")
+    start_app(START, BITBUCKET_HOME, name='Bitbucket Server')
 
 
 #################### Go ####################
