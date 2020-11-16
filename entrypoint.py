@@ -4,6 +4,7 @@ from entrypoint_helpers import env, str2bool, start_app
 import logging
 import os
 import resource
+import shutil
 import sys
 
 
@@ -13,25 +14,15 @@ BITBUCKET_INSTALL_DIR = env['bitbucket_install_dir']
 BITBUCKET_HOME = env['bitbucket_home']
 
 
-#################### Bitbucket + ES ####################
-
-def start_full():
-    print("#" * 78)
-    print("# Starting container with a local ElasticSearch. This is not recommended,")
-    print("# and may cause issues with clean shutdown. It is recommended to run a ")
-    print("# separate ElasticSearch container, and set 'ELASTICSEARCH_ENABLED' to false.")
-    print("#" * 78 + "\n")
-    start_cmd = f"{ BITBUCKET_INSTALL_DIR }/bin/start-bitbucket.sh -fg"
-    start_app(start_cmd, BITBUCKET_HOME, name='Bitbucket Server')
-
-
 #################### Bitbucket only ####################
 
 # The following is mostly extracted from the _start-webapp.sh script in the
 # distribution. It is replicated here as we can't call that script directly,
-# some of it doesn't make sense in a container context, and we need to hand full
-# control of the process off to tini so signals are propagated correctly.  See
-# DCD-1131 for some background.
+# some of it doesn't make sense in a container context, and we need to hand
+# full control of the process off to tini so signals are propagated correctly
+# (the _start-webapp.sh script invokes Bitbucket with nohup, so we can't use
+# the environment hack we use with the _start-search.sh script).
+# See DCD-1131 for more background.
 
 JRE_HOME = os.getenv('JRE_HOME')
 JAVA_BINARY = os.getenv('JAVA_BINARY')
@@ -49,7 +40,6 @@ def create_log_dir():
     if not os.path.isdir(LOG_DIR):
         try:
             os.mkdir(LOG_DIR)
-            os.chown(LOG_DIR, RUN_UID, RUN_GID)
             return True
         except Exception as e:
             logging.warning(f"{ LOG_DIR } could not be created. Permissions issue? { e }")
@@ -128,7 +118,38 @@ def start_bitbucket():
     start_app(START, BITBUCKET_HOME, name='Bitbucket Server')
 
 
+#################### Bitbucket + ES ####################
+
+def start_search():
+    # This is a bit of a hack to allow separate invocation of the ES
+    # script; it's possibly fragile, but saves us a lot of duplication:
+    if os.fork() == 0:
+        BIN_DIR = f"{ BITBUCKET_INSTALL_DIR }/bin"
+        ES_DIR = f"{ BITBUCKET_INSTALL_DIR }/elasticsearch"
+        START = f"{ BIN_DIR }/_start-search.sh"
+
+        os.environ['BIN_DIR'] = BIN_DIR
+        os.environ['INST_DIR'] = BITBUCKET_INSTALL_DIR
+        os.environ['BITBUCKET_HOME'] = BITBUCKET_HOME
+        logging.info(f"Starting Elasticsearch with: { START }")
+        start_app(START, ES_DIR, name='ElasticSearch Server')
+
+def start_full():
+    print("#" * 78)
+    print("# Starting container with a local ElasticSearch. This is not recommended,")
+    print("# and may cause issues with startup and shutdown. It is instead recommended to ")
+    print("# run a separate ElasticSearch container, and set 'ELASTICSEARCH_ENABLED' to false.")
+    print("#" * 78 + "\n")
+    start_search()
+    start_bitbucket()
+
+
 #################### Go ####################
+
+# We do more file creation & setup than usual here, so drop privs
+# preemptively so permissions are correct.
+os.setgid(RUN_GID)
+os.setuid(RUN_UID)
 
 if str2bool(env['elasticsearch_enabled']) is False or env['application_mode'] == 'mirror':
     start_bitbucket()
