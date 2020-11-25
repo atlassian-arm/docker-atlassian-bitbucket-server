@@ -8,9 +8,9 @@ from helpers import get_app_home, get_app_install_dir, get_bootstrap_proc, get_p
 def test_first_run_state(docker_cli, image, run_user):
     PORT = 7990
     URL = f'http://localhost:{PORT}/status'
-    
+
     container = run_image(docker_cli, image, user=run_user, ports={PORT: PORT})
-    
+
     wait_for_http_response(URL, expected_status=503, expected_state=('STARTING', 'FIRST_RUN'))
 
 
@@ -22,10 +22,10 @@ def test_jvm_args(docker_cli, image, run_user):
     }
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
-    
+
     procs_list = get_procs(container)
     jvm = [proc for proc in procs_list if get_bootstrap_proc(container) in proc][0]
-    
+
     assert f'-Xms{environment.get("JVM_MINIMUM_MEMORY")}' in jvm
     assert f'-Xmx{environment.get("JVM_MAXIMUM_MEMORY")}' in jvm
     assert environment.get('JVM_SUPPORT_RECOMMENDED_ARGS') in jvm
@@ -34,11 +34,10 @@ def test_jvm_args(docker_cli, image, run_user):
 def test_elasticsearch_default(docker_cli, image, run_user):
     container = run_image(docker_cli, image, user=run_user)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
-    
-    procs_list = get_procs(container)
-    start_bitbucket = [proc for proc in procs_list if 'start-bitbucket.sh' in proc][0]
-    assert '--no-search' not in start_bitbucket
 
+    procs_list = get_procs(container)
+    java_procs = [proc for proc in procs_list if 'java' in proc]
+    assert len(java_procs) == 2
     _es_jvm = wait_for_proc(container, 'org.elasticsearch.bootstrap.Elasticsearch')
 
 
@@ -46,20 +45,22 @@ def test_elasticsearch_disabled(docker_cli, image, run_user):
     environment = {'ELASTICSEARCH_ENABLED': 'false'}
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
-    
+
     procs_list = get_procs(container)
-    start_bitbucket = [proc for proc in procs_list if 'start-bitbucket.sh' in proc][0]
-    assert '--no-search' in start_bitbucket
+    java_procs = [proc for proc in procs_list if 'java' in proc]
+    assert len(java_procs) == 1
+    assert 'org.elasticsearch.bootstrap.Elasticsearch' not in java_procs[0]
 
 
 def test_application_mode_mirror(docker_cli, image, run_user):
     environment = {'APPLICATION_MODE': 'mirror'}
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
-    
+
     procs_list = get_procs(container)
-    start_bitbucket = [proc for proc in procs_list if 'start-bitbucket.sh' in proc][0]
-    assert '--no-search' in start_bitbucket
+    java_procs = [proc for proc in procs_list if 'java' in proc]
+    assert len(java_procs) == 1
+    assert 'org.elasticsearch.bootstrap.Elasticsearch' not in java_procs[0]
 
 
 def test_install_permissions(docker_cli, image):
