@@ -42,6 +42,7 @@ def create_log_dir():
     if not os.path.isdir(LOG_DIR):
         try:
             os.mkdir(LOG_DIR)
+            os.chown(LOG_DIR, RUN_UID, RUN_GID)
             return True
         except Exception as e:
             logging.warning(f"{ LOG_DIR } could not be created. Permissions issue? { e }")
@@ -148,11 +149,6 @@ def start_full():
 
 
 #################### Go ####################
-
-# We do more file creation & setup than usual here, so drop privs
-# preemptively so permissions are correct.
-os.setgid(RUN_GID)
-os.setuid(RUN_UID)
 
 if str2bool(env['elasticsearch_enabled']) is False or env['application_mode'] == 'mirror':
     start_bitbucket()
