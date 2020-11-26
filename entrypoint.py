@@ -28,6 +28,8 @@ JRE_HOME = os.getenv('JRE_HOME')
 JAVA_BINARY = os.getenv('JAVA_BINARY')
 JVM_MINIMUM_MEMORY = os.getenv('JVM_MINIMUM_MEMORY', '512m')
 JVM_MAXIMUM_MEMORY = os.getenv('JVM_MAXIMUM_MEMORY', '1g');
+JVM_SUPPORT_RECOMMENDED_ARGS = os.getenv('JVM_SUPPORT_RECOMMENDED_ARGS', '')
+
 UMASK = 0o27
 MIN_FDS = 4096
 LOG_DIR = f"{ BITBUCKET_HOME }/log"
@@ -110,7 +112,8 @@ def start_bitbucket():
                  f"-Datlassian.standalone=BITBUCKET", f"-Dbitbucket.home={ BITBUCKET_HOME }", f"-Dbitbucket.install={ BITBUCKET_INSTALL_DIR }",
                  f"-Dfile.encoding=UTF-8", f"-Dsun.jnu.encoding=UTF-8",
                  f"-Djava.io.tmpdir={ BITBUCKET_HOME }/tmp", f"-Djava.library.path={ BITBUCKET_INSTALL_DIR }/lib/native:{ BITBUCKET_HOME }/lib/native",
-                 f"-Xms{ JVM_MINIMUM_MEMORY }", f"-Xmx{ JVM_MAXIMUM_MEMORY }", f"-XX:+UseG1GC"]
+                 f"-Xms{ JVM_MINIMUM_MEMORY }", f"-Xmx{ JVM_MAXIMUM_MEMORY }", f"-XX:+UseG1GC",
+                 JVM_SUPPORT_RECOMMENDED_ARGS]
     JAVA_OPTS += gen_jmx_opts()
 
     START = str.join(' ', [JAVA_BINARY] + JAVA_OPTS + [LAUNCHER, "start", "--logging.console=true"])
