@@ -3,6 +3,7 @@ import pytest
 from helpers import get_app_home, get_app_install_dir, get_bootstrap_proc, get_procs, \
     parse_properties, parse_xml, run_image, wait_for_http_response, wait_for_proc
 
+JAVA_BINARY = '/opt/java/openjdk/bin/java'
 
 
 def test_first_run_state(docker_cli, image, run_user):
@@ -24,7 +25,7 @@ def test_jvm_args(docker_cli, image, run_user):
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
     procs_list = get_procs(container)
-    jvm = [proc for proc in procs_list if get_bootstrap_proc(container) in proc][0]
+    jvm = [proc for proc in procs_list if proc.startswith(JAVA_BINARY) and 'BitbucketServerLauncher' in proc][0]
 
     assert f'-Xms{environment.get("JVM_MINIMUM_MEMORY")}' in jvm
     assert f'-Xmx{environment.get("JVM_MAXIMUM_MEMORY")}' in jvm
@@ -33,12 +34,11 @@ def test_jvm_args(docker_cli, image, run_user):
 
 def test_elasticsearch_default(docker_cli, image, run_user):
     container = run_image(docker_cli, image, user=run_user)
-    _jvm = wait_for_proc(container, get_bootstrap_proc(container))
+    _es_jvm = wait_for_proc(container, 'org.elasticsearch.bootstrap.Elasticsearch')
 
     procs_list = get_procs(container)
-    java_procs = [proc for proc in procs_list if 'java' in proc]
+    java_procs = [proc for proc in procs_list if proc.startswith(JAVA_BINARY)]
     assert len(java_procs) == 2
-    _es_jvm = wait_for_proc(container, 'org.elasticsearch.bootstrap.Elasticsearch')
 
 
 def test_elasticsearch_disabled(docker_cli, image, run_user):
@@ -47,7 +47,7 @@ def test_elasticsearch_disabled(docker_cli, image, run_user):
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
     procs_list = get_procs(container)
-    java_procs = [proc for proc in procs_list if 'java' in proc]
+    java_procs = [proc for proc in procs_list if proc.startswith(JAVA_BINARY)]
     assert len(java_procs) == 1
     assert 'org.elasticsearch.bootstrap.Elasticsearch' not in java_procs[0]
 
@@ -58,7 +58,7 @@ def test_application_mode_mirror(docker_cli, image, run_user):
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
     procs_list = get_procs(container)
-    java_procs = [proc for proc in procs_list if 'java' in proc]
+    java_procs = [proc for proc in procs_list if proc.startswith(JAVA_BINARY)]
     assert len(java_procs) == 1
     assert 'org.elasticsearch.bootstrap.Elasticsearch' not in java_procs[0]
 
