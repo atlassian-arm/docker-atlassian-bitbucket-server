@@ -132,3 +132,4 @@ definitions:
       memory: 3072
 options:
   size: 2x
+  max-time: 240
