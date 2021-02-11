@@ -19,7 +19,7 @@ pipelines:
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk11,ubuntu-jdk11'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - python /usr/src/app/run.py --create --create-eap
+                - python /usr/src/app/run.py --create --create-eap --test-script ./integration_test.sh
           - step:
               name: Bitbucket JDK 8
               services:
@@ -34,7 +34,7 @@ pipelines:
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk8,ubuntu'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - python /usr/src/app/run.py --create --create-eap
+                - python /usr/src/app/run.py --create --create-eap --test-script ./integration_test.sh
     jdk8-custom-release:
       - variables:
           - name: BITBUCKET_VERSION
@@ -48,6 +48,7 @@ pipelines:
             - >
               docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
+            - snyk container test atlassian/docker-release-maker:${DOCKER_TAG} --severity-threshold=high
             - docker push atlassian/bitbucket-server:${DOCKER_TAG}
     jdk11-custom-release:
       - variables:
@@ -63,6 +64,7 @@ pipelines:
               docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
               --build-arg BASE_IMAGE=adoptopenjdk:11-hotspot
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
+            - snyk container test atlassian/docker-release-maker:${DOCKER_TAG} --severity-threshold=high
             - docker push atlassian/bitbucket-server:${DOCKER_TAG}
   branches:
     master:
@@ -82,7 +84,7 @@ pipelines:
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk11,ubuntu-jdk11'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - python /usr/src/app/run.py --update
+                - python /usr/src/app/run.py --update --test-script ./integration_test.sh
           - step:
               name: Bitbucket JDK 8
               services:
@@ -97,7 +99,7 @@ pipelines:
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk8,ubuntu'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - python /usr/src/app/run.py --update
+                - python /usr/src/app/run.py --update --test-script ./integration_test.sh
       - step:
           name: Update README
           image: python:3.7-alpine3.9
