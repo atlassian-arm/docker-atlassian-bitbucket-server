@@ -18,6 +18,8 @@ pipelines:
                 - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk11,ubuntu-jdk11'
+                - export PUSH_DOCKER_IMAGE='true'
+                - export INTEGRATION_TEST_SCRIPT='./integration_test.sh'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - python /usr/src/app/run.py --create --create-eap
           - step:
@@ -33,6 +35,8 @@ pipelines:
                 - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk8,ubuntu'
+                - export PUSH_DOCKER_IMAGE='true'
+                - export INTEGRATION_TEST_SCRIPT='./integration_test.sh'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - python /usr/src/app/run.py --create --create-eap
     jdk8-custom-release:
@@ -85,6 +89,8 @@ pipelines:
                 - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk11,ubuntu-jdk11'
+                - export PUSH_DOCKER_IMAGE='true'
+                - export INTEGRATION_TEST_SCRIPT='./integration_test.sh'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - python /usr/src/app/run.py --update
           - step:
@@ -100,6 +106,8 @@ pipelines:
                 - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
                 - export MAC_PRODUCT_KEY='bitbucket'
                 - export TAG_SUFFIXES='jdk8,ubuntu'
+                - export PUSH_DOCKER_IMAGE='true'
+                - export INTEGRATION_TEST_SCRIPT='./integration_test.sh'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - python /usr/src/app/run.py --update
       - step:
