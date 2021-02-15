@@ -48,6 +48,7 @@ pipelines:
             - >
               docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
+            - snyk auth @SNYK_TOKEN
             - snyk container test atlassian/docker-release-maker:${DOCKER_TAG} --severity-threshold=high
             - docker push atlassian/bitbucket-server:${DOCKER_TAG}
     jdk11-custom-release:
@@ -64,6 +65,7 @@ pipelines:
               docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
               --build-arg BASE_IMAGE=adoptopenjdk:11-hotspot
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
+            - snyk auth @SNYK_TOKEN
             - snyk container test atlassian/docker-release-maker:${DOCKER_TAG} --severity-threshold=high
             - docker push atlassian/bitbucket-server:${DOCKER_TAG}
   branches:
