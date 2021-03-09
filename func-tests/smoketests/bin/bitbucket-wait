@@ -1,0 +1,29 @@
+#!/bin/bash
+
+max=300
+sleep_interval=5
+
+echo "Waiting for Bitbucket to come up at $url..."
+
+for i in `seq $max`; do
+    status=`curl -s $BITBUCKET_BASE_URL/status`
+    if [[ $status == '{"state":"RUNNING"}' ]]; then
+        echo OK
+        echo Bitbucket is up and running
+        exit 0
+    elif [[ $status == '{"state":"ERROR"}' ]]; then
+        echo ERROR
+        echo Bitbucket failed to startup
+        exit -1
+    elif [[ -z $status ]]; then
+        echo Status endpoint is starting up
+    else
+        echo Bitbucket returned $status
+    fi
+
+    /bin/sleep $sleep_interval
+
+done
+
+echo Bitbucket failed to startup within $max seconds
+exit -1
