@@ -130,7 +130,7 @@ pipelines:
             - export DOCKERFILE_BUILDARGS='BASE_IMAGE=adoptopenjdk:11-hotspot'
             - py.test tests/
             - py.test shared-components/tests/
-    - step:
+      - step:
           services:
             - docker
           script:
