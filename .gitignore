@@ -2,3 +2,6 @@ __pycache__/
 \#*\#
 
 func-tests/bitbucket-home/
+
+.vscode
+.idea
