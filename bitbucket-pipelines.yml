@@ -130,6 +130,16 @@ pipelines:
             - export DOCKERFILE_BUILDARGS='BASE_IMAGE=adoptopenjdk:11-hotspot'
             - py.test tests/
             - py.test shared-components/tests/
+      - step:
+          services:
+            - docker
+          script:
+            - apk add --no-cache git docker-compose jq curl
+            - git submodule update --init --recursive
+            - export BITBUCKET_VERSION=$(curl -s https://marketplace.atlassian.com/rest/2/products/key/bitbucket/versions/latest | jq -r .name)
+            - docker build --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} -t test-image .
+            - export IS_RELEASE=false
+            - /usr/src/app/integration_test.sh test-image $IS_RELEASE
 definitions:
   services:
     docker:
