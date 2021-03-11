@@ -5,3 +5,4 @@ func-tests/bitbucket-home/
 
 .vscode/
 .idea/
+*.iml
