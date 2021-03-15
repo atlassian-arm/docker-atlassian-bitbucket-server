@@ -47,5 +47,5 @@ services:
     command: >
       bash -c '
           ./bin/bitbucket-wait &&
-          pipenv run pytest
+          pipenv run pytest -s -v
       '
