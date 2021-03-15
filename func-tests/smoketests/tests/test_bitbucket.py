@@ -5,6 +5,24 @@ import requests
 import subprocess
 import pytest
 
+NOCHECK = {"X-Atlassian-Token": "no-check"}
+
+
+def test_create_user(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/admin/users?name={tdata.user}&password={tdata.user}&displayName=User&emailAddress=user@example.com"
+
+    r = requests.post(url, auth=ctx.admin_auth, headers=NOCHECK)
+
+    assert r.status_code == 204, f'failed to create user, status:{r.status_code}, content: {r.text}'
+
+
+def test_make_user_admin(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/admin/permissions/users?name={tdata.user}&permission=ADMIN"
+
+    r = requests.put(url, auth=ctx.admin_auth, headers=NOCHECK)
+
+    assert r.status_code == 204, f'failed to make the user an admin, status:{r.status_code}, content: {r.text}'
+
 
 def test_create_project(ctx, tdata):
     url = f"{ctx.base_url}/rest/api/1.0/projects"
@@ -44,16 +62,16 @@ def test_import_repository(ctx, tdata):
     if clone_o.returncode not in (0, 128):
         pytest.fail(f"error when cloning repository, {clone_o}")
 
+    logging.info("Git clone returned with exit code: %d", clone_o.returncode)
+
     url_parsed = urlparse(ctx.base_url)
     # example scm url:
     # http://admin:admin@localhost:7990/scm/project1615521268/avatar1615521268.git
     repo_host_url = f"{url_parsed.scheme}://{ctx.admin_user}:{ctx.admin_pwd}@{url_parsed.hostname}:{url_parsed.port}" \
                     f"/scm/{tdata.project_key.lower()}/{tdata.repository_name}.git"
 
-    clone_o = subprocess.run(
+    subprocess.run(
         ["git", "remote", "add", tdata.project_key, repo_host_url], cwd=tdata.folder)
-
-    logging.info("Git clone returned with exit code: %d", clone_o.returncode)
 
     push_o = subprocess.run(
         ["git", "push", "--mirror", tdata.project_key], cwd=tdata.folder)
@@ -64,8 +82,9 @@ def test_import_repository(ctx, tdata):
 def test_open_pull_request(ctx, tdata):
     url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests"
 
+    pr_title = "The best PR in the world"
     data = {
-        "title": "The best PR in the world",
+        "title": pr_title,
         "description": "It’s a kludge, but put the tuple from the database in the cache.",
         "state": "OPEN",
         "open": True,
@@ -75,10 +94,19 @@ def test_open_pull_request(ctx, tdata):
         "toRef": {
             "id": "refs/heads/master",
         },
+        "reviewers": [
+            {
+                "user": {
+                    "name": tdata.user
+                }
+            }
+        ]
     }
 
     r = requests.post(url, json=data, auth=ctx.admin_auth)
 
     assert r.status_code == 201, f'failed to create pull request, status: {r.status_code}, content: {r.text}'
-
-
+    json_resp = r.json()
+    assert json_resp['id'] > 0
+    assert json_resp['title'] == pr_title
+    assert json_resp['open']

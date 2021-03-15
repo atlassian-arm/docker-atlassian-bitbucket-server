@@ -1,5 +1,6 @@
 import logging
 import os
+import shutil
 import time
 from dataclasses import dataclass
 
@@ -33,6 +34,7 @@ class TestData:
     repo_to_clone: str
     folder: str
     new_branch: str
+    user: str
 
 
 @pytest.fixture(scope='session')
@@ -53,6 +55,7 @@ def tdata():
         repo_to_clone="https://github.com/nanux/git-test-repo.git",
         folder="git-test-repo",
         new_branch="new-branch",
+        user=f"user{round(time.time())}"
     )
 
 
@@ -62,9 +65,15 @@ def data_cleanup(tdata, ctx, pytestconfig):
 
     if pytestconfig.getoption("--cleanup"):
         logging.info("Cleaning up the test data")
-        r_rep = requests.delete(
+        # local repository
+        shutil.rmtree(tdata.folder, ignore_errors=True)
+        # user
+        assert requests.delete(f"{ctx.base_url}/rest/api/1.0/admin/users?name={tdata.user}",
+                               auth=ctx.admin_auth).status_code == 200
+        # repository
+        assert requests.delete(
             f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}",
-            auth=ctx.admin_auth)
-        assert r_rep.status_code == 202, "cannot delete the repository"
-        r_proj = requests.delete(f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}", auth=ctx.admin_auth)
-        assert r_proj.status_code == 204, "cannot delete the project"
+            auth=ctx.admin_auth).status_code == 202, "cannot delete the repository"
+        # project
+        assert requests.delete(f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}",
+                               auth=ctx.admin_auth).status_code == 204, "cannot delete the project"
