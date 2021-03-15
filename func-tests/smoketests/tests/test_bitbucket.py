@@ -110,3 +110,35 @@ def test_open_pull_request(ctx, tdata):
     assert json_resp['id'] > 0
     assert json_resp['title'] == pr_title
     assert json_resp['open']
+
+
+def test_add_attachment(ctx, tdata):
+    # headers = {"Content-Type": "multipart/form-data"}
+    url = f"{ctx.base_url}/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments"
+    files = {'files': open('file.txt', 'rb')}
+
+    r = requests.post(url, files=files, auth=ctx.admin_auth)
+
+    assert r.status_code == 201, f'failed to upload attachment, status: {r.status_code}, content: {r.text}'
+
+    attachment_url = r.json()['attachments'][0]['url']
+
+    # TODO display attachment and pass it tdata so it can be attached to a comment
+    # assert requests.get(attachment_url, auth=ctx.admin_auth).text == 'bla'
+
+
+def test_add_general_comment_to_pr(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/1/comments"
+
+    # inserts general comment on PR
+    comment_text = "An insightful general comment on a pull request."
+    data = {
+        "text": comment_text
+    }
+    r = requests.post(url, json=data, auth=ctx.admin_auth)
+
+    assert r.status_code == 201, f'failed to create comment on the pull request, status: {r.status_code}, content: {r.text}'
+
+    json_resp = r.json()
+    assert json_resp['id'] > 0
+    assert json_resp['text'] == comment_text
