@@ -59,3 +59,26 @@ def test_import_repository(ctx, tdata):
         ["git", "push", "--mirror", tdata.project_key], cwd=tdata.folder)
 
     assert push_o.returncode == 0, "cannot push repository from local to bitbucket"
+
+
+def test_open_pull_request(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests"
+
+    data = {
+        "title": "The best PR in the world",
+        "description": "It’s a kludge, but put the tuple from the database in the cache.",
+        "state": "OPEN",
+        "open": True,
+        "fromRef": {
+            "id": f"refs/heads/{tdata.new_branch}",
+        },
+        "toRef": {
+            "id": "refs/heads/master",
+        },
+    }
+
+    r = requests.post(url, json=data, auth=ctx.admin_auth)
+
+    assert r.status_code == 201, f'failed to create pull request, status: {r.status_code}, content: {r.text}'
+
+

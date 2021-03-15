@@ -32,6 +32,7 @@ class TestData:
     repository_name: str
     repo_to_clone: str
     folder: str
+    new_branch: str
 
 
 @pytest.fixture(scope='session')
@@ -50,7 +51,8 @@ def tdata():
         project_name=f"My Project {round(time.time())}",
         repository_name=f"avatar{round(time.time())}",
         repo_to_clone="https://github.com/nanux/git-test-repo.git",
-        folder="git-test-repo"
+        folder="git-test-repo",
+        new_branch="new-branch",
     )
 
 
