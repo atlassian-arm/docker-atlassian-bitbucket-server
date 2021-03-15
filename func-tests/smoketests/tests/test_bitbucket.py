@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 import requests
 import subprocess
 import pytest
+import time
 
 NOCHECK = {"X-Atlassian-Token": "no-check"}
 
@@ -113,18 +114,21 @@ def test_open_pull_request(ctx, tdata):
 
 
 def test_add_attachment(ctx, tdata):
-    # headers = {"Content-Type": "multipart/form-data"}
     url = f"{ctx.base_url}/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments"
-    files = {'files': open('file.txt', 'rb')}
+    files = {'files': ('file.txt', open('file.txt', 'rb'), 'multipart/form-data')}
 
     r = requests.post(url, files=files, auth=ctx.admin_auth)
 
     assert r.status_code == 201, f'failed to upload attachment, status: {r.status_code}, content: {r.text}'
+    attachment_id = r.json()['attachments'][0]['id']
 
     attachment_url = r.json()['attachments'][0]['url']
 
     # TODO display attachment and pass it tdata so it can be attached to a comment
-    # assert requests.get(attachment_url, auth=ctx.admin_auth).text == 'bla'
+    downloadurl = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments/{attachment_id}"
+    d = requests.get(downloadurl, auth=ctx.admin_auth)
+    assert d.status_code == 200, f'failed to download attachment, status: {r.status_code}, content: {r.text}'
+
 
 
 def test_add_general_comment_to_pr(ctx, tdata):
