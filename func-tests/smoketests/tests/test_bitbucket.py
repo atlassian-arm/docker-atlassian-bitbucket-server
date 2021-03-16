@@ -125,10 +125,10 @@ def test_add_attachment(ctx, tdata):
 
     attachment_url = r.json()['attachments'][0]['url']
 
-    # TODO display attachment and pass it tdata so it can be attached to a comment
     downloadurl = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments/{attachment_id}"
     d = requests.get(downloadurl, auth=ctx.admin_auth)
     assert d.status_code == 200, f'failed to download attachment, status: {r.status_code}, content: {r.text}'
+    assert 'filename="file.txt"' in d.headers['Content-Disposition'], r.headers
 
 
 
