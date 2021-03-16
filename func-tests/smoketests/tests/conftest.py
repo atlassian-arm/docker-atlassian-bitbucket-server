@@ -76,10 +76,10 @@ def data_cleanup(tdata, ctx, pytestconfig):
         assert requests.delete(f"{ctx.base_url}/rest/api/1.0/admin/users?name={tdata.user}",
                                auth=ctx.admin_auth).status_code == 200
         # repository
-        r = requests.delete(
+        assert requests.delete(
             f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}",
-            auth=ctx.admin_auth)
-        assert r.status_code == 202 or r.status_code == 204, "cannot delete the repository"
+            auth=ctx.admin_auth).status_code == 202, "cannot delete the repository"
+
         # project
         assert requests.delete(f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}",
                                auth=ctx.admin_auth).status_code == 204, "cannot delete the project"
