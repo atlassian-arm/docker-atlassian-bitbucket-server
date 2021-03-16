@@ -109,6 +109,7 @@ def test_open_pull_request(ctx, tdata):
     assert r.status_code == 201, f'failed to create pull request, status: {r.status_code}, content: {r.text}'
     json_resp = r.json()
     assert json_resp['id'] > 0
+    tdata.pull_request_id = json_resp['id']
     assert json_resp['title'] == pr_title
     assert json_resp['open']
 
@@ -132,7 +133,7 @@ def test_add_attachment(ctx, tdata):
 
 
 def test_add_general_comment_to_pr(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/1/comments"
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/comments"
 
     # inserts general comment on PR
     comment_text = "An insightful general comment on a pull request."
@@ -146,3 +147,29 @@ def test_add_general_comment_to_pr(ctx, tdata):
     json_resp = r.json()
     assert json_resp['id'] > 0
     assert json_resp['text'] == comment_text
+
+
+def test_approve_pull_request(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/approve"
+
+    # approve a pull request
+    r = requests.post(url, headers=NOCHECK, auth=tdata.user_auth)
+
+    assert r.status_code == 200, f'failed to approve the pull request, status: {r.status_code}, content: {r.text}'
+
+    json_resp = r.json()
+    assert json_resp['approved']
+
+
+def test_merge_pull_request(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/merge?version=0"
+
+    # merge the pull request
+    r = requests.post(url, headers=NOCHECK, auth=ctx.admin_auth)
+
+    assert r.status_code == 200, f'failed to merge the pull request, status: {r.status_code}, content: {r.text}'
+
+    json_resp = r.json()
+    assert json_resp['id'] > 0
+    assert json_resp['state'] == "MERGED"
+    assert json_resp['closed']
