@@ -1,10 +1,10 @@
 import logging
+from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
 import subprocess
 import pytest
-import time
 
 NOCHECK = {"X-Atlassian-Token": "no-check"}
 
@@ -75,7 +75,7 @@ def test_import_repository(ctx, tdata):
         ["git", "remote", "add", tdata.project_key, repo_host_url], cwd=tdata.folder)
 
     push_o = subprocess.run(
-        ["git", "push", "--mirror", tdata.project_key], cwd=tdata.folder)
+        ["git", "push", "--all", tdata.project_key], cwd=tdata.folder)
 
     assert push_o.returncode == 0, "cannot push repository from local to bitbucket"
 
@@ -114,6 +114,18 @@ def test_open_pull_request(ctx, tdata):
     assert json_resp['open']
 
 
+def test_commit_new_change_to_open_pull_request(ctx, tdata):
+    target_folder = "test-folder"
+    subprocess.run(["git", "clone", tdata.folder, target_folder])
+    f = open(Path(target_folder, "new-file.txt"), "w")
+    f.write("new line in the file")
+    f.close()
+
+    subprocess.run(["git", "checkout", "new-branch"])
+    subprocess.run(["git", "commit", "-a", "-m", "new commit to the branch"])
+
+    
+
 def test_add_attachment(ctx, tdata):
     url = f"{ctx.base_url}/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments"
     files = {'files': ('file.txt', open('file.txt', 'rb'), 'multipart/form-data')}
@@ -129,7 +141,6 @@ def test_add_attachment(ctx, tdata):
     d = requests.get(downloadurl, auth=ctx.admin_auth)
     assert d.status_code == 200, f'failed to download attachment, status: {r.status_code}, content: {r.text}'
     assert 'filename="file.txt"' in d.headers['Content-Disposition'], r.headers
-
 
 
 def test_add_general_comment_to_pr(ctx, tdata):

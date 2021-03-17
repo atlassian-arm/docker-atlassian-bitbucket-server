@@ -23,7 +23,7 @@ services:
       - JDBC_URL=jdbc:postgresql://postgresql/bitbucket
       - JDBC_USER=bitbucket
       - JDBC_PASSWORD=bitbucket
-      - SETUP_DISPLAYNAME='Bitbucket Smoketest Instance'
+      - SETUP_DISPLAYNAME=Bitbucket Smoketest Instance
       - SETUP_BASEURL=http://bitbucket:7990
       - SETUP_LICENSE=${BITBUCKET_LICENSE}
       - SETUP_SYSADMIN_USERNAME=admin
