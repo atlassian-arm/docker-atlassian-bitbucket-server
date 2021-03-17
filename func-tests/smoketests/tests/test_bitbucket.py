@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+from time import sleep
 from urllib.parse import urlparse
 
 import requests
@@ -68,11 +69,11 @@ def test_import_repository(ctx, tdata):
     url_parsed = urlparse(ctx.base_url)
     # example scm url:
     # http://admin:admin@localhost:7990/scm/project1615521268/avatar1615521268.git
-    repo_host_url = f"{url_parsed.scheme}://{ctx.admin_user}:{ctx.admin_pwd}@{url_parsed.hostname}:{url_parsed.port}" \
-                    f"/scm/{tdata.project_key.lower()}/{tdata.repository_name}.git"
+    tdata.repo_host_url = f"{url_parsed.scheme}://{ctx.admin_user}:{ctx.admin_pwd}@{url_parsed.hostname}:{url_parsed.port}" \
+                          f"/scm/{tdata.project_key.lower()}/{tdata.repository_name}.git"
 
     subprocess.run(
-        ["git", "remote", "add", tdata.project_key, repo_host_url], cwd=tdata.folder)
+        ["git", "remote", "add", tdata.project_key, tdata.repo_host_url], cwd=tdata.folder)
 
     push_o = subprocess.run(
         ["git", "push", "--all", tdata.project_key], cwd=tdata.folder)
@@ -121,10 +122,12 @@ def test_commit_new_change_to_open_pull_request(ctx, tdata):
     f.write("new line in the file")
     f.close()
 
-    subprocess.run(["git", "checkout", "new-branch"])
-    subprocess.run(["git", "commit", "-a", "-m", "new commit to the branch"])
+    subprocess.run(["git", "checkout", "new-branch"], cwd=target_folder)
+    subprocess.run(["git", "add", "."], cwd=target_folder)
+    subprocess.run(["git", "commit", "-m", "new commit to the branch"], cwd=target_folder)
+    subprocess.run(["git", "remote", "add", "container", tdata.repo_host_url], cwd=target_folder)
+    subprocess.run(["git", "push", "container"], cwd=target_folder)
 
-    
 
 def test_add_attachment(ctx, tdata):
     url = f"{ctx.base_url}/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments"
