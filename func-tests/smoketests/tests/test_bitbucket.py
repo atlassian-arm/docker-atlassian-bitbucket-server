@@ -1,6 +1,6 @@
 import logging
+import time
 from pathlib import Path
-from time import sleep
 from urllib.parse import urlparse
 
 import requests
@@ -60,7 +60,7 @@ def test_create_repository(ctx, tdata):
 
 def test_import_repository(ctx, tdata):
     clone_o = subprocess.run(
-        ["git", "clone", "--bare", tdata.repo_to_clone, tdata.folder])
+        ["git", "clone", "--bare", tdata.repo_to_clone, tdata.bare_repo_folder])
     if clone_o.returncode not in (0, 128):
         pytest.fail(f"error when cloning repository, {clone_o}")
 
@@ -73,10 +73,10 @@ def test_import_repository(ctx, tdata):
                           f"/scm/{tdata.project_key.lower()}/{tdata.repository_name}.git"
 
     subprocess.run(
-        ["git", "remote", "add", tdata.project_key, tdata.repo_host_url], cwd=tdata.folder)
+        ["git", "remote", "add", tdata.project_key, tdata.repo_host_url], cwd=tdata.bare_repo_folder)
 
     push_o = subprocess.run(
-        ["git", "push", "--all", tdata.project_key], cwd=tdata.folder)
+        ["git", "push", "--all", tdata.project_key], cwd=tdata.bare_repo_folder)
 
     assert push_o.returncode == 0, "cannot push repository from local to bitbucket"
 
@@ -94,7 +94,7 @@ def test_open_pull_request(ctx, tdata):
             "id": f"refs/heads/{tdata.new_branch}",
         },
         "toRef": {
-            "id": "refs/heads/master",
+            "id": "refs/heads/main",
         },
         "reviewers": [
             {
@@ -116,17 +116,16 @@ def test_open_pull_request(ctx, tdata):
 
 
 def test_commit_new_change_to_open_pull_request(ctx, tdata):
-    target_folder = "test-folder"
-    subprocess.run(["git", "clone", tdata.folder, target_folder])
-    f = open(Path(target_folder, "new-file.txt"), "w")
-    f.write("new line in the file")
+    subprocess.run(["git", "clone", tdata.bare_repo_folder, tdata.work_repo_folder])
+    f = open(Path(tdata.work_repo_folder, "new-file.txt"), "w")
+    f.write(f"new line with {tdata.search_needle} for search test")
     f.close()
 
-    subprocess.run(["git", "checkout", "new-branch"], cwd=target_folder)
-    subprocess.run(["git", "add", "."], cwd=target_folder)
-    subprocess.run(["git", "commit", "-m", "new commit to the branch"], cwd=target_folder)
-    subprocess.run(["git", "remote", "add", "container", tdata.repo_host_url], cwd=target_folder)
-    subprocess.run(["git", "push", "container"], cwd=target_folder)
+    subprocess.run(["git", "checkout", "new-branch"], cwd=tdata.work_repo_folder)
+    subprocess.run(["git", "add", "."], cwd=tdata.work_repo_folder)
+    subprocess.run(["git", "commit", "-m", "new commit to the branch"], cwd=tdata.work_repo_folder)
+    subprocess.run(["git", "remote", "add", tdata.project_key, tdata.repo_host_url], cwd=tdata.work_repo_folder)
+    subprocess.run(["git", "push", tdata.project_key], cwd=tdata.work_repo_folder)
 
 
 def test_add_attachment(ctx, tdata):
@@ -138,10 +137,8 @@ def test_add_attachment(ctx, tdata):
     assert r.status_code == 201, f'failed to upload attachment, status: {r.status_code}, content: {r.text}'
     attachment_id = r.json()['attachments'][0]['id']
 
-    attachment_url = r.json()['attachments'][0]['url']
-
-    downloadurl = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments/{attachment_id}"
-    d = requests.get(downloadurl, auth=ctx.admin_auth)
+    download_url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments/{attachment_id}"
+    d = requests.get(download_url, auth=ctx.admin_auth)
     assert d.status_code == 200, f'failed to download attachment, status: {r.status_code}, content: {r.text}'
     assert 'filename="file.txt"' in d.headers['Content-Disposition'], r.headers
 
@@ -176,7 +173,7 @@ def test_approve_pull_request(ctx, tdata):
 
 
 def test_merge_pull_request(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/merge?version=0"
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/merge?version=1"
 
     # merge the pull request
     r = requests.post(url, headers=NOCHECK, auth=ctx.admin_auth)
@@ -187,3 +184,21 @@ def test_merge_pull_request(ctx, tdata):
     assert json_resp['id'] > 0
     assert json_resp['state'] == "MERGED"
     assert json_resp['closed']
+
+
+def test_search(ctx, tdata):
+    needle = tdata.search_needle
+    url = f"{ctx.base_url}/rest/search/latest/search"
+    payload = {"query": needle, "entities": {"code": {}},
+               "limits": {"primary": 25, "secondary": 10}}
+
+    found = False
+    for i in range(0, 60):
+        r = requests.post(url, auth=ctx.admin_auth, json=payload)
+        if r.json()['code']['count'] == 1:
+            print(f"waited {i} seconds for the search result")
+            found = True
+            break
+        time.sleep(1)
+
+    assert found, "Couldn't find the searched item"
