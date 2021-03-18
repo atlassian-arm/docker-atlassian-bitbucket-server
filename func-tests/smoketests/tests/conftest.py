@@ -44,7 +44,7 @@ class TestData:
 
 
 @pytest.fixture(scope='session')
-def ctx():
+def ctx() -> Context:
     return Context(
         base_url=os.environ.get('BITBUCKET_BASE_URL', "http://bitbucket:8080"),
         admin_user=os.environ.get('BITBUCKET_ADMIN', 'admin'),
