@@ -14,14 +14,14 @@ def test_get_application_version(ctx, tdata):
     url = f"{ctx.base_url}/rest/api/1.0/application-properties"
     r = requests.get(url, auth=ctx.admin_auth)
     assert r.status_code == 200, f'failed to get the application properties, status:{r.status_code}, content: {r.text}'
-    assert r.json()['version'] > '6'
+    assert r.json()['version'] > '6', "smoke tests are supporting only version 6 and higher"
     tdata.bitbucket_version = r.json()['version']
     print(f"- BITBUCKET {tdata.bitbucket_version}")
 
 
 def test_create_user(ctx, tdata):
     url = f"{ctx.base_url}/rest/api/1.0/admin/users?" + \
-        f"name={tdata.user}&password={tdata.user}&displayName=User&emailAddress=user@example.com"
+          f"name={tdata.user}&password={tdata.user}&displayName=User&emailAddress=user@example.com"
 
     r = requests.post(url, auth=ctx.admin_auth, headers=NOCHECK)
 
@@ -119,8 +119,9 @@ def test_open_pull_request(ctx, tdata):
 
     assert r.status_code == 201, f'failed to create pull request, status: {r.status_code}, content: {r.text}'
     json_resp = r.json()
-    assert json_resp['id'] > 0
     tdata.pull_request_id = json_resp['id']
+
+    assert json_resp['id'] > 0
     assert json_resp['title'] == pr_title
     assert json_resp['open']
 
@@ -136,10 +137,7 @@ def test_commit_new_change_to_open_pull_request(ctx, tdata):
     subprocess.run(["git", "remote", "add", tdata.project_key, tdata.repo_host_url], cwd=tdata.work_repo_folder)
     push_o = subprocess.run(["git", "push", tdata.project_key], cwd=tdata.work_repo_folder)
 
-    print(push_o.stdout)
     assert push_o.returncode == 0, "there was a problem when pushing to remote"
-
-    # TODO verify the pull request
 
 
 def test_add_attachment(ctx, tdata):
@@ -159,7 +157,7 @@ def test_download_attachment(ctx, tdata):
     if tdata.bitbucket_version > '7':
         # download api is not supported for earlier versions of bitbucket
         d_url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/" + \
-            f"{tdata.repository_name}/attachments/{tdata.attachment_id}"
+                f"{tdata.repository_name}/attachments/{tdata.attachment_id}"
         d = requests.get(d_url, auth=ctx.admin_auth)
         assert d.status_code == 200, f'failed to download attachment, status: {d.status_code}, content: {d.text}'
         assert 'filename="file.txt"' in d.headers['Content-Disposition'], d.headers
@@ -169,6 +167,7 @@ def test_download_attachment(ctx, tdata):
         d = requests.get(tdata.attachment_link, auth=ctx.admin_auth, allow_redirects=True)
         assert d.status_code == 200, f'failed to download attachment, status: {d.status_code}, content: {d.text}'
         assert original_content == str(d.content, 'utf-8'), d.content
+
 
 def test_add_general_comment_to_pr(ctx, tdata):
     url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/comments"
@@ -215,15 +214,13 @@ def test_merge_pull_request(ctx, tdata):
 
 
 def test_search(ctx, tdata):
-    needle = tdata.search_needle
     url = f"{ctx.base_url}/rest/search/latest/search"
-    payload = {"query": needle, "entities": {"code": {}},
+    payload = {"query": tdata.search_needle, "entities": {"code": {}},
                "limits": {"primary": 25, "secondary": 10}}
 
     found = False
     for i in range(0, 60):
         r = requests.post(url, auth=ctx.admin_auth, json=payload)
-        print(r.text)
         assert r.status_code == 200, "200 not received for search!"
         if r.json()['code']['count'] == 1:
             print(f"waited {i} seconds for the search result")
@@ -231,4 +228,4 @@ def test_search(ctx, tdata):
             break
         time.sleep(1)
 
-    assert found, "Couldn't find the searched item"
+    assert found, "couldn't find the searched item"
