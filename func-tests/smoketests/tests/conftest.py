@@ -76,9 +76,9 @@ def tdata() -> TestData:
 
 
 @pytest.fixture(scope='session', autouse=True)
-def git_config():
-    subprocess.run(["git", "config", "--global", "user.email", "user@example.com"])
-    subprocess.run(["git", "config", "--global", "user.name", "User Userson"])
+def git_config(tdata):
+    subprocess.run(["git", "config", "user.email", "user@example.com"], cwd=tdata.work_repo_folder)
+    subprocess.run(["git", "config", "user.name", "User Userson"], cwd=tdata.work_repo_folder)
 
     yield
 
