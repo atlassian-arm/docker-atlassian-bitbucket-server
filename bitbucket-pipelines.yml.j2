@@ -1,0 +1,161 @@
+---
+# NOTE: This file is generated from `bitbucket-pipelines.yml.j2` via `pipelines-generator.py`:
+#
+#     python pipelines-generator.py > bitbucket-pipelines.yml
+
+image: atlassian/docker-release-maker:latest
+
+pipelines:
+  custom:
+    ######################################################################
+    # New Release: Do full release for each image flavour
+    ######################################################################
+    new-releases:
+      - step:
+          name: Check if pipelines config is up-to-date...
+          script:
+            - python3 pipeline-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
+      - parallel:
+{% for (name, pdata) in images.items() %}
+  {% for (jdkver, appdata) in pdata.items() %}
+    {% for offset in range(0, batches) %}        
+          - step:
+              name: {{ name }} JDK {{ jdkver }} - Batch {{ offset + 1 }}
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - export START_VERSION='{{ appdata.start_version }}'
+                - export END_VERSION='{{ appdata.end_version }}'
+                - export JOB_OFFSET='{{ offset }}'
+                - export JOBS_TOTAL='{{ batches }}'
+                - export DEFAULT_RELEASE='{{ appdata.default_release|lower() }}'
+                - export DOCKER_REPO='atlassian/bitbucket-server'{% if appdata.base_image is defined %} 
+                - export DOCKERFILE_BUILDARGS='BASE_IMAGE={{ appdata.base_image }}'{% endif %}              
+                - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
+                - export MAC_PRODUCT_KEY='{{ appdata.mac_key }}'
+                - export TAG_SUFFIXES='{{ appdata.tag_suffixes|join(',') }}'
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - python /usr/src/app/run.py --create --create-eap
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+
+    ######################################################################
+    # Custom: Do full release for each image flavour
+    ######################################################################
+    jdk8-custom-release:
+      - variables:
+          - name: BITBUCKET_VERSION
+          - name: DOCKER_TAG
+      - step:
+          services:
+            - docker
+          script:
+            - git submodule update --init --recursive
+            - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+            - >
+              docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
+              --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
+            - /usr/src/app/integration_test.sh atlassian/bitbucket-server:${DOCKER_TAG}
+            - docker push atlassian/bitbucket-server:${DOCKER_TAG}
+    jdk11-custom-release:
+      - variables:
+          - name: BITBUCKET_VERSION
+          - name: DOCKER_TAG
+      - step:
+          services:
+            - docker
+          script:
+            - git submodule update --init --recursive
+            - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+            - >
+              docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
+              --build-arg BASE_IMAGE=adoptopenjdk:11-hotspot
+              --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
+            - /usr/src/app/integration_test.sh atlassian/bitbucket-server:${DOCKER_TAG}
+            - docker push atlassian/bitbucket-server:${DOCKER_TAG}
+  branches:
+    ######################################################################
+    # Master branch: Do full release for each image flavour
+    ######################################################################
+    master:
+      - step:
+          name: Check if pipelines config is up-to-date...
+          script:
+            - python3 pipeline-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
+      - parallel:
+{% for (name, pdata) in images.items() %}
+  {% for (jdkver, appdata) in pdata.items() %}
+    {% for offset in range(0, batches) %}
+          - step:
+              name: {{ name }} JDK {{ jdkver }} - Batch {{ offset + 1 }}
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - export START_VERSION='{{ appdata.start_version }}'
+                - export END_VERSION='{{ appdata.end_version }}'
+                - export JOB_OFFSET='{{ offset }}'
+                - export JOBS_TOTAL='{{ batches }}'
+                - export DEFAULT_RELEASE='{{ appdata.default_release|lower() }}'
+                - export DOCKER_REPO='atlassian/bitbucket-server'  {% if appdata.base_image is defined %} 
+                - export DOCKERFILE_BUILDARGS='BASE_IMAGE={{ appdata.base_image }}' {% endif %}                
+                - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
+                - export MAC_PRODUCT_KEY='{{ appdata.mac_key }}'
+                - export TAG_SUFFIXES='{{ appdata.tag_suffixes|join(',') }}'
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - python /usr/src/app/run.py --update
+
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+      - step:
+          name: Update README
+          image: python:3.7-alpine3.9
+          script:
+            - apk add --no-cache git
+            - git submodule update --init --recursive
+            - pip install -q requests
+            - export DOCKER_REPO='atlassian/bitbucket-server'
+            - python shared-components/image/push-readme.py
+  pull-requests:
+    ######################################################################
+    # All other branches & PRs; run unit tests & functional tests
+    # against latest app version
+    ######################################################################
+    '**':
+      - step:
+          image: python:3.7-alpine3.9
+          services:
+            - docker
+          script:
+            - apk add --no-cache git
+            - git submodule update --init --recursive
+            - pip install -q -r shared-components/tests/requirements.txt
+            - export PYTHONPATH=./shared-components/tests:$PYTHONPATH
+            - export DOCKERFILE='Dockerfile'
+            - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
+            - export MAC_PRODUCT_KEY='bitbucket'
+            - py.test tests/
+            - py.test shared-components/tests/
+            - export DOCKERFILE_BUILDARGS='BASE_IMAGE=adoptopenjdk:11-hotspot'
+            - py.test tests/
+            - py.test shared-components/tests/
+      - step:
+          services:
+            - docker
+          script:
+            - apk add --no-cache git docker-compose jq curl
+            - git submodule update --init --recursive
+            - export BITBUCKET_VERSION=$(curl -s https://marketplace.atlassian.com/rest/2/products/key/bitbucket/versions/latest | jq -r .name)
+            - docker build --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} -t test-image .
+            - export IS_RELEASE=false
+            - /usr/src/app/integration_test.sh test-image $IS_RELEASE
+definitions:
+  services:
+    docker:
+      memory: 4096
+options:
+  size: 2x
+  max-time: 120

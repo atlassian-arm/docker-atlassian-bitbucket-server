@@ -32,6 +32,9 @@ class TestData:
     project_name: str
     repository_name: str
     pull_request_id: str
+    bitbucket_version: str
+    attachment_id: str
+    attachment_link: str
     repo_to_clone: str
     folder: str
     new_branch: str
@@ -56,7 +59,10 @@ def tdata():
         project_key=f"PROJECT{round(time.time())}",
         project_name=f"My Project {round(time.time())}",
         repository_name=f"avatar{round(time.time())}",
-        pull_request_id="0",
+        bitbucket_version='6.0.1',
+        pull_request_id="-1",
+        attachment_id="-1",
+        attachment_link="",
         repo_to_clone="https://github.com/nanux/git-test-repo.git",
         folder="git-test-repo",
         new_branch="new-branch",
