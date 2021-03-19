@@ -10,8 +10,18 @@ import pytest
 NOCHECK = {"X-Atlassian-Token": "no-check"}
 
 
+def test_get_application_version(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/application-properties"
+    r = requests.get(url, auth=ctx.admin_auth)
+    assert r.status_code == 200, f'failed to get the application properties, status:{r.status_code}, content: {r.text}'
+    assert r.json()['version'] > '6'
+    tdata.bitbucket_version = r.json()['version']
+    print(f"- BITBUCKET {tdata.bitbucket_version}")
+
+
 def test_create_user(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/admin/users?name={tdata.user}&password={tdata.user}&displayName=User&emailAddress=user@example.com"
+    url = f"{ctx.base_url}/rest/api/1.0/admin/users?" + \
+        f"name={tdata.user}&password={tdata.user}&displayName=User&emailAddress=user@example.com"
 
     r = requests.post(url, auth=ctx.admin_auth, headers=NOCHECK)
 
@@ -139,13 +149,26 @@ def test_add_attachment(ctx, tdata):
     r = requests.post(url, files=files, auth=ctx.admin_auth)
 
     assert r.status_code == 201, f'failed to upload attachment, status: {r.status_code}, content: {r.text}'
-    attachment_id = r.json()['attachments'][0]['id']
+    tdata.attachment_id = r.json()['attachments'][0]['id']
+    tdata.attachment_link = r.json()['attachments'][0]['url']
 
-    download_url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/attachments/{attachment_id}"
-    d = requests.get(download_url, auth=ctx.admin_auth)
-    assert d.status_code == 200, f'failed to download attachment, status: {r.status_code}, content: {r.text}'
-    assert 'filename="file.txt"' in d.headers['Content-Disposition'], r.headers
 
+def test_download_attachment(ctx, tdata):
+    file = open('file.txt', 'r')
+    original_content = file.read()
+    if tdata.bitbucket_version > '7':
+        # download api is not supported for earlier versions of bitbucket
+        d_url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/" + \
+            f"{tdata.repository_name}/attachments/{tdata.attachment_id}"
+        d = requests.get(d_url, auth=ctx.admin_auth)
+        assert d.status_code == 200, f'failed to download attachment, status: {d.status_code}, content: {d.text}'
+        assert 'filename="file.txt"' in d.headers['Content-Disposition'], d.headers
+        assert original_content == d.text, d.text
+    else:
+        # download the file using attachment url
+        d = requests.get(tdata.attachment_link, auth=ctx.admin_auth, allow_redirects=True)
+        assert d.status_code == 200, f'failed to download attachment, status: {d.status_code}, content: {d.text}'
+        assert original_content == str(d.content, 'utf-8'), d.content
 
 def test_add_general_comment_to_pr(ctx, tdata):
     url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/comments"
@@ -157,7 +180,8 @@ def test_add_general_comment_to_pr(ctx, tdata):
     }
     r = requests.post(url, json=data, auth=ctx.admin_auth)
 
-    assert r.status_code == 201, f'failed to create comment on the pull request, status: {r.status_code}, content: {r.text}'
+    assert r.status_code == 201, \
+        f'failed to create comment on the pull request, status: {r.status_code}, content: {r.text}'
 
     json_resp = r.json()
     assert json_resp['id'] > 0

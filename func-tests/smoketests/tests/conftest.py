@@ -34,6 +34,9 @@ class TestData:
     repository_name: str
     search_needle: str
     pull_request_id: str
+    bitbucket_version: str
+    attachment_id: str
+    attachment_link: str
     repo_to_clone: str
     bare_repo_folder: str
     work_repo_folder: str
@@ -59,8 +62,11 @@ def tdata() -> TestData:
         project_key=f"PROJECT{round(time.time())}",
         project_name=f"My Project {round(time.time())}",
         repository_name=f"avatar{round(time.time())}",
+        bitbucket_version='6.0.1',
+        pull_request_id="-1",
+        attachment_id="-1",
+        attachment_link="",
         search_needle=f"needle{time.time()}",
-        pull_request_id="0",
         repo_to_clone="https://github.com/nanux/git-test-repo.git",
         bare_repo_folder="git-test-repo",
         work_repo_folder="git-test-repo-work",
