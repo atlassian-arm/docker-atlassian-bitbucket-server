@@ -117,15 +117,19 @@ def test_open_pull_request(ctx, tdata):
 
 def test_commit_new_change_to_open_pull_request(ctx, tdata):
     subprocess.run(["git", "clone", tdata.bare_repo_folder, tdata.work_repo_folder])
-    f = open(Path(tdata.work_repo_folder, "new-file.txt"), "w")
-    f.write(f"new line with {tdata.search_needle} for search test")
-    f.close()
+    with open(Path(tdata.work_repo_folder, "new-file.txt"), "w") as f:
+        f.write(f"new line with {tdata.search_needle} for search test")
 
     subprocess.run(["git", "checkout", "new-branch"], cwd=tdata.work_repo_folder)
     subprocess.run(["git", "add", "."], cwd=tdata.work_repo_folder)
     subprocess.run(["git", "commit", "-m", "new commit to the branch"], cwd=tdata.work_repo_folder)
     subprocess.run(["git", "remote", "add", tdata.project_key, tdata.repo_host_url], cwd=tdata.work_repo_folder)
-    subprocess.run(["git", "push", tdata.project_key], cwd=tdata.work_repo_folder)
+    push_o = subprocess.run(["git", "push", tdata.project_key], cwd=tdata.work_repo_folder)
+
+    print(push_o.stdout)
+    assert push_o.returncode == 0, "there was a problem when pushing to remote"
+
+    # TODO verify the pull request
 
 
 def test_add_attachment(ctx, tdata):

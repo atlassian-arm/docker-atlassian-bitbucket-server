@@ -1,6 +1,7 @@
 import logging
 import os
 import shutil
+import subprocess
 import time
 from dataclasses import dataclass
 
@@ -66,6 +67,14 @@ def tdata() -> TestData:
         new_branch="new-branch",
         user=f"user{round(time.time())}"
     )
+
+
+@pytest.fixture(scope='session', autouse=True)
+def git_config():
+    subprocess.run(["git", "config", "--global", "user.email", "user@example.com"])
+    subprocess.run(["git", "config", "--global", "user.name", "User Userson"])
+
+    yield
 
 
 @pytest.fixture(scope='session', autouse=True)
