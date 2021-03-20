@@ -128,6 +128,12 @@ def test_open_pull_request(ctx, tdata):
 
 def test_commit_new_change_to_open_pull_request(ctx, tdata):
     subprocess.run(["git", "clone", tdata.bare_repo_folder, tdata.work_repo_folder])
+
+    # in the smoketests container we don't have git user identity, we need to set it up
+    # to be able to commit changes
+    subprocess.run(["git", "config", "user.email", "user@example.com"], cwd=tdata.work_repo_folder)
+    subprocess.run(["git", "config", "user.name", "User Userson"], cwd=tdata.work_repo_folder)
+
     with open(Path(tdata.work_repo_folder, "new-file.txt"), "w") as f:
         f.write(f"new line with {tdata.search_needle} for search test")
 
