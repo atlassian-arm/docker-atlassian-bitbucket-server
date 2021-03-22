@@ -1,7 +1,6 @@
 import logging
 import os
 import shutil
-import subprocess
 import time
 from dataclasses import dataclass
 
@@ -29,10 +28,11 @@ class Context:
 
 @dataclass
 class TestData:
+    """Contains information about entities created thorough the test execution"""
     project_key: str
     project_name: str
     repository_name: str
-    search_needle: str
+    search_needle: str  # this value is inserted into a new commit and later searched for in code search
     pull_request_id: str
     bitbucket_version: str
     attachment_id: str

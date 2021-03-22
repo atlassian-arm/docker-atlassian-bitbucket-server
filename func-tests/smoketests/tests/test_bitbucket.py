@@ -20,18 +20,27 @@ def test_get_application_version(ctx, tdata):
 
 
 def test_create_user(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/admin/users?" + \
-          f"name={tdata.user}&password={tdata.user}&displayName=User&emailAddress=user@example.com"
+    url = f"{ctx.base_url}/rest/api/1.0/admin/users"
+    params = {
+        'name': tdata.user,
+        'password': tdata.user,
+        'displayName': 'User',
+        'emailAddress': 'user@example.com'
+    }
 
-    r = requests.post(url, auth=ctx.admin_auth, headers=NOCHECK)
+    r = requests.post(url, auth=ctx.admin_auth, headers=NOCHECK, params=params)
 
     assert r.status_code == 204, f'failed to create user, status:{r.status_code}, content: {r.text}'
 
 
 def test_make_user_admin(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/admin/permissions/users?name={tdata.user}&permission=ADMIN"
+    url = f"{ctx.base_url}/rest/api/1.0/admin/permissions/users"
+    params = {
+        'name': tdata.user,
+        'permission': 'ADMIN'
+    }
 
-    r = requests.put(url, auth=ctx.admin_auth, headers=NOCHECK)
+    r = requests.put(url, auth=ctx.admin_auth, headers=NOCHECK, params=params)
 
     assert r.status_code == 204, f'failed to make the user an admin, status:{r.status_code}, content: {r.text}'
 
@@ -127,6 +136,7 @@ def test_open_pull_request(ctx, tdata):
 
 
 def test_commit_new_change_to_open_pull_request(ctx, tdata):
+    # because previously we have cloned just bare repository, we need to create working copy first
     subprocess.run(["git", "clone", tdata.bare_repo_folder, tdata.work_repo_folder])
 
     # in the smoketests container we don't have git user identity, we need to set it up
@@ -143,7 +153,7 @@ def test_commit_new_change_to_open_pull_request(ctx, tdata):
     subprocess.run(["git", "remote", "add", tdata.project_key, tdata.repo_host_url], cwd=tdata.work_repo_folder)
     push_o = subprocess.run(["git", "push", tdata.project_key], cwd=tdata.work_repo_folder)
 
-    assert push_o.returncode == 0, "there was a problem when pushing to remote"
+    assert push_o.returncode == 0, "there was a problem when pushing new commit to remote"
 
 
 def test_add_attachment(ctx, tdata):
@@ -176,7 +186,11 @@ def test_download_attachment(ctx, tdata):
 
 
 def test_add_general_comment_to_pr(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/comments"
+    url = f"{ctx.base_url}/rest/api/1.0" \
+          f"/projects/{tdata.project_key}" \
+          f"/repos/{tdata.repository_name}" \
+          f"/pull-requests/{tdata.pull_request_id}" \
+          f"/comments"
 
     # inserts general comment on PR
     comment_text = "An insightful general comment on a pull request."
@@ -194,7 +208,11 @@ def test_add_general_comment_to_pr(ctx, tdata):
 
 
 def test_approve_pull_request(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/approve"
+    url = f"{ctx.base_url}/rest/api/1.0" \
+          f"/projects/{tdata.project_key}" \
+          f"/repos/{tdata.repository_name}" \
+          f"/pull-requests/{tdata.pull_request_id}" \
+          f"/approve"
 
     # approve a pull request
     r = requests.post(url, headers=NOCHECK, auth=tdata.user_auth)
@@ -206,7 +224,11 @@ def test_approve_pull_request(ctx, tdata):
 
 
 def test_merge_pull_request(ctx, tdata):
-    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests/{tdata.pull_request_id}/merge?version=1"
+    url = f"{ctx.base_url}/rest/api/1.0" \
+          f"/projects/{tdata.project_key}" \
+          f"/repos/{tdata.repository_name}" \
+          f"/pull-requests/{tdata.pull_request_id}" \
+          f"/merge?version=1"
 
     # merge the pull request
     r = requests.post(url, headers=NOCHECK, auth=ctx.admin_auth)
