@@ -28,15 +28,18 @@ class Context:
 
 @dataclass
 class TestData:
+    """Contains information about entities created thorough the test execution"""
     project_key: str
     project_name: str
     repository_name: str
+    search_needle: str  # this value is inserted into a new commit and later searched for in code search
     pull_request_id: str
     bitbucket_version: str
     attachment_id: str
     attachment_link: str
     repo_to_clone: str
-    folder: str
+    bare_repo_folder: str
+    work_repo_folder: str
     new_branch: str
     user: str
 
@@ -45,7 +48,7 @@ class TestData:
 
 
 @pytest.fixture(scope='session')
-def ctx():
+def ctx() -> Context:
     return Context(
         base_url=os.environ.get('BITBUCKET_BASE_URL', "http://bitbucket:8080"),
         admin_user=os.environ.get('BITBUCKET_ADMIN', 'admin'),
@@ -54,7 +57,7 @@ def ctx():
 
 
 @pytest.fixture(scope='session')
-def tdata():
+def tdata() -> TestData:
     return TestData(
         project_key=f"PROJECT{round(time.time())}",
         project_name=f"My Project {round(time.time())}",
@@ -63,8 +66,10 @@ def tdata():
         pull_request_id="-1",
         attachment_id="-1",
         attachment_link="",
+        search_needle=f"needle{time.time()}",
         repo_to_clone="https://github.com/nanux/git-test-repo.git",
-        folder="git-test-repo",
+        bare_repo_folder="git-test-repo",
+        work_repo_folder="git-test-repo-work",
         new_branch="new-branch",
         user=f"user{round(time.time())}"
     )
@@ -77,7 +82,9 @@ def data_cleanup(tdata, ctx, pytestconfig):
     if pytestconfig.getoption("--cleanup"):
         logging.info("Cleaning up the test data")
         # local repository
-        shutil.rmtree(tdata.folder, ignore_errors=True)
+        shutil.rmtree(tdata.bare_repo_folder, ignore_errors=True)
+        # local clone of the bare repository
+        shutil.rmtree(tdata.work_repo_folder, ignore_errors=True)
         # user
         assert requests.delete(f"{ctx.base_url}/rest/api/1.0/admin/users?name={tdata.user}",
                                auth=ctx.admin_auth).status_code == 200
