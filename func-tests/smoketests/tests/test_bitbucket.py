@@ -243,18 +243,25 @@ def test_merge_pull_request(ctx, tdata):
 
 def test_search(ctx, tdata):
     url = f"{ctx.base_url}/rest/search/latest/search"
-    payload = {"query": tdata.search_needle, "entities": {"code": {}},
+    payload = {"query": "asdasdasda", "entities": {"code": {}},
                "limits": {"primary": 25, "secondary": 10}}
 
+    print(f"searching for needle {tdata.search_needle}")
     found = False
     for i in range(0, 60):
         r = requests.post(url, auth=ctx.admin_auth, json=payload)
         assert r.status_code == 200, "200 not received for search!"
-        if r.json()['code']['count'] == 1:
+        if r.json()['code']['count'] >= 1:
+            print(r.json()['code']['count'])
             print(f"waited {i} seconds for the search result")
             print(r.json())
             found = True
             break
         time.sleep(1)
+
+    if not found:
+        elastic_base = "localhost" if "localhost" in ctx.base_url else "elastic"
+        er = requests.get(f"http://{elastic_base}:9200/bitbucket-search/_search?q=needle*")
+        print(er.json())
 
     assert found, "couldn't find the searched item"
