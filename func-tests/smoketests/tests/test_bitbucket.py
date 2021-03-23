@@ -250,7 +250,8 @@ def test_search(ctx, tdata):
     found = False
     for i in range(0, 60):
         r = requests.post(url, auth=ctx.admin_auth, json=payload)
-        if r.status_code==200:
+        print(f"status code: {r.status_code}")
+        if r.status_code == 200:
             assert r.status_code == 200, "200 not received for search!"
             print(r.json())
 
@@ -262,6 +263,7 @@ def test_search(ctx, tdata):
         time.sleep(1)
 
     if not found:
+        print("search directly through elasticsearch....")
         elastic_base = "localhost" if "localhost" in ctx.base_url else "elastic"
         er = requests.get(f"http://{elastic_base}:9200/bitbucket-search/_search?q=needle*")
         print(er.json())
