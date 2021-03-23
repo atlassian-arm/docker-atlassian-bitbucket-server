@@ -248,7 +248,7 @@ def test_search(ctx, tdata):
 
     print(f"searching for needle {tdata.search_needle}")
     found = False
-    for i in range(0, 60):
+    for i in range(0, 240):
         r = requests.post(url, auth=ctx.admin_auth, json=payload)
         print(f"status code: {r.status_code}")
         if r.status_code == 200:
