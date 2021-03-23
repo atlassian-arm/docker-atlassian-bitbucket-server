@@ -19,677 +19,1622 @@ pipelines:
       - parallel:
         
           - step:
-              name: Bitbucket JDK 11 - Batch 1
+              name: Jira Software JDK 8 - Batch 1
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 2
+              name: Jira Software JDK 8 - Batch 2
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 3
+              name: Jira Software JDK 8 - Batch 3
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 4
+              name: Jira Software JDK 8 - Batch 4
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 5
+              name: Jira Software JDK 8 - Batch 5
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 6
+              name: Jira Software JDK 8 - Batch 6
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 7
+              name: Jira Software JDK 8 - Batch 7
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 8
+              name: Jira Software JDK 8 - Batch 8
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 9
+              name: Jira Software JDK 8 - Batch 9
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 10
+              name: Jira Software JDK 8 - Batch 10
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 11
+              name: Jira Software JDK 8 - Batch 11
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 12
+              name: Jira Software JDK 8 - Batch 12
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 11 - Batch 13
+              name: Jira Software JDK 11 - Batch 1
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='8.2'
+                    --end-version='9'
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
-                    --push
-
-        
-          - step:
-              name: Bitbucket JDK 11 - Batch 14
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python ../docker-release-maker/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
-                    --push
-
-        
-          - step:
-              name: Bitbucket JDK 11 - Batch 15
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python ../docker-release-maker/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
-                    --push
-
-        
-          - step:
-              name: Bitbucket JDK 8 - Batch 1
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python ../docker-release-maker/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 2
+              name: Jira Software JDK 11 - Batch 2
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 3
+              name: Jira Software JDK 11 - Batch 3
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 4
+              name: Jira Software JDK 11 - Batch 4
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 5
+              name: Jira Software JDK 11 - Batch 5
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 6
+              name: Jira Software JDK 11 - Batch 6
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 7
+              name: Jira Software JDK 11 - Batch 7
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 8
+              name: Jira Software JDK 11 - Batch 8
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 9
+              name: Jira Software JDK 11 - Batch 9
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 10
+              name: Jira Software JDK 11 - Batch 10
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 11
+              name: Jira Software JDK 11 - Batch 11
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 12
+              name: Jira Software JDK 11 - Batch 12
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 13
+              name: Jira Service Management JDK 8 - Batch 1
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='3.16'
+                    --end-version='5'
                     --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-servicedesk'
                     --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 14
+              name: Jira Service Management JDK 8 - Batch 2
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='3.16'
+                    --end-version='5'
                     --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-servicedesk'
                     --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
                     --push
 
         
           - step:
-              name: Bitbucket JDK 8 - Batch 15
+              name: Jira Service Management JDK 8 - Batch 3
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='3.16'
+                    --end-version='5'
                     --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-servicedesk'
                     --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 8 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 1
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 2
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 3
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Service Management JDK 11 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 1
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 2
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 3
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 8 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 1
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 2
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 3
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+        
+          - step:
+              name: Jira Core JDK 11 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --create --create-eap
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
                     --push
 
 
@@ -738,648 +1683,1551 @@ pipelines:
             - python3 pipeline-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
       - parallel:
           - step:
-              name: Bitbucket JDK 11 - Batch 1
+              name: Jira Software JDK 8 - Batch 1
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 2
+              name: Jira Software JDK 8 - Batch 2
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 3
+              name: Jira Software JDK 8 - Batch 3
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 4
+              name: Jira Software JDK 8 - Batch 4
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 5
+              name: Jira Software JDK 8 - Batch 5
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 6
+              name: Jira Software JDK 8 - Batch 6
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 7
+              name: Jira Software JDK 8 - Batch 7
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 8
+              name: Jira Software JDK 8 - Batch 8
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 9
+              name: Jira Software JDK 8 - Batch 9
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 10
+              name: Jira Software JDK 8 - Batch 10
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 11
+              name: Jira Software JDK 8 - Batch 11
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 12
+              name: Jira Software JDK 8 - Batch 12
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 11 - Batch 13
+              name: Jira Software JDK 11 - Batch 1
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='8.2'
+                    --end-version='9'
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
-                    --push
-
-          - step:
-              name: Bitbucket JDK 11 - Batch 14
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python ../docker-release-maker/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
-                    --push
-
-          - step:
-              name: Bitbucket JDK 11 - Batch 15
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python ../docker-release-maker/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
-                    --push
-
-          - step:
-              name: Bitbucket JDK 8 - Batch 1
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python ../docker-release-maker/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 2
+              name: Jira Software JDK 11 - Batch 2
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 3
+              name: Jira Software JDK 11 - Batch 3
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 4
+              name: Jira Software JDK 11 - Batch 4
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 5
+              name: Jira Software JDK 11 - Batch 5
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 6
+              name: Jira Software JDK 11 - Batch 6
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 7
+              name: Jira Software JDK 11 - Batch 7
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 8
+              name: Jira Software JDK 11 - Batch 8
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 9
+              name: Jira Software JDK 11 - Batch 9
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 10
+              name: Jira Software JDK 11 - Batch 10
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 11
+              name: Jira Software JDK 11 - Batch 11
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 12
+              name: Jira Software JDK 11 - Batch 12
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-software'
                     --tag-suffixes=''
                     --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-software'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 13
+              name: Jira Service Management JDK 8 - Batch 1
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='3.16'
+                    --end-version='5'
                     --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-servicedesk'
                     --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 14
+              name: Jira Service Management JDK 8 - Batch 2
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='3.16'
+                    --end-version='5'
                     --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-servicedesk'
                     --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
                     --push
 
           - step:
-              name: Bitbucket JDK 8 - Batch 15
+              name: Jira Service Management JDK 8 - Batch 3
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python ../docker-release-maker/make-releases.py
+                  python make-releases.py
                     --update
-                    --start-version='6'
-                    --end-version='8'
+                    --start-version='3.16'
+                    --end-version='5'
                     --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
+                    --dockerfile-buildargs='BASE_IMAGE='
                     --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
+                    --mac-product-key='jira-servicedesk'
                     --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 8 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='3.16'
+                    --end-version='5'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 1
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 2
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 3
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Service Management JDK 11 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='4.2'
+                    --end-version='5'
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira-servicedesk'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-servicemanagement,atlassian/jira-servicedesk'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 1
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 2
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 3
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 8 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='7.13'
+                    --end-version='9'
+                    --default-release
+                    --dockerfile-buildargs='BASE_IMAGE='
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 1
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='0'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 2
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='1'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 3
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='2'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 4
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='3'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 5
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='4'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 6
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='5'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 7
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='6'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 8
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='7'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 9
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='8'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 10
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='9'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='10'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
+                    --push
+
+          - step:
+              name: Jira Core JDK 11 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - >
+                  python make-releases.py
+                    --update
+                    --start-version='8.2'
+                    --end-version='9'
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
+                    --dockerfile-version-arg='BITBUCKET_VERSION'
+                    --mac-product-key='jira'
+                    --tag-suffixes=''
+                    --job-offset='11'
+                    --jobs-total='12'
+                    --docker-repos='atlassian/jira-core'
                     --push
 
       - step:
