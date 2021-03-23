@@ -251,10 +251,11 @@ def test_search(ctx, tdata):
     for i in range(0, 60):
         r = requests.post(url, auth=ctx.admin_auth, json=payload)
         assert r.status_code == 200, "200 not received for search!"
+        print(r.json())
+
         if r.json()['code']['count'] >= 1:
             print(r.json()['code']['count'])
             print(f"waited {i} seconds for the search result")
-            print(r.json())
             found = True
             break
         time.sleep(1)
