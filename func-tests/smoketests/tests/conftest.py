@@ -66,7 +66,7 @@ def tdata() -> TestData:
         pull_request_id="-1",
         attachment_id="-1",
         attachment_link="",
-        search_needle=f"needle{time.time()}",
+        search_needle=f"needle{round(time.time())}",
         repo_to_clone="https://github.com/nanux/git-test-repo.git",
         bare_repo_folder="git-test-repo",
         work_repo_folder="git-test-repo-work",
