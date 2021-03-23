@@ -243,7 +243,7 @@ def test_merge_pull_request(ctx, tdata):
 
 def test_search(ctx, tdata):
     url = f"{ctx.base_url}/rest/search/latest/search"
-    payload = {"query": "asdasdasda", "entities": {"code": {}},
+    payload = {"query": tdata.search_needle, "entities": {"code": {}},
                "limits": {"primary": 25, "secondary": 10}}
 
     print(f"searching for needle {tdata.search_needle}")
