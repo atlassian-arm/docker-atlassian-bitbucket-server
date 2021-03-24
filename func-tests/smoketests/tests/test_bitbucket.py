@@ -241,19 +241,19 @@ def test_merge_pull_request(ctx, tdata):
     assert json_resp['closed']
 
 
-def test_search(ctx, tdata):
-    url = f"{ctx.base_url}/rest/search/latest/search"
-    payload = {"query": tdata.search_needle, "entities": {"code": {}},
-               "limits": {"primary": 25, "secondary": 10}}
-
-    found = False
-    for i in range(0, 60):
-        r = requests.post(url, auth=ctx.admin_auth, json=payload)
-        assert r.status_code == 200, "200 not received for search!"
-        if r.json()['code']['count'] == 1:
-            print(f"waited {i} seconds for the search result")
-            found = True
-            break
-        time.sleep(1)
-
-    assert found, "couldn't find the searched item"
+# def test_search(ctx, tdata):
+#     url = f"{ctx.base_url}/rest/search/latest/search"
+#     payload = {"query": tdata.search_needle, "entities": {"code": {}},
+#                "limits": {"primary": 25, "secondary": 10}}
+#
+#     found = False
+#     for i in range(0, 60):
+#         r = requests.post(url, auth=ctx.admin_auth, json=payload)
+#         assert r.status_code == 200, "200 not received for search!"
+#         if r.json()['code']['count'] == 1:
+#             print(f"waited {i} seconds for the search result")
+#             found = True
+#             break
+#         time.sleep(1)
+#
+#     assert found, "couldn't find the searched item"
