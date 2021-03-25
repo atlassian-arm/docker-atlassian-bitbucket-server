@@ -77,6 +77,17 @@ def test_create_repository(ctx, tdata):
     assert r.json()['slug'] == tdata.repository_name.lower()
 
 
+def test_set_default_branch(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/branches/default"
+
+    data = {
+        "id": "refs/heads/main"
+    }
+
+    r = requests.put(url, json=data, auth=ctx.admin_auth)
+
+    assert r.status_code == 204, f'failed to set default branch, status: {r.status_code}, content: {r.text}'
+
 def test_import_repository(ctx, tdata):
     clone_o = subprocess.run(
         ["git", "clone", "--bare", tdata.repo_to_clone, tdata.bare_repo_folder])
