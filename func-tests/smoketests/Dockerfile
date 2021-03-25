@@ -5,4 +5,4 @@ WORKDIR /smoketests
 COPY Pipfile* /smoketests/
 RUN pipenv install --deploy --ignore-pipfile
 COPY . /smoketests
-CMD pipenv run pytest -s -v
+CMD pipenv run pytest -s -v --cleanup

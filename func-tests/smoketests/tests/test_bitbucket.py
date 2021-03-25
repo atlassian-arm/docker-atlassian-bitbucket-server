@@ -100,6 +100,17 @@ def test_import_repository(ctx, tdata):
     assert push_o.returncode == 0, "cannot push repository from local to bitbucket"
 
 
+def test_set_default_branch(ctx, tdata):
+    url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/branches/default"
+    data = {
+        "id": tdata.default_branch
+    }
+
+    r = requests.put(url, json=data, auth=ctx.admin_auth)
+
+    assert r.status_code == 204, f'failed to set default branch, status: {r.status_code}, content: {r.text}'
+
+
 def test_open_pull_request(ctx, tdata):
     url = f"{ctx.base_url}/rest/api/1.0/projects/{tdata.project_key}/repos/{tdata.repository_name}/pull-requests"
 
@@ -241,19 +252,19 @@ def test_merge_pull_request(ctx, tdata):
     assert json_resp['closed']
 
 
-# def test_search(ctx, tdata):
-#     url = f"{ctx.base_url}/rest/search/latest/search"
-#     payload = {"query": tdata.search_needle, "entities": {"code": {}},
-#                "limits": {"primary": 25, "secondary": 10}}
-#
-#     found = False
-#     for i in range(0, 60):
-#         r = requests.post(url, auth=ctx.admin_auth, json=payload)
-#         assert r.status_code == 200, "200 not received for search!"
-#         if r.json()['code']['count'] == 1:
-#             print(f"waited {i} seconds for the search result")
-#             found = True
-#             break
-#         time.sleep(1)
-#
-#     assert found, "couldn't find the searched item"
+def test_search(ctx, tdata):
+    url = f"{ctx.base_url}/rest/search/latest/search"
+    payload = {"query": tdata.search_needle, "entities": {"code": {}},
+               "limits": {"primary": 25, "secondary": 10}}
+
+    found = False
+    for i in range(0, 120):
+        r = requests.post(url, auth=ctx.admin_auth, json=payload)
+        assert r.status_code == 200, "200 status not received for search"
+        if r.json()['code']['count'] == 1:
+            print(f"waited {i} seconds for the search result")
+            found = True
+            break
+        time.sleep(1)
+
+    assert found, "couldn't find the searched item"

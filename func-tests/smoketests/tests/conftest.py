@@ -40,6 +40,7 @@ class TestData:
     repo_to_clone: str
     bare_repo_folder: str
     work_repo_folder: str
+    default_branch: str
     new_branch: str
     user: str
 
@@ -58,20 +59,22 @@ def ctx() -> Context:
 
 @pytest.fixture(scope='session')
 def tdata() -> TestData:
+    timestamp = round(time.time())
     return TestData(
-        project_key=f"PROJECT{round(time.time())}",
-        project_name=f"My Project {round(time.time())}",
-        repository_name=f"avatar{round(time.time())}",
+        project_key=f"PROJECT{timestamp}",
+        project_name=f"My Project {timestamp}",
+        repository_name=f"avatar{timestamp}",
         bitbucket_version='6.0.1',
         pull_request_id="-1",
         attachment_id="-1",
         attachment_link="",
-        search_needle=f"needle{time.time()}",
+        search_needle=f"needle{timestamp}",
         repo_to_clone="https://github.com/nanux/git-test-repo.git",
         bare_repo_folder="git-test-repo",
         work_repo_folder="git-test-repo-work",
+        default_branch="refs/heads/main",
         new_branch="new-branch",
-        user=f"user{round(time.time())}"
+        user=f"user{timestamp}"
     )
 
 
