@@ -260,8 +260,10 @@ def test_search(ctx, tdata):
     found = False
     for i in range(0, 120):
         r = requests.post(url, auth=ctx.admin_auth, json=payload)
-        assert r.status_code == 200, "200 status not received for search"
-        if r.json()['code']['count'] == 1:
+        assert r.status_code in (200, 503), "200 status not received for search"
+        if r.status_code == 503:
+            print(f"Elasticsearch is unavailable, run #{i}")
+        elif r.json()['code']['count'] == 1:
             print(f"waited {i} seconds for the search result")
             found = True
             break
