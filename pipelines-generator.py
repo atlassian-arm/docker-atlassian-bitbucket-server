@@ -13,6 +13,7 @@ images = {
             'default_release': False,
             'base_image': 'adoptopenjdk:11-hotspot',
             'tag_suffixes': ['jdk11','ubuntu-jdk11'],
+            'docker_repos': ['atlassian/bitbucket', 'atlassian/bitbucket-server'],
         },
         8: {
             'mac_key': 'bitbucket',
@@ -20,7 +21,9 @@ images = {
             'start_version': '6',
             'end_version': '8',
             'default_release': True,
-            'tag_suffixes': ['jdk8','ubuntu'],
+            'base_image': 'adoptopenjdk:8-hotspot',
+            'tag_suffixes': ['jdk8','ubuntu','ubuntu-jdk8'],
+            'docker_repos': ['atlassian/bitbucket', 'atlassian/bitbucket-server'],
         }
     }
 }

@@ -15,6 +15,7 @@ pipelines:
           name: Check if pipelines config is up-to-date...
           script:
             - python3 pipeline-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
+
       - parallel:
 {% for (name, pdata) in images.items() %}
   {% for (jdkver, appdata) in pdata.items() %}
@@ -25,18 +26,24 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - export START_VERSION='{{ appdata.start_version }}'
-                - export END_VERSION='{{ appdata.end_version }}'
-                - export JOB_OFFSET='{{ offset }}'
-                - export JOBS_TOTAL='{{ batches }}'
-                - export DEFAULT_RELEASE='{{ appdata.default_release|lower() }}'
-                - export DOCKER_REPO='atlassian/bitbucket-server'{% if appdata.base_image is defined %} 
-                - export DOCKERFILE_BUILDARGS='BASE_IMAGE={{ appdata.base_image }}'{% endif %}              
-                - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
-                - export MAC_PRODUCT_KEY='{{ appdata.mac_key }}'
-                - export TAG_SUFFIXES='{{ appdata.tag_suffixes|join(',') }}'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - python /usr/src/app/run.py --create --create-eap
+                - >
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='{{ appdata.start_version }}' \
+                    --end-version='{{ appdata.end_version }}' \
+                    {% if appdata.default_release %}
+                    --default-release \
+                    {% endif %}
+                    --dockerfile-buildargs='BASE_IMAGE={{ appdata.base_image }}' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='{{ appdata.mac_key }}' \
+                    --tag-suffixes='{{ tag_suffixes|join(',') }}' \
+                    --job-offset='{{ offset }}' \
+                    --jobs-total='{{ batches }}' \
+                    --docker-repos='{{ appdata.docker_repos|join(',') }}' \
+                    --push
+
     {% endfor %}
   {% endfor %}
 {% endfor %}
@@ -94,18 +101,23 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - export START_VERSION='{{ appdata.start_version }}'
-                - export END_VERSION='{{ appdata.end_version }}'
-                - export JOB_OFFSET='{{ offset }}'
-                - export JOBS_TOTAL='{{ batches }}'
-                - export DEFAULT_RELEASE='{{ appdata.default_release|lower() }}'
-                - export DOCKER_REPO='atlassian/bitbucket-server'  {% if appdata.base_image is defined %} 
-                - export DOCKERFILE_BUILDARGS='BASE_IMAGE={{ appdata.base_image }}' {% endif %}                
-                - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
-                - export MAC_PRODUCT_KEY='{{ appdata.mac_key }}'
-                - export TAG_SUFFIXES='{{ appdata.tag_suffixes|join(',') }}'
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - python /usr/src/app/run.py --update
+                - >
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='{{ appdata.start_version }}' \
+                    --end-version='{{ appdata.end_version }}' \
+                    {% if appdata.default_release %}
+                    --default-release \
+                    {% endif %}
+                    --dockerfile-buildargs='BASE_IMAGE={{ appdata.base_image }}' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='{{ appdata.mac_key }}' \
+                    --tag-suffixes='{{ tag_suffixes|join(',') }}' \
+                    --job-offset='{{ offset }}' \
+                    --jobs-total='{{ batches }}' \
+                    --docker-repos='{{ appdata.docker_repos|join(',') }}' \
+                    --push
 
     {% endfor %}
   {% endfor %}
