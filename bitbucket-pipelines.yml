@@ -26,17 +26,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='0' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -48,17 +48,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='1' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -70,17 +70,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='2' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -92,17 +92,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='3' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -114,17 +114,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='4' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -136,17 +136,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='5' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -158,17 +158,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='6' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -180,17 +180,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='7' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -202,17 +202,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='8' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -224,17 +224,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='9' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -246,17 +246,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='10' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -268,17 +268,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='11' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -290,17 +290,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='12' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -312,17 +312,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='13' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -334,17 +334,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='14' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -356,18 +356,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='0' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -379,18 +379,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='1' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -402,18 +402,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='2' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -425,18 +425,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='3' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -448,18 +448,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='4' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -471,18 +471,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='5' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -494,18 +494,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='6' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -517,18 +517,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='7' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -540,18 +540,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='8' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -563,18 +563,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='9' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -586,18 +586,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='10' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -609,18 +609,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='11' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -632,18 +632,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='12' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -655,18 +655,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='13' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
         
@@ -678,18 +678,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --create --create-eap
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='14' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
 
@@ -745,17 +745,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='0' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -766,17 +766,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='1' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -787,17 +787,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='2' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -808,17 +808,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='3' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -829,17 +829,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='4' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -850,17 +850,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='5' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -871,17 +871,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='6' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -892,17 +892,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='7' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -913,17 +913,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='8' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -934,17 +934,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='9' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -955,17 +955,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='10' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -976,17 +976,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='11' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -997,17 +997,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='12' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1018,17 +1018,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='13' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1039,17 +1039,17 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='14' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1060,18 +1060,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='0'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='0' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1082,18 +1082,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='1'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='1' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1104,18 +1104,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='2'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='2' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1126,18 +1126,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='3'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='3' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1148,18 +1148,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='4'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='4' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1170,18 +1170,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='5'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='5' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1192,18 +1192,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='6'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='6' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1214,18 +1214,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='7'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='7' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1236,18 +1236,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='8'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='8' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1258,18 +1258,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='9'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='9' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1280,18 +1280,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='10'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='10' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1302,18 +1302,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='11'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='11' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1324,18 +1324,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='12'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='12' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1346,18 +1346,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='13'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='13' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
           - step:
@@ -1368,18 +1368,18 @@ pipelines:
                 - git submodule update --init --recursive
                 - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
                 - >
-                  python /usr/src/app/make-releases.py
-                    --update
-                    --start-version='6'
-                    --end-version='8'
-                    --default-release
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot'
-                    --dockerfile-version-arg='BITBUCKET_VERSION'
-                    --mac-product-key='bitbucket'
-                    --tag-suffixes=''
-                    --job-offset='14'
-                    --jobs-total='15'
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server'
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='6' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='' \
+                    --job-offset='14' \
+                    --jobs-total='15' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
       - step:
