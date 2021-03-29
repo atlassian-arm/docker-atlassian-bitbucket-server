@@ -13,4 +13,5 @@ if [ -z "$BITBUCKET_LICENSE" ]; then
   exit 1
 fi
 
-docker-compose up --force-recreate --abort-on-container-exit --exit-code-from smoketests
+docker-compose rm -f
+docker-compose up --abort-on-container-exit --exit-code-from smoketests
