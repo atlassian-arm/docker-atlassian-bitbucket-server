@@ -33,7 +33,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='0' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -55,7 +55,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='1' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -77,7 +77,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='2' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -99,7 +99,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='3' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -121,7 +121,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='4' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -143,7 +143,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='5' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -165,7 +165,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='6' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -187,7 +187,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='7' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -209,7 +209,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='8' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -231,7 +231,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='9' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -253,7 +253,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='10' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -275,7 +275,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='11' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -297,7 +297,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='12' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -319,7 +319,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='13' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -341,7 +341,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='14' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -364,7 +364,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='0' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -387,7 +387,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='1' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -410,7 +410,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='2' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -433,7 +433,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='3' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -456,7 +456,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='4' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -479,7 +479,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='5' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -502,7 +502,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='6' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -525,7 +525,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='7' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -548,7 +548,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='8' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -571,7 +571,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='9' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -594,7 +594,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='10' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -617,7 +617,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='11' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -640,7 +640,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='12' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -663,7 +663,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='13' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -686,7 +686,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='14' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -752,7 +752,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='0' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -773,7 +773,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='1' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -794,7 +794,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='2' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -815,7 +815,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='3' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -836,7 +836,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='4' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -857,7 +857,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='5' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -878,7 +878,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='6' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -899,7 +899,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='7' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -920,7 +920,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='8' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -941,7 +941,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='9' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -962,7 +962,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='10' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -983,7 +983,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='11' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1004,7 +1004,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='12' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1025,7 +1025,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='13' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1046,7 +1046,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:11-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='14' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1068,7 +1068,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='0' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1090,7 +1090,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='1' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1112,7 +1112,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='2' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1134,7 +1134,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='3' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1156,7 +1156,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='4' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1178,7 +1178,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='5' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1200,7 +1200,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='6' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1222,7 +1222,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='7' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1244,7 +1244,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='8' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1266,7 +1266,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='9' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1288,7 +1288,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='10' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1310,7 +1310,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='11' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1332,7 +1332,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='12' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1354,7 +1354,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='13' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
@@ -1376,7 +1376,7 @@ pipelines:
                     --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk:8-hotspot' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
-                    --tag-suffixes='' \
+                    --tag-suffixes='jdk8,ubuntu,ubuntu-jdk8' \
                     --job-offset='14' \
                     --jobs-total='15' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
