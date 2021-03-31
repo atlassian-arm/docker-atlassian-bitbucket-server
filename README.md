@@ -14,9 +14,8 @@ running.
 
 This Docker image is published as both `atlassian/bitbucket` and
 `atlassian/bitbucket-server`. These are the same image, but the `-server`
-version is kept for backwards-compatibility with older installations. For new
+version is deprecated and only kept for backwards-compatibility; for new
 installations it is recommended to use the shorter name.
-
 
 ** NOTE: For backwards-compatibility, by default the image will start both
 Bitbucket and an embedded ElasticSearch. However this is not a recommended
