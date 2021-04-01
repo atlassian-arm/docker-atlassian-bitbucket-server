@@ -13,5 +13,9 @@ if [ -z "$BITBUCKET_LICENSE" ]; then
   exit 1
 fi
 
+echo "Clearing up any potential leftovers from a previous run"
 docker-compose rm -f
+rm -rf bitbucket-home
+
+echo "Starting the tested environment in docker-compose"
 docker-compose up --abort-on-container-exit --exit-code-from smoketests
