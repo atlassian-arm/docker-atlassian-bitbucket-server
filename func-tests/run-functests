@@ -3,14 +3,19 @@
 latest_image=$(docker images --format "{{.ID}} {{.CreatedAt}}" | sort -rk 2 | awk 'NR==1{print $1}')
 
 export TEST_TARGET_IMAGE=${1:-$latest_image}
-export DIR="$(dirname $0)"
+export DIR=$(dirname "$0")
 
 # Assumes this script is in the func-tests base dir
-cd "$DIR"
+cd "$DIR" || exit
 
-if [[ -z "$BITBUCKET_LICENSE" ]]; then
-    echo "You need to define BITBUCKET_LICENSE env variable"
-    exit 1
+if [ -z "$BITBUCKET_LICENSE" ]; then
+  echo "You need to define BITBUCKET_LICENSE env variable"
+  exit 1
 fi
 
+echo "Clearing up any potential leftovers from a previous run"
+docker-compose rm -f
+rm -rf bitbucket-home
+
+echo "Starting the tested environment in docker-compose"
 docker-compose up --abort-on-container-exit --exit-code-from smoketests
