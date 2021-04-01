@@ -12,6 +12,11 @@ Learn more about Bitbucket Server: <https://www.atlassian.com/software/bitbucket
 This Docker container makes it easy to get an instance of Bitbucket up and
 running.
 
+This Docker image is published as both `atlassian/bitbucket` and
+`atlassian/bitbucket-server`. These are the same image, but the `-server`
+version is deprecated and only kept for backwards-compatibility; for new
+installations it is recommended to use the shorter name.
+
 ** NOTE: For backwards-compatibility, by default the image will start both
 Bitbucket and an embedded ElasticSearch. However this is not a recommended
 configuration, especially in a clustered environment, and has known issues with
@@ -38,13 +43,13 @@ Volume permission is managed by entry scripts. To get started you can use a data
 volume, or named volumes. In this example we'll use named volumes.
 
     $> docker volume create --name bitbucketVolume
-    $> docker run -v bitbucketVolume:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket-server
+    $> docker run -v bitbucketVolume:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket
 
 Note that this command can substitute folder paths with named volumes.
 
 Start Atlassian Bitbucket Server:
 
-    $> docker run -v /data/bitbucket:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket-server
+    $> docker run -v /data/bitbucket:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket
 
 **Success**. Bitbucket is now available on [http://localhost:7990](http://localhost:7990)*
 
@@ -161,7 +166,7 @@ database, and an external ElasticSearch instance might look like:
         -v /data/bitbucket-shared:/var/atlassian/application-data/bitbucket/shared \
         --name="bitbucket" \
         -d -p 7990:7990 -p 7999:7999 \
-        atlassian/bitbucket-server
+        atlassian/bitbucket
 
 ### Cluster settings
 
@@ -212,7 +217,7 @@ container and start a new one based on a more recent image:
 
     $> docker stop bitbucket
     $> docker rm bitbucket
-    $> docker pull atlassian/bitbucket-server:<desired_version>
+    $> docker pull atlassian/bitbucket:<desired_version>
     $> docker run ... (See above)
 
 As your data is stored in the data volume directory on the host it will still
@@ -243,7 +248,7 @@ The `latest` tag matches the most recent version of this repository. Thus using
 running the most up to date version of this image.
 
 Alternatively, you can use a specific minor version of Bitbucket Server by
-using a version number tag: `atlassian/bitbucket-server:6`. This will
+using a version number tag: `atlassian/bitbucket:6`. This will
 install the latest `6.x.x` version that is available.
 
 # Troubleshooting
