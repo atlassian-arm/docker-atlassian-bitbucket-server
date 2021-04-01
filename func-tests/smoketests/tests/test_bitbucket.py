@@ -252,6 +252,7 @@ def test_merge_pull_request(ctx, tdata):
     assert json_resp['closed']
 
 
+@pytest.mark.skip(reason="intermittent failures on master branch with full pipeline")
 def test_search(ctx, tdata):
     url = f"{ctx.base_url}/rest/search/latest/search"
     payload = {"query": tdata.search_needle, "entities": {"code": {}},
