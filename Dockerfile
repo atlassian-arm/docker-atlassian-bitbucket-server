@@ -1,6 +1,9 @@
 ARG BASE_IMAGE=adoptopenjdk:8-hotspot
 FROM $BASE_IMAGE
 
+LABEL maintainer="dc-deployments@atlassian.com"
+LABEL securitytxt="https://www.atlassian.com/.well-known/security.txt"
+
 ARG BITBUCKET_VERSION
 
 ENV RUN_USER                                        bitbucket
