@@ -64,7 +64,7 @@ pipelines:
             - >
               docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/integration_test.sh atlassian/bitbucket-server:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh atlassian/bitbucket-server:${DOCKER_TAG}
             - docker push atlassian/bitbucket-server:${DOCKER_TAG}
     jdk11-custom-release:
       - variables:
@@ -80,7 +80,7 @@ pipelines:
               docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
               --build-arg BASE_IMAGE=adoptopenjdk:11-hotspot
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/integration_test.sh atlassian/bitbucket-server:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh atlassian/bitbucket-server:${DOCKER_TAG}
             - docker push atlassian/bitbucket-server:${DOCKER_TAG}
   branches:
     ######################################################################
@@ -163,7 +163,7 @@ pipelines:
             - export BITBUCKET_VERSION=$(curl -s https://marketplace.atlassian.com/rest/2/products/key/bitbucket/versions/latest | jq -r .name)
             - docker build --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} -t test-image .
             - export IS_RELEASE=false
-            - /usr/src/app/integration_test.sh test-image $IS_RELEASE
+            - /usr/src/app/post_build.sh test-image $IS_RELEASE
 definitions:
   services:
     docker:
