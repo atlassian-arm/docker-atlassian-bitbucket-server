@@ -1,0 +1,6 @@
+ignored:
+  - DL3006 # Version tagging
+  - DL3008 # Pinning
+  - DL4006 # Pipefail
+  - SC2086 # Quoting
+  - SC2016 # Quoting
