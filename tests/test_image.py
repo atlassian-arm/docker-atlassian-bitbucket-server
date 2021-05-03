@@ -45,9 +45,8 @@ def test_clean_shutdown(docker_cli, image, run_user):
     # Check for final shutdown log. This message has been consistent across versions:
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 6.3.6 has shut down
-    end = re.compile('c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down')
+    end = re.compile(r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down')
     logs = container.logs(stream=True, follow=True)
-
     container.kill(signal.SIGTERM)
     for line in logs:
         if end.search(line.decode('UTF-8')):
@@ -87,10 +86,11 @@ def test_elasticsearch_disabled(docker_cli, image, run_user):
     environment = {'ELASTICSEARCH_ENABLED': 'false'}
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
-    
+
     procs_list = get_procs(container)
-    start_bitbucket = [proc for proc in procs_list if 'start-bitbucket.sh' in proc][0]
-    assert '--no-search' in start_bitbucket
+    jvms = [proc for proc in procs_list if '/opt/java/openjdk/bin/java' in proc]
+    assert len(jvms) == 1
+    assert "BitbucketServerLauncher" in jvms[0]
 
 
 def test_application_mode_mirror(docker_cli, image, run_user):
@@ -99,8 +99,9 @@ def test_application_mode_mirror(docker_cli, image, run_user):
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
     procs_list = get_procs(container)
-    start_bitbucket = [proc for proc in procs_list if 'start-bitbucket.sh' in proc][0]
-    assert '--no-search' in start_bitbucket
+    jvms = [proc for proc in procs_list if '/opt/java/openjdk/bin/java' in proc]
+    assert len(jvms) == 1
+    assert "BitbucketServerLauncher" in jvms[0]
 
 
 def test_install_permissions(docker_cli, image):

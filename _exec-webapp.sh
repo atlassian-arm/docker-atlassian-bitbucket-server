@@ -1,30 +1,9 @@
 #!/usr/bin/env bash
 
-# BIN_DIR & INST_DIR will be fully qualified, not relative
-pushd `dirname $0` > /dev/null
-export BIN_DIR=`pwd`
-popd > /dev/null
-export INST_DIR=$(dirname "$BIN_DIR")
-
-source $BIN_DIR/set-jre-home.sh &&
-    source $BIN_DIR/set-bitbucket-home.sh &&
-    source $BIN_DIR/set-bitbucket-user.sh
-if [ $? -ne 0 ]; then
-    # One of the setup scripts failed. Don't try to start any processes
-    echo -e "\nStartup has been aborted"
-    exit 1
-fi
-
-if [ -z "$BITBUCKET_USER" ] || [ $(id -un) == "$BITBUCKET_USER" ]; then
-    echo "Starting Atlassian Bitbucket as the current user"
-elif [ $UID -ne 0 ]; then
-    echo Atlassian Bitbucket has been installed to run as $BITBUCKET_USER. Use "sudo -u $BITBUCKET_USER $0"
-    echo to start as that user.
-    exit 1
-else
-    echo "Starting Atlassian Bitbucket as dedicated user $BITBUCKET_USER"
-fi
-
+##############################################################################
+# Stripped version of the distributed `_start-webapp.sh`. See
+# `exec-bitbucket-node.sh` for details.
+##############################################################################
 
 # The following 2 settings control the minimum and maximum memory allocated to the Java virtual machine.
 # For larger instances, the maximum amount will need to be increased.
@@ -89,5 +68,4 @@ JAVA_OPTS="-classpath $INST_DIR/app $JAVA_OPTS $BITBUCKET_ARGS $JMX_OPTS $JVM_RE
 LAUNCHER="com.atlassian.bitbucket.internal.launcher.BitbucketServerLauncher"
 
 echo -e "\nStarting Bitbucket webapp at http://localhost:${bitbucket.http.port}${bitbucket.context}"
-
 exec $JAVA_BINARY $JAVA_OPTS $LAUNCHER start --logging.console=true
