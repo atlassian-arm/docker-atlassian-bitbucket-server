@@ -1,31 +1,15 @@
 import pytest
-import re
 import requests
 import signal
 import testinfra
-import time
 
 from helpers import get_app_home, get_app_install_dir, get_bootstrap_proc, get_procs, \
-    parse_properties, parse_xml, run_image, wait_for_http_response, wait_for_proc
+    parse_properties, parse_xml, run_image, \
+    wait_for_http_response, wait_for_proc, wait_for_state, wait_for_log
 
 
 PORT = 7990
 URL = f'http://localhost:{PORT}/status'
-
-
-def wait_for_state(url, expected_state, max_wait=300):
-    timeout = time.time() + max_wait
-    while time.time() < timeout:
-        try:
-            r = requests.get(url)
-        except requests.exceptions.ConnectionError:
-            pass
-        else:
-            state = r.json().get('state')
-            if state == expected_state:
-                return
-        time.sleep(1)
-    raise TimeoutError
 
 
 def test_first_run_state(docker_cli, image, run_user):
@@ -39,19 +23,15 @@ def test_clean_shutdown(docker_cli, image, run_user):
     container = docker_cli.containers.run(image, detach=True, user=run_user,
                                           ports={PORT: PORT}, environment=environment)
     host = testinfra.get_host("docker://"+container.id)
-
     wait_for_state(URL, expected_state='FIRST_RUN')
+
+    container.kill(signal.SIGTERM)
 
     # Check for final shutdown log. This message has been consistent across versions:
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 6.3.6 has shut down
-    end = re.compile(r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down')
-    logs = container.logs(stream=True, follow=True)
-    container.kill(signal.SIGTERM)
-    for line in logs:
-        if end.search(line.decode('UTF-8')):
-            return
-    pytest.fail('Failed to find clean shutdown log message.')
+    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down'
+    wait_for_log(container, end)
 
 
 def test_jvm_args(docker_cli, image, run_user):
