@@ -10,7 +10,7 @@
 #
 # * Any subshells or application startup is called with `exec` rather
 #   than starting a child process. This is necessary to ensure that
-#   signals are propogated to the applcation.
+#   signals are propogated to the application.
 #
 ##############################################################################
 
