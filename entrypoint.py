@@ -15,9 +15,9 @@ if str2bool(env['elasticsearch_enabled']) is False or env['application_mode'] ==
     start_cmd = [f"{BITBUCKET_INSTALL_DIR}/bin/exec-bitbucket-node.sh"]
 else:
     logging.warning("######################################################################")
-    logging.warning("Starting Bitbucket with embedded ElasticSearch. Note that this is\n" \
+    logging.warning("Starting Bitbucket with embedded Elasticsearch. Note that this is\n" \
                     "not a recommended configuration and is known to have issues with\n" \
-                    "clean shutdown. Ideally ES should be started in a separate\n" \
+                    "clean shutdown. Ideally Elasticsearch should be started in a separate\n" \
                     "container/pod.")
     logging.warning("######################################################################")
 

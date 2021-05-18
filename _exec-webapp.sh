@@ -5,7 +5,7 @@
 # `exec-bitbucket-node.sh` for details.
 ##############################################################################
 
-# The following 2 settings control the minimum and maximum memory allocated to the Java virtual machine.
+# The following 2 settings control the minimum and maximum memory allocated to the JVM.
 # For larger instances, the maximum amount will need to be increased.
 #
 if [ -z "${JVM_MINIMUM_MEMORY}" ]; then
@@ -15,9 +15,9 @@ if [ -z "${JVM_MAXIMUM_MEMORY}" ]; then
     JVM_MAXIMUM_MEMORY=1g
 fi
 
-# Uncommenting the following will set the umask for the webapp. It can be used to override the default
-# settings for the service user if they are not sufficiently secure.
-#
+# The following will set the umask for the webapp. It overrides the
+# default settings for the service user if they are not sufficiently
+# secure.
 umask 0027
 
 MAX_OPEN_FILES=6192
