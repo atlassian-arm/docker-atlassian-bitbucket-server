@@ -47,11 +47,11 @@ RUN groupadd --gid ${RUN_GID} ${RUN_GROUP} \
     && chmod -R "u=rwX,g=rX,o=rX"                   ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R root.                               ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_INSTALL_DIR}/elasticsearch/logs \
-    && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_HOME} \
-    \
-    && sed -i -e 's/^# umask/umask/'         ${BITBUCKET_INSTALL_DIR}/bin/_start-webapp.sh
+    && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_HOME}
 
 VOLUME ["${BITBUCKET_HOME}"]
+
+COPY exec-bitbucket-node.sh _exec-webapp.sh ${BITBUCKET_INSTALL_DIR}/bin/
 
 COPY entrypoint.py \
      shared-components/image/entrypoint_helpers.py  /

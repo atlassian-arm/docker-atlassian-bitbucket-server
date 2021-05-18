@@ -18,11 +18,11 @@ version is deprecated and only kept for backwards-compatibility; for new
 installations it is recommended to use the shorter name.
 
 ** NOTE: For backwards-compatibility, by default the image will start both
-Bitbucket and an embedded ElasticSearch. However this is not a recommended
+Bitbucket and an embedded Elasticsearch. However this is not a recommended
 configuration, especially in a clustered environment, and has known issues with
-shutdown. instead, we recommend running a separate ElasticSearch instance
+shutdown. instead, we recommend running a separate Elasticsearch instance
 (possibly in another Docker container); see below for instructions on connecting
-to an external ElasticSearch cluster. **
+to an external Elasticsearch cluster. **
 
 ** If running this image in a production environment, we strongly recommend you
 run this image using a specific version tag instead of latest. This is because
@@ -153,7 +153,7 @@ variables see
 [the relevant Spring Boot documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding).
 
 For example, a full command-line for a Bitbucket node with a PostgreSQL
-database, and an external ElasticSearch instance might look like:
+database, and an external Elasticsearch instance might look like:
 
     $> docker network create --driver bridge --subnet=172.18.0.0/16 myBitbucketNetwork
     $> docker run --network=myBitbucketNetwork --ip=172.18.1.1 \
