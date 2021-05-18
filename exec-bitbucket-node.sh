@@ -15,8 +15,8 @@
 ##############################################################################
 
 # BIN_DIR & INST_DIR will be fully qualified, not relative
-pushd `dirname $0` > /dev/null
-export BIN_DIR=`pwd`
+pushd $(dirname $0) > /dev/null
+export BIN_DIR=$(pwd)
 popd > /dev/null
 export INST_DIR=$(dirname "$BIN_DIR")
 
