@@ -57,7 +57,7 @@ apt-get purge -y git
 # Install git from source
 make configure
 ./configure --prefix=${DIST_DIR}
-make NO_TCLTK=1 NO_GETTEXT=1 install
+make -j`nproc` NO_TCLTK=1 NO_GETTEXT=1 install
 
 # Remove and clean up dependencies
 cd /
