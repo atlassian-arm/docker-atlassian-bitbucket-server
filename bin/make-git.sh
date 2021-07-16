@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 SOURCE_DIR="/git_source"
 DIST_DIR="/usr"
 
