@@ -1384,7 +1384,7 @@ pipelines:
 
       - step:
           name: Update README
-          image: python:3.7-alpine3.9
+          image: python:3.7-alpine3.14
           script:
             - apk add --no-cache git
             - git submodule update --init --recursive
@@ -1404,7 +1404,7 @@ pipelines:
 
       - parallel:
         - step:
-            image: python:3.7-alpine3.9
+            image: python:3.7-alpine3.14
             services:
               - docker
             script:
