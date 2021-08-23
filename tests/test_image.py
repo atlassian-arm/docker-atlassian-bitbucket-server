@@ -22,7 +22,7 @@ def test_first_run_state(docker_cli, image, run_user):
 def test_clean_shutdown(docker_cli, image, run_user):
     # 7.14.0 and 7.14.1 have a known issue with shutdown logging, see BSERV-12919
     version = image.labels.get("product_version")
-    if version in ['7.14.0', '7.14.1']:
+    if version in ['7.14.0', '7.14.1', '7.15.0', '7.15.1']:
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
         return
 
