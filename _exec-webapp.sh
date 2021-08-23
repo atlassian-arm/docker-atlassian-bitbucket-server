@@ -20,8 +20,12 @@ fi
 # secure.
 umask 0027
 
-if [ $(ulimit -n) -lt 4096 ]; then
-    echo -e "Warning: Open file limit is < 4096. You may experience problems under heavy load."
+
+MAX_OPEN_FILES=6192
+ULIMIT_HARD="$(ulimit -Hn)"
+# Java will always bump the soft limit up to the hard limit due to -XX:+MaxFDLimit being the default.
+if [ "$ULIMIT_HARD" -lt "$MAX_OPEN_FILES" ] ; then
+    echo -e "Warning: Open files limit is < ${MAX_OPEN_FILES}. You may experience problems under heavy load."
 fi
 
 if [ ! -d "$BITBUCKET_HOME/log" ]; then
