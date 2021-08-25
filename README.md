@@ -241,6 +241,17 @@ approach in case you decided to use an external database.
 Read more about data recovery and backups:
 [https://confluence.atlassian.com/display/BitbucketServer/Data+recovery+and+backups](https://confluence.atlassian.com/display/BitbucketServer/Data+recovery+and+backups)
 
+# Shutdown
+
+Bitbucket allows a configurable grace period for active operations to finish
+before termination; by default this is 30s. If sending a `docker stop` this
+should be taken into account with the `--time` flag.
+
+Alternatively, the script `/shutdown-wait.sh` is provided, which will initiate a
+clean shutdown and wait for the process to complete. This is the recommended
+method for shutdown in environments which provide for orderly shutdown,
+e.g. Kubernetes via the `preStop` hook.
+
 # Versioning
 
 The `latest` tag matches the most recent version of this repository. Thus using
