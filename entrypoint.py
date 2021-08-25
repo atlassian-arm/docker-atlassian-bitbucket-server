@@ -23,4 +23,4 @@ else:
 
     start_cmd = [f"{BITBUCKET_INSTALL_DIR}/bin/start-bitbucket.sh", "-fg"]
 
-exec_app(start_cmd, BITBUCKET_HOME, name='Bitbucket Server')
+exec_app(start_cmd, BITBUCKET_HOME, name='Bitbucket')
