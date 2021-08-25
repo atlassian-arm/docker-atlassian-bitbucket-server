@@ -6,6 +6,7 @@ LABEL securitytxt="https://www.atlassian.com/.well-known/security.txt"
 
 ARG BITBUCKET_VERSION
 
+ENV APP_NAME                                        bitbucket
 ENV RUN_USER                                        bitbucket
 ENV RUN_GROUP                                       bitbucket
 ENV RUN_UID                                         2003
