@@ -20,7 +20,7 @@ def test_first_run_state(docker_cli, image, run_user):
 
 
 def test_clean_shutdown(docker_cli, image, run_user):
-    # 7.14.0 and 7.14.1 have a known issue with shutdown logging, see BSERV-12919
+    # 7.14 and 7.15 have a known issue with shutdown logging, see BSERV-12919
     version = image.labels.get("product_version")
     if version in ['7.14.0', '7.14.1', '7.15.0', '7.15.1']:
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
@@ -33,6 +33,28 @@ def test_clean_shutdown(docker_cli, image, run_user):
     wait_for_state(URL, expected_state='FIRST_RUN')
 
     container.kill(signal.SIGTERM)
+
+    # Check for final shutdown log. This message has been consistent across versions:
+    #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
+    #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 6.3.6 has shut down
+    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down'
+    wait_for_log(container, end)
+
+
+def test_shutdown_script(docker_cli, image, run_user):
+    # 7.14 and 7.15 have a known issue with shutdown logging, see BSERV-12919
+    version = image.labels.get("product_version")
+    if version in ['7.14.0', '7.14.1', '7.15.0', '7.15.1']:
+        logging.warning(f"Skipping test_clean_shutdown for version {version}")
+        return
+
+    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    container = docker_cli.containers.run(image, detach=True, user=run_user,
+                                          ports={PORT: PORT}, environment=environment)
+    host = testinfra.get_host("docker://"+container.id)
+    wait_for_state(URL, expected_state='FIRST_RUN')
+
+    container.exec_run('/shutdown-wait.sh')
 
     # Check for final shutdown log. This message has been consistent across versions:
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
