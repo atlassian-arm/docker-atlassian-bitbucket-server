@@ -6,6 +6,7 @@ LABEL securitytxt="https://www.atlassian.com/.well-known/security.txt"
 
 ARG BITBUCKET_VERSION
 
+ENV APP_NAME                                        bitbucket
 ENV RUN_USER                                        bitbucket
 ENV RUN_GROUP                                       bitbucket
 ENV RUN_UID                                         2003
@@ -54,5 +55,6 @@ VOLUME ["${BITBUCKET_HOME}"]
 COPY exec-bitbucket-node.sh _exec-webapp.sh ${BITBUCKET_INSTALL_DIR}/bin/
 
 COPY entrypoint.py \
-     shared-components/image/entrypoint_helpers.py  /
+     shared-components/image/entrypoint_helpers.py \
+     shutdown-wait.sh /
 COPY shared-components/support                      /opt/atlassian/support
