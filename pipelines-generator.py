@@ -8,7 +8,7 @@ images = {
         11: {
             'mac_key': 'bitbucket',
             'artefact': 'atlassian-bitbucket-software',
-            'start_version': '6.5',
+            'start_version': '6.7',
             'end_version': '8',
             'default_release': False,
             'base_image': 'adoptopenjdk:11-hotspot',
@@ -18,7 +18,7 @@ images = {
         8: {
             'mac_key': 'bitbucket',
             'artefact': 'atlassian-bitbucket-software',
-            'start_version': '6.5',
+            'start_version': '6.7',
             'end_version': '8',
             'default_release': True,
             'base_image': 'adoptopenjdk:8-hotspot',
