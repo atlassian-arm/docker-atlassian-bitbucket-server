@@ -144,6 +144,7 @@ pipelines:
 
       - parallel:
         - step:
+            name: Run unit tests
             image: python:3.7-alpine3.14
             services:
               - docker
@@ -161,6 +162,7 @@ pipelines:
               - py.test -v tests/
               - py.test -v shared-components/tests/
         - step:
+            name: Run functional tests
             services:
               - docker
             script:
