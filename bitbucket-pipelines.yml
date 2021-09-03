@@ -707,10 +707,10 @@ pipelines:
             - git submodule update --init --recursive
             - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
             - >
-              docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
+              docker build -t atlassian/bitbucket:${DOCKER_TAG}
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/post_build.sh atlassian/bitbucket-server:${DOCKER_TAG}
-            - docker push atlassian/bitbucket-server:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh atlassian/bitbucket:${DOCKER_TAG}
+            - docker push atlassian/bitbucket:${DOCKER_TAG}
     jdk11-custom-release:
       - variables:
           - name: BITBUCKET_VERSION
@@ -722,11 +722,11 @@ pipelines:
             - git submodule update --init --recursive
             - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
             - >
-              docker build -t atlassian/bitbucket-server:${DOCKER_TAG}
+              docker build -t atlassian/bitbucket:${DOCKER_TAG}
               --build-arg BASE_IMAGE=adoptopenjdk:11-hotspot
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/post_build.sh atlassian/bitbucket-server:${DOCKER_TAG}
-            - docker push atlassian/bitbucket-server:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh atlassian/bitbucket:${DOCKER_TAG}
+            - docker push atlassian/bitbucket:${DOCKER_TAG}
   branches:
     ######################################################################
     # Master branch: Do full release for each image flavour
@@ -1390,6 +1390,8 @@ pipelines:
             - git submodule update --init --recursive
             - pip install -q requests
             - export DOCKER_REPO='atlassian/bitbucket-server'
+            - python shared-components/image/push-readme.py
+            - export DOCKER_REPO='atlassian/bitbucket'
             - python shared-components/image/push-readme.py
   pull-requests:
     ######################################################################
