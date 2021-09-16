@@ -2,9 +2,5 @@
 version: v1.22.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-UPSTREAM-OPENJDKJRE-1320697:
-    - '*':
-        reason: No direct upgrade or patch; possible false positive.
-        expires: 2021-09-30T00:00:00.000Z
-        created: 2021-09-02T23:44:34.992Z
+
 patch: {}
