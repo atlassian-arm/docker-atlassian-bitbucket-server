@@ -262,6 +262,24 @@ Alternatively, you can use a specific minor version of Bitbucket Server by
 using a version number tag: `atlassian/bitbucket:6`. This will
 install the latest `6.x.x` version that is available.
 
+# Supported JDK versions
+
+All the Atlassian Docker images are now JDK11 only, and generated from the
+[official AdoptOpenJDK Docker images](https://hub.docker.com/r/adoptopenjdk/openjdk11).
+
+The Docker images follow the [Atlassian Support end-of-life
+policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html);
+images for unsupported versions of the products remain available but will no longer
+receive updates or fixes.
+
+Historically, we have also generated other versions of the images, including
+JDK8, Alpine, and 'slim' versions of the JDK. These legacy images still exist in
+Docker Hub, however they should be considered deprecated, and do not receive
+updates or fixes.
+
+If for some reason you need a different version, see "Building your own image"
+above.
+
 # Troubleshooting
 
 These images include built-in scripts to assist in performing common JVM diagnostic tasks.
@@ -305,6 +323,10 @@ in the running container:
 # Support
 
 For product support, go to [support.atlassian.com](https://support.atlassian.com/)
+
+You can also visit the [Atlassian Data Center on
+Kubernetes](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)
+forum for discussion on running Atlassian Data Center products in containers.
 
 # License
 
