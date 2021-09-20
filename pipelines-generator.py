@@ -10,7 +10,7 @@ images = {
             'artefact': 'atlassian-bitbucket-software',
             'start_version': '6.7',
             'end_version': '8',
-            'default_release': False,
+            'default_release': True,
             'base_image': 'adoptopenjdk/openjdk11',
             'tag_suffixes': ['jdk11','ubuntu-jdk11'],
             'docker_repos': ['atlassian/bitbucket', 'atlassian/bitbucket-server'],
