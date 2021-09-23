@@ -278,7 +278,15 @@ Docker Hub, however they should be considered deprecated, and do not receive
 updates or fixes.
 
 If for some reason you need a different version, see "Building your own image"
-above.
+
+# Building your own image
+
+* Clone the Atlassian repository at https://bitbucket.org/atlassian-docker/docker-atlassian-bitbucket-server/
+* Modify or replace the [Jinja](https://jinja.palletsprojects.com/) templates
+  under `config`; _NOTE_: The files must have the `.j2` extensions. However you
+  don't have to use template variables if you don't wish.
+* Build the new image with e.g: `docker build --tag my-bitbucket-image --build-arg BITBUCKET_VERSION=8.x.x .`
+* Optionally push to a registry, and deploy.
 
 # Troubleshooting
 
