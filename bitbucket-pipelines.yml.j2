@@ -78,7 +78,7 @@ pipelines:
             - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
             - >
               docker build -t atlassian/bitbucket:${DOCKER_TAG}
-              --build-arg BASE_IMAGE=adoptopenjdk:11-hotspot
+              --build-arg BASE_IMAGE=adoptopenjdk/openjdk11
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
             - /usr/src/app/post_build.sh atlassian/bitbucket:${DOCKER_TAG}
             - docker push atlassian/bitbucket:${DOCKER_TAG}
@@ -133,7 +133,7 @@ pipelines:
             - python shared-components/image/push-readme.py
             - export DOCKER_REPO='atlassian/bitbucket'
             - python shared-components/image/push-readme.py
-  pull-requests:
+
     ######################################################################
     # All other branches & PRs; run unit tests & functional tests
     # against latest app version
@@ -160,7 +160,7 @@ pipelines:
               - export MAC_PRODUCT_KEY='bitbucket'
               - py.test -v tests/
               - py.test -v shared-components/tests/
-              - export DOCKERFILE_BUILDARGS='BASE_IMAGE=adoptopenjdk:11-hotspot'
+              - export DOCKERFILE_BUILDARGS='BASE_IMAGE=adoptopenjdk/openjdk11'
               - py.test -v tests/
               - py.test -v shared-components/tests/
         - step:
