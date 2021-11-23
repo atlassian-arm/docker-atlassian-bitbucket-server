@@ -308,7 +308,7 @@ and `-i` / `--interval` respectively. For example, to collect 20 thread dumps at
 Thread dumps will be written to `$APP_HOME/thread_dumps/<date>`.
 
 Note: By default this script will also capture output from top run in 'Thread-mode'. This can
-be disabled by passing `-n` / `--no-top`
+be disabled by passing `-n` / `--no-top`.
 
 ## Heap dump
 
