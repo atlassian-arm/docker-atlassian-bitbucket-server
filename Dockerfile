@@ -15,10 +15,12 @@ ENV RUN_GID                                         2003
 # https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+home+directory
 ENV BITBUCKET_HOME                                  /var/atlassian/application-data/bitbucket
 ENV BITBUCKET_INSTALL_DIR                           /opt/atlassian/bitbucket
+ENV BITBUCKET_ELASTICSEARCH_DIR                     ${BITBUCKET_ELASTICSEARCH_DIR}
 ENV ELASTICSEARCH_ENABLED                           true
 ENV APPLICATION_MODE                                default
 ENV JRE_HOME                                        /opt/java/openjdk
 ENV JAVA_BINARY                                     ${JRE_HOME}/bin/java
+ENV MAVEN_LOG4J_URL                                 https://repo1.maven.org/maven2/org/apache/logging/log4j
 
 WORKDIR $BITBUCKET_HOME
 
@@ -46,12 +48,12 @@ RUN groupadd --gid ${RUN_GID} ${RUN_GROUP} \
     && mkdir -p                                     ${BITBUCKET_INSTALL_DIR} \
     && curl -L --silent                             ${DOWNLOAD_URL} | tar -xz --strip-components=1 -C "${BITBUCKET_INSTALL_DIR}" \
     # Mitigation for the Log4j security vulnerabilities (CVE-2021-44228 & CVE-2021-45046)
-    && rm -f /opt/atlassian/bitbucket/elasticsearch/lib/log4j-api-2.*.jar /opt/atlassian/bitbucket/elasticsearch/lib/log4j-core-2.*.jar /opt/atlassian/bitbucket/app/WEB-INF/lib/log4j-core-2.*.jar \
-    && curl -L --silent https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar -o /opt/atlassian/bitbucket/elasticsearch/lib/log4j-api-2.17.1.jar \
-    && curl -L --silent https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar -o /opt/atlassian/bitbucket/elasticsearch/lib/log4j-core-2.17.1.jar \
+    && rm -f ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-api-2.*.jar ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-core-2.*.jar ${BITBUCKET_INSTALL_DIR}/app/WEB-INF/lib/log4j-core-2.*.jar \
+    && (curl -L --silent ${MAVEN_LOG4J_URL}/log4j-api/2.17.1/log4j-api-2.17.1.jar -o ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-api-2.17.1.jar || true) \
+    && (curl -L --silent ${MAVEN_LOG4J_URL}/log4j-core/2.17.1/log4j-core-2.17.1.jar -o ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-core-2.17.1.jar || true) \
     && chmod -R "u=rwX,g=rX,o=rX"                   ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R root.                               ${BITBUCKET_INSTALL_DIR}/ \
-    && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_INSTALL_DIR}/elasticsearch/logs \
+    && (chown -R ${RUN_USER}:${RUN_GROUP}           ${BITBUCKET_ELASTICSEARCH_DIR}/logs || true) \
     && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_HOME}
 
 VOLUME ["${BITBUCKET_HOME}"]
