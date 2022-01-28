@@ -46,7 +46,7 @@ RUN groupadd --gid ${RUN_GID} ${RUN_GROUP} \
     && mkdir -p                                     ${BITBUCKET_INSTALL_DIR} \
     && curl -L --silent                             ${DOWNLOAD_URL} | tar -xz --strip-components=1 -C "${BITBUCKET_INSTALL_DIR}" \
     # Mitigation for the Log4j security vulnerabilities (CVE-2021-44228 & CVE-2021-45046)
-    && rm /opt/atlassian/bitbucket/elasticsearch/lib/log4j-api-2.*.jar /opt/atlassian/bitbucket/elasticsearch/lib/log4j-core-2.*.jar \
+    && rm /opt/atlassian/bitbucket/elasticsearch/lib/log4j-api-2.*.jar /opt/atlassian/bitbucket/elasticsearch/lib/log4j-core-2.*.jar /opt/atlassian/bitbucket/app/WEB-INF/lib/log4j-core-2.*.jar \
     && curl -L --silent https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar -o /opt/atlassian/bitbucket/elasticsearch/lib/log4j-api-2.17.1.jar \
     && curl -L --silent https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar -o /opt/atlassian/bitbucket/elasticsearch/lib/log4j-core-2.17.1.jar \
     && chmod -R "u=rwX,g=rX,o=rX"                   ${BITBUCKET_INSTALL_DIR}/ \
