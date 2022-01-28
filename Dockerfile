@@ -15,7 +15,7 @@ ENV RUN_GID                                         2003
 # https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+home+directory
 ENV BITBUCKET_HOME                                  /var/atlassian/application-data/bitbucket
 ENV BITBUCKET_INSTALL_DIR                           /opt/atlassian/bitbucket
-ENV BITBUCKET_ELASTICSEARCH_DIR                     ${BITBUCKET_ELASTICSEARCH_DIR}
+ENV BITBUCKET_ELASTICSEARCH_DIR                     ${BITBUCKET_INSTALL_DIR}/elasticsearch
 ENV ELASTICSEARCH_ENABLED                           true
 ENV APPLICATION_MODE                                default
 ENV JRE_HOME                                        /opt/java/openjdk
