@@ -15,7 +15,7 @@ ENV RUN_GID                                         2003
 # https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+home+directory
 ENV BITBUCKET_HOME                                  /var/atlassian/application-data/bitbucket
 ENV BITBUCKET_INSTALL_DIR                           /opt/atlassian/bitbucket
-ENV BITBUCKET_ELASTICSEARCH_DIR                     ${BITBUCKET_INSTALL_DIR}/elasticsearch
+ENV ELASTICSEARCH_DIR                     ${BITBUCKET_INSTALL_DIR}/elasticsearch
 ENV ELASTICSEARCH_ENABLED                           true
 ENV APPLICATION_MODE                                default
 ENV JRE_HOME                                        /opt/java/openjdk
@@ -48,12 +48,12 @@ RUN groupadd --gid ${RUN_GID} ${RUN_GROUP} \
     && mkdir -p                                     ${BITBUCKET_INSTALL_DIR} \
     && curl -L --silent                             ${DOWNLOAD_URL} | tar -xz --strip-components=1 -C "${BITBUCKET_INSTALL_DIR}" \
     # Mitigation for the Log4j security vulnerabilities (CVE-2021-44228 & CVE-2021-45046)
-    && rm -f ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-api-2.*.jar ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-core-2.*.jar ${BITBUCKET_INSTALL_DIR}/app/WEB-INF/lib/log4j-core-2.*.jar \
-    && (curl -L --silent ${MAVEN_LOG4J_URL}/log4j-api/2.17.1/log4j-api-2.17.1.jar -o ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-api-2.17.1.jar || true) \
-    && (curl -L --silent ${MAVEN_LOG4J_URL}/log4j-core/2.17.1/log4j-core-2.17.1.jar -o ${BITBUCKET_ELASTICSEARCH_DIR}/lib/log4j-core-2.17.1.jar || true) \
+    && rm -f ${ELASTICSEARCH_DIR}/lib/log4j-api-2.*.jar ${ELASTICSEARCH_DIR}/lib/log4j-core-2.*.jar ${BITBUCKET_INSTALL_DIR}/app/WEB-INF/lib/log4j-core-2.*.jar \
+    && (curl -L --silent ${MAVEN_LOG4J_URL}/log4j-api/2.17.1/log4j-api-2.17.1.jar -o ${ELASTICSEARCH_DIR}/lib/log4j-api-2.17.1.jar || true) \
+    && (curl -L --silent ${MAVEN_LOG4J_URL}/log4j-core/2.17.1/log4j-core-2.17.1.jar -o ${ELASTICSEARCH_DIR}/lib/log4j-core-2.17.1.jar || true) \
     && chmod -R "u=rwX,g=rX,o=rX"                   ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R root.                               ${BITBUCKET_INSTALL_DIR}/ \
-    && (chown -R ${RUN_USER}:${RUN_GROUP}           ${BITBUCKET_ELASTICSEARCH_DIR}/logs || true) \
+    && (chown -R ${RUN_USER}:${RUN_GROUP}           ${ELASTICSEARCH_DIR}/logs || true) \
     && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_HOME}
 
 VOLUME ["${BITBUCKET_HOME}"]
