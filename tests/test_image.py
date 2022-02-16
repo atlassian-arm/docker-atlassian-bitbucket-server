@@ -26,7 +26,7 @@ def test_clean_shutdown(docker_cli, image, run_user):
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
         return
 
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    environment = {'SEARCH_ENABLED': 'false'}
     container = docker_cli.containers.run(image, detach=True, user=run_user,
                                           ports={PORT: PORT}, environment=environment)
     host = testinfra.get_host("docker://"+container.id)
@@ -48,7 +48,7 @@ def test_shutdown_script(docker_cli, image, run_user):
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
         return
 
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    environment = {'SEARCH_ENABLED': 'false'}
     container = docker_cli.containers.run(image, detach=True, user=run_user,
                                           ports={PORT: PORT}, environment=environment)
     host = testinfra.get_host("docker://"+container.id)
@@ -80,24 +80,27 @@ def test_jvm_args(docker_cli, image, run_user):
     assert environment.get('JVM_SUPPORT_RECOMMENDED_ARGS') in jvm
 
 
-def test_elasticsearch_default(docker_cli, image, run_user):
+def test_search_default(docker_cli, image, run_user):
     container = run_image(docker_cli, image, user=run_user)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
     procs_list = get_procs(container)
+    print(procs_list)
     start_bitbucket = [proc for proc in procs_list if 'start-bitbucket.sh' in proc][0]
     assert '--no-search' not in start_bitbucket
 
     _es_jvm = wait_for_proc(container, 'org.elasticsearch.bootstrap.Elasticsearch')
 
 
-def test_elasticsearch_disabled(docker_cli, image, run_user):
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+def test_search_disabled(docker_cli, image, run_user):
+    environment = {'SEARCH_ENABLED': 'false'}
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
     procs_list = get_procs(container)
+    print(procs_list)
     jvms = [proc for proc in procs_list if '/opt/java/openjdk/bin/java' in proc]
+    print(jvms)
     assert len(jvms) == 1
     assert "BitbucketServerLauncher" in jvms[0]
 
