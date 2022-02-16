@@ -15,8 +15,10 @@ ENV RUN_GID                                         2003
 # https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+home+directory
 ENV BITBUCKET_HOME                                  /var/atlassian/application-data/bitbucket
 ENV BITBUCKET_INSTALL_DIR                           /opt/atlassian/bitbucket
-ENV ELASTICSEARCH_DIR                     ${BITBUCKET_INSTALL_DIR}/elasticsearch
+ENV ELASTICSEARCH_DIR                               ${BITBUCKET_INSTALL_DIR}/elasticsearch
+ENV SEARCH_DIR                                      ${BITBUCKET_INSTALL_DIR}/opensearch
 ENV ELASTICSEARCH_ENABLED                           true
+ENV SEARCH_ENABLED                                  ${ELASTICSEARCH_ENABLED}
 ENV APPLICATION_MODE                                default
 ENV JRE_HOME                                        /opt/java/openjdk
 ENV JAVA_BINARY                                     ${JRE_HOME}/bin/java
@@ -54,6 +56,7 @@ RUN groupadd --gid ${RUN_GID} ${RUN_GROUP} \
     && chmod -R "u=rwX,g=rX,o=rX"                   ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R root.                               ${BITBUCKET_INSTALL_DIR}/ \
     && (chown -R ${RUN_USER}:${RUN_GROUP}           ${ELASTICSEARCH_DIR}/logs || true) \
+    && (chown -R ${RUN_USER}:${RUN_GROUP}           ${SEARCH_DIR}/logs || true) \
     && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_HOME}
 
 VOLUME ["${BITBUCKET_HOME}"]
