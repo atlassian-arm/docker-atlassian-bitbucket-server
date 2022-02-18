@@ -7,7 +7,7 @@ set -e
 supportsOpenSearch() {
     local OPENSEARCH_VERSION_START="7.21.0"
     local LOWEST_VERSION=$(echo "$1 ${OPENSEARCH_VERSION_START}" | tr " " "\n" | sort -V | head -n 1)
-    if [ "$1" == "${OPENSEARCH_VERSION_START}" ] || [ "${LOWEST_VERSION}" == "${OPENSEARCH_VERSION_START}" ]; then
+    if [[ "${LOWEST_VERSION}" == "${OPENSEARCH_VERSION_START}" ]]; then
         return 0
     fi
     return 1

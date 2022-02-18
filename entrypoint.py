@@ -17,10 +17,10 @@ if str2bool(SEARCH_ENABLED) is False or APPLICATION_MODE == 'mirror':
     start_cmd = [f"{BITBUCKET_INSTALL_DIR}/bin/exec-bitbucket-node.sh"]
 else:
     logging.warning("######################################################################")
-    logging.warning("Starting Bitbucket with embedded Elasticsearch. Note that this is\n" \
+    logging.warning("Starting Bitbucket with embedded search service. Note that this is\n" \
                     "not a recommended configuration and is known to have issues with\n" \
-                    "clean shutdown. Ideally Elasticsearch should be started in a separate\n" \
-                    "container/pod.")
+                    "clean shutdown. Ideally OpenSearch (previously Elasticsearch) should\n" \
+                    "be started in a separate container/pod.")
     logging.warning("######################################################################")
 
     start_cmd = [f"{BITBUCKET_INSTALL_DIR}/bin/start-bitbucket.sh", "-fg"]
