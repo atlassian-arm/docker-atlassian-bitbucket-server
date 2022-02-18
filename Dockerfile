@@ -34,7 +34,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends fontconfig openssh-client perl python3 python3-jinja2 tini \
     && apt-get clean autoclean && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
-COPY bin/*                                          /
+COPY bin/make-git.sh \
+     bin/fix-es-log4j.sh                            /
 RUN /make-git.sh
 
 ARG DOWNLOAD_URL=https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-${BITBUCKET_VERSION}.tar.gz
@@ -45,10 +46,10 @@ RUN groupadd --gid ${RUN_GID} ${RUN_GROUP} \
     \
     && mkdir -p                                     ${BITBUCKET_INSTALL_DIR} \
     && curl -L --silent                             ${DOWNLOAD_URL} | tar -xz --strip-components=1 -C "${BITBUCKET_INSTALL_DIR}" \
-    && /fix-log4j.sh                                \
+    && /fix-es-log4j.sh \
     && chmod -R "u=rwX,g=rX,o=rX"                   ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R root.                               ${BITBUCKET_INSTALL_DIR}/ \
-    && chown -R ${RUN_USER}:${RUN_GROUP} --quiet    ${BITBUCKET_INSTALL_DIR}/*search/logs \
+    && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_INSTALL_DIR}/*search/logs \
     && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_HOME}
 
 VOLUME ["${BITBUCKET_HOME}"]
@@ -57,5 +58,5 @@ COPY exec-bitbucket-node.sh _exec-webapp.sh ${BITBUCKET_INSTALL_DIR}/bin/
 
 COPY entrypoint.py \
      shared-components/image/entrypoint_helpers.py \
-     shutdown-wait.sh /
+     shutdown-wait.sh                               /
 COPY shared-components/support                      /opt/atlassian/support
