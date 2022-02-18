@@ -112,17 +112,18 @@ or as part of a
 cluster.  You can specify the following properties to start Bitbucket as a
 mirror or as a Data Center node:
 
-* `ELASTICSEARCH_ENABLED` (default: true)
+* `SEARCH_ENABLED` (default: true)
 
   Set 'false' to prevent Elasticsearch from starting in the container. This
   should be used if Elasticsearch is running remotely, e.g. for if Bitbucket is
-  running in a Data Center cluster
+  running in a Data Center cluster. You may also use `ELASTICSEARCH_ENABLED` to
+  set this property, however this is deprecated in favor of `SEARCH_ENABLED`.
 
 * `APPLICATION_MODE` (default: default)
 
    The mode Bitbucket will run in. This can be set to 'mirror' to start
    Bitbucket as a Smart Mirror. This will also disable Elasticsearch even if
-   `ELASTICSEARCH_ENABLED` has not been set to 'false'.
+   `SEARCH_ENABLED` has not been set to 'false'.
 
 ### Database Configuration
 
@@ -157,7 +158,7 @@ database, and an external Elasticsearch instance might look like:
 
     $> docker network create --driver bridge --subnet=172.18.0.0/16 myBitbucketNetwork
     $> docker run --network=myBitbucketNetwork --ip=172.18.1.1 \
-        -e ELASTICSEARCH_ENABLED=false \
+        -e SEARCH_ENABLED=false \
         -e JDBC_DRIVER=org.postgresql.Driver \
         -e JDBC_USER=atlbitbucket \
         -e JDBC_PASSWORD=MYPASSWORDSECRET \

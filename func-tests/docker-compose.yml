@@ -39,7 +39,7 @@ services:
       - SETUP_SYSADMIN_PASSWORD=${BITBUCKET_ADMIN_PWD}
       - SETUP_SYSADMIN_DISPLAYNAME=Admin
       - SETUP_SYSADMIN_EMAILADDRESS=admin@example.com
-      - ELASTICSEARCH_ENABLED=false
+      - SEARCH_ENABLED=false
       - PLUGIN_SEARCH_ELASTICSEARCH_BASEURL=http://elastic:9200
     command: >
       bash -c '

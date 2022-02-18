@@ -7,8 +7,10 @@ RUN_USER = env['run_user']
 RUN_GROUP = env['run_group']
 BITBUCKET_INSTALL_DIR = env['bitbucket_install_dir']
 BITBUCKET_HOME = env['bitbucket_home']
+SEARCH_ENABLED = env.get('search_enabled') or env.get('elasticsearch_enabled')
+APPLICATION_MODE = env.get('application_mode')
 
-if str2bool(env['elasticsearch_enabled']) is False or env['application_mode'] == 'mirror':
+if str2bool(SEARCH_ENABLED) is False or APPLICATION_MODE == 'mirror':
     # When running standalone use a stripped version of the startup
     # scripts to ensure shutdown works correctly. See the script for
     # details.

@@ -26,7 +26,7 @@ def test_clean_shutdown(docker_cli, image, run_user):
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
         return
 
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    environment = {'SEARCH_ENABLED': 'false'}
     container = docker_cli.containers.run(image, detach=True, user=run_user,
                                           ports={PORT: PORT}, environment=environment)
     host = testinfra.get_host("docker://"+container.id)
@@ -48,7 +48,7 @@ def test_shutdown_script(docker_cli, image, run_user):
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
         return
 
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    environment = {'SEARCH_ENABLED': 'false'}
     container = docker_cli.containers.run(image, detach=True, user=run_user,
                                           ports={PORT: PORT}, environment=environment)
     host = testinfra.get_host("docker://"+container.id)
@@ -92,7 +92,7 @@ def test_elasticsearch_default(docker_cli, image, run_user):
 
 
 def test_elasticsearch_disabled(docker_cli, image, run_user):
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    environment = {'SEARCH_ENABLED': 'false'}
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
