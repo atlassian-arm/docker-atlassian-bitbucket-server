@@ -37,7 +37,7 @@ def test_clean_shutdown(docker_cli, image, run_user):
     # Check for final shutdown log. This message has been consistent across versions:
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 6.3.6 has shut down
-    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down'
+    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+(?:-\w+)* has shut down'
     wait_for_log(container, end)
 
 
@@ -59,7 +59,7 @@ def test_shutdown_script(docker_cli, image, run_user):
     # Check for final shutdown log. This message has been consistent across versions:
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 6.3.6 has shut down
-    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down'
+    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+(?:-\w+)* has shut down'
     wait_for_log(container, end)
 
 
