@@ -158,8 +158,6 @@ pipelines:
               - export DOCKERFILE='Dockerfile'
               - export DOCKERFILE_VERSION_ARG='BITBUCKET_VERSION'
               - export MAC_PRODUCT_KEY='bitbucket'
-              - py.test -v tests/
-              - py.test -v shared-components/tests/
               - export DOCKERFILE_BUILDARGS='BASE_IMAGE=adoptopenjdk/openjdk11'
               - py.test -v tests/
               - py.test -v shared-components/tests/
