@@ -35,7 +35,7 @@ RUN apt-get update \
     && apt-get clean autoclean && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
 COPY bin/make-git.sh \
-     bin/fix-es-log4j.sh                            /
+     bin/log4shell-vulnerability-fix.sh                            /
 RUN /make-git.sh
 
 ARG DOWNLOAD_URL=https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-${BITBUCKET_VERSION}.tar.gz
@@ -46,7 +46,7 @@ RUN groupadd --gid ${RUN_GID} ${RUN_GROUP} \
     \
     && mkdir -p                                     ${BITBUCKET_INSTALL_DIR} \
     && curl -L --silent                             ${DOWNLOAD_URL} | tar -xz --strip-components=1 -C "${BITBUCKET_INSTALL_DIR}" \
-    && /fix-es-log4j.sh \
+    && /log4shell-vulnerability-fix.sh \
     && chmod -R "u=rwX,g=rX,o=rX"                   ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R root.                               ${BITBUCKET_INSTALL_DIR}/ \
     && chown -R ${RUN_USER}:${RUN_GROUP}            ${BITBUCKET_INSTALL_DIR}/*search/logs \
