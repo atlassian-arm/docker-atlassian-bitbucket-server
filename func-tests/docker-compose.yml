@@ -10,7 +10,7 @@ services:
       - 'POSTGRES_USER=bitbucket'
       - 'POSTGRES_PASSWORD=bitbucket'
 
-  elastic:
+  search:
     image: elasticsearch:6.8.6
     ports:
       - '9200:9200'
@@ -24,7 +24,7 @@ services:
       - ./bitbucket-home:/var/atlassian/application-data/bitbucket
     depends_on:
       - postgresql
-      - elastic
+      - search
     ports:
       - '7990:7990'
     environment:
@@ -39,13 +39,13 @@ services:
       - SETUP_SYSADMIN_PASSWORD=${BITBUCKET_ADMIN_PWD}
       - SETUP_SYSADMIN_DISPLAYNAME=Admin
       - SETUP_SYSADMIN_EMAILADDRESS=admin@example.com
-      - ELASTICSEARCH_ENABLED=false
-      - PLUGIN_SEARCH_ELASTICSEARCH_BASEURL=http://elastic:9200
+      - SEARCH_ENABLED=false
+      - PLUGIN_SEARCH_CONFIG_BASEURL=http://search:9200
     command: >
       bash -c '
           apt update -y && apt install -y netcat &&
           /opt/atlassian/support/waitport postgresql 5432 &&
-          /opt/atlassian/support/waitport elastic 9200 &&
+          /opt/atlassian/support/waitport search 9200 &&
           /entrypoint.py
       '
 

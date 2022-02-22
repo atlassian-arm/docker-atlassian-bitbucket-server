@@ -26,7 +26,7 @@ def test_clean_shutdown(docker_cli, image, run_user):
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
         return
 
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    environment = {'SEARCH_ENABLED': 'false'}
     container = docker_cli.containers.run(image, detach=True, user=run_user,
                                           ports={PORT: PORT}, environment=environment)
     host = testinfra.get_host("docker://"+container.id)
@@ -37,7 +37,7 @@ def test_clean_shutdown(docker_cli, image, run_user):
     # Check for final shutdown log. This message has been consistent across versions:
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 6.3.6 has shut down
-    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down'
+    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+(?:-\w+)* has shut down'
     wait_for_log(container, end)
 
 
@@ -48,7 +48,7 @@ def test_shutdown_script(docker_cli, image, run_user):
         logging.warning(f"Skipping test_clean_shutdown for version {version}")
         return
 
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+    environment = {'SEARCH_ENABLED': 'false'}
     container = docker_cli.containers.run(image, detach=True, user=run_user,
                                           ports={PORT: PORT}, environment=environment)
     host = testinfra.get_host("docker://"+container.id)
@@ -59,7 +59,7 @@ def test_shutdown_script(docker_cli, image, run_user):
     # Check for final shutdown log. This message has been consistent across versions:
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 7.12.0 has shut down
     #     c.a.b.i.boot.log.BuildInfoLogger Bitbucket 6.3.6 has shut down
-    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+ has shut down'
+    end = r'c\.a\.b\.i\.boot\.log\.BuildInfoLogger Bitbucket \d+\.\d+\.\d+(?:-\w+)* has shut down'
     wait_for_log(container, end)
 
 
@@ -80,7 +80,7 @@ def test_jvm_args(docker_cli, image, run_user):
     assert environment.get('JVM_SUPPORT_RECOMMENDED_ARGS') in jvm
 
 
-def test_elasticsearch_default(docker_cli, image, run_user):
+def test_search_default(docker_cli, image, run_user):
     container = run_image(docker_cli, image, user=run_user)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
@@ -88,11 +88,18 @@ def test_elasticsearch_default(docker_cli, image, run_user):
     start_bitbucket = [proc for proc in procs_list if 'start-bitbucket.sh' in proc][0]
     assert '--no-search' not in start_bitbucket
 
-    _es_jvm = wait_for_proc(container, 'org.elasticsearch.bootstrap.Elasticsearch')
+    version = image.labels.get("product_version")
+    sortable_version = [int(n) for n in version.split(".")]
+    if sortable_version < [7, 21, 0]:
+        search_jvm_proc = 'org.elasticsearch.bootstrap.Elasticsearch'
+    else:
+        search_jvm_proc = 'org.opensearch.bootstrap.OpenSearch'
+
+    _search_jvm = wait_for_proc(container, search_jvm_proc)
 
 
-def test_elasticsearch_disabled(docker_cli, image, run_user):
-    environment = {'ELASTICSEARCH_ENABLED': 'false'}
+def test_search_disabled(docker_cli, image, run_user):
+    environment = {'SEARCH_ENABLED': 'false'}
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
