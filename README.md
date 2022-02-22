@@ -18,11 +18,11 @@ version is deprecated and only kept for backwards-compatibility; for new
 installations it is recommended to use the shorter name.
 
 ** NOTE: For backwards-compatibility, by default the image will start both
-Bitbucket and an embedded Elasticsearch. However this is not a recommended
+Bitbucket and an embedded OpenSearch. However this is not a recommended
 configuration, especially in a clustered environment, and has known issues with
-shutdown. instead, we recommend running a separate Elasticsearch instance
+shutdown. instead, we recommend running a separate OpenSearch instance
 (possibly in another Docker container); see below for instructions on connecting
-to an external Elasticsearch cluster. **
+to an external OpenSearch cluster. **
 
 ** If running this image in a production environment, we strongly recommend you
 run this image using a specific version tag instead of latest. This is because
@@ -112,17 +112,18 @@ or as part of a
 cluster.  You can specify the following properties to start Bitbucket as a
 mirror or as a Data Center node:
 
-* `ELASTICSEARCH_ENABLED` (default: true)
+* `SEARCH_ENABLED` (default: true)
 
-  Set 'false' to prevent Elasticsearch from starting in the container. This
-  should be used if Elasticsearch is running remotely, e.g. for if Bitbucket is
-  running in a Data Center cluster
+  Set 'false' to prevent OpenSearch (previously Elasticsearch) from starting in the 
+  container. This should be used if OpenSearch is running remotely, e.g. for if Bitbucket
+  is running in a Data Center cluster. You may also use `ELASTICSEARCH_ENABLED` to
+  set this property, however this is deprecated in favor of `SEARCH_ENABLED`.
 
 * `APPLICATION_MODE` (default: default)
 
    The mode Bitbucket will run in. This can be set to 'mirror' to start
-   Bitbucket as a Smart Mirror. This will also disable Elasticsearch even if
-   `ELASTICSEARCH_ENABLED` has not been set to 'false'.
+   Bitbucket as a Smart Mirror. This will also disable OpenSearch even if
+   `SEARCH_ENABLED` has not been set to 'false'.
 
 ### Database Configuration
 
@@ -153,16 +154,16 @@ variables see
 [the relevant Spring Boot documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding).
 
 For example, a full command-line for a Bitbucket node with a PostgreSQL
-database, and an external Elasticsearch instance might look like:
+database, and an external OpenSearch instance might look like:
 
     $> docker network create --driver bridge --subnet=172.18.0.0/16 myBitbucketNetwork
     $> docker run --network=myBitbucketNetwork --ip=172.18.1.1 \
-        -e ELASTICSEARCH_ENABLED=false \
+        -e SEARCH_ENABLED=false \
         -e JDBC_DRIVER=org.postgresql.Driver \
         -e JDBC_USER=atlbitbucket \
         -e JDBC_PASSWORD=MYPASSWORDSECRET \
         -e JDBC_URL=jdbc:postgresql://my.database.host:5432/bitbucket \
-        -e PLUGIN_SEARCH_ELASTICSEARCH_BASEURL=http://my.elasticsearch.host \
+        -e PLUGIN_SEARCH_CONFIG_BASEURL=http://my.opensearch.host \
         -v /data/bitbucket-shared:/var/atlassian/application-data/bitbucket/shared \
         --name="bitbucket" \
         -d -p 7990:7990 -p 7999:7999 \

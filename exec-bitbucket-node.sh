@@ -6,7 +6,7 @@
 # the startup scripts shipped with Bitbucket DC for use in the Docker
 # images when starting standalone. The key changes are:
 #
-# * All Elasticsearch startup has been removed.
+# * All OpenSearch/Elasticsearch startup has been removed.
 #
 # * Any subshells or application startup is called with `exec` rather
 #   than starting a child process. This is necessary to ensure that
