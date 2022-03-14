@@ -3,7 +3,7 @@
 #
 #     python pipelines-generator.py > bitbucket-pipelines.yml
 
-image: atlassian/docker-release-maker:latest
+image: docker-public.packages.atlassian.com/atlassian/docker-release-maker:latest
 
 pipelines:
   custom:
@@ -24,7 +24,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -47,7 +47,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -70,7 +70,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -93,7 +93,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -116,7 +116,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -139,7 +139,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -162,7 +162,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -185,7 +185,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -208,7 +208,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -231,7 +231,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -254,7 +254,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -277,7 +277,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -300,7 +300,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -323,7 +323,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -346,7 +346,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
@@ -375,12 +375,12 @@ pipelines:
             - docker
           script:
             - git submodule update --init --recursive
-            - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+            - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
             - >
-              docker build -t atlassian/bitbucket:${DOCKER_TAG}
+              docker build -t docker-public.packages.atlassian.com/atlassian/bitbucket:${DOCKER_TAG}
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/post_build.sh atlassian/bitbucket:${DOCKER_TAG}
-            - docker push atlassian/bitbucket:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh docker-public.packages.atlassian.com/atlassian/bitbucket:${DOCKER_TAG}
+            - docker push docker-public.packages.atlassian.com/atlassian/bitbucket:${DOCKER_TAG}
     jdk11-custom-release:
       - variables:
           - name: BITBUCKET_VERSION
@@ -390,13 +390,13 @@ pipelines:
             - docker
           script:
             - git submodule update --init --recursive
-            - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+            - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
             - >
-              docker build -t atlassian/bitbucket:${DOCKER_TAG}
+              docker build -t docker-public.packages.atlassian.com/atlassian/bitbucket:${DOCKER_TAG}
               --build-arg BASE_IMAGE=adoptopenjdk/openjdk11
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/post_build.sh atlassian/bitbucket:${DOCKER_TAG}
-            - docker push atlassian/bitbucket:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh docker-public.packages.atlassian.com/atlassian/bitbucket:${DOCKER_TAG}
+            - docker push docker-public.packages.atlassian.com/atlassian/bitbucket:${DOCKER_TAG}
   branches:
     ######################################################################
     # Master branch: Do full release for each image flavour
@@ -413,7 +413,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -435,7 +435,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -457,7 +457,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -479,7 +479,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -501,7 +501,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -523,7 +523,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -545,7 +545,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -567,7 +567,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -589,7 +589,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -611,7 +611,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -633,7 +633,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -655,7 +655,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -677,7 +677,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -699,7 +699,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
@@ -721,7 +721,7 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login docker-public.packages.atlassian.com --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
