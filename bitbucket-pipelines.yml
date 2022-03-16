@@ -36,7 +36,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='0' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -59,7 +59,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='1' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -82,7 +82,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='2' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -105,7 +105,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='3' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -128,7 +128,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='4' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -151,7 +151,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='5' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -174,7 +174,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='6' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -197,7 +197,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='7' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -220,7 +220,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='8' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -243,7 +243,53 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='9' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --push
+
+        
+          - step:
+              name: Bitbucket JDK 11 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
+                - >
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='7.1' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
+                    --job-offset='10' \
+                    --jobs-total='12' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --push
+
+        
+          - step:
+              name: Bitbucket JDK 11 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
+                - >
+                  python /usr/src/app/make-releases.py \
+                    --create --create-eap \
+                    --start-version='7.1' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
+                    --job-offset='11' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -310,7 +356,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='0' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -332,7 +378,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='1' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -354,7 +400,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='2' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -376,7 +422,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='3' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -398,7 +444,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='4' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -420,7 +466,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='5' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -442,7 +488,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='6' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -464,7 +510,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='7' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -486,7 +532,7 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='8' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -508,7 +554,51 @@ pipelines:
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='9' \
-                    --jobs-total='10' \
+                    --jobs-total='12' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --push
+
+          - step:
+              name: Bitbucket JDK 11 - Batch 11
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
+                - >
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='7.1' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
+                    --job-offset='10' \
+                    --jobs-total='12' \
+                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --push
+
+          - step:
+              name: Bitbucket JDK 11 - Batch 12
+              services:
+                - docker
+              script:
+                - git submodule update --init --recursive
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
+                - >
+                  python /usr/src/app/make-releases.py \
+                    --update \
+                    --start-version='7.1' \
+                    --end-version='8' \
+                    --default-release \
+                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-version-arg='BITBUCKET_VERSION' \
+                    --mac-product-key='bitbucket' \
+                    --tag-suffixes='jdk11,ubuntu-jdk11' \
+                    --job-offset='11' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
