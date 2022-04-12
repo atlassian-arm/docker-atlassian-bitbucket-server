@@ -156,7 +156,7 @@ pipelines:
             script:
               - apk add --no-cache git docker-compose jq curl
               - git submodule update --init --recursive
-              - export BITBUCKET_VERSION=$(curl -s https://marketplace.atlassian.com/rest/2/products/key/bitbucket/versions/latest | jq -r .name)
+              - export BITBUCKET_VERSION=$(curl -s https://marketplace.atlassian.com/rest/2/products/key/bitbucket/versions | jq -r '._embedded.versions | .[0].name')
               - docker build --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} -t test-image .
               - export IS_RELEASE=false
               - /usr/src/app/post_build.sh test-image $IS_RELEASE
