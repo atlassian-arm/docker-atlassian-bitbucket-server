@@ -289,6 +289,22 @@ If for some reason you need a different version, see "Building your own image"
 * Build the new image with e.g: `docker build --tag my-bitbucket-image --build-arg BITBUCKET_VERSION=8.x.x .`
 * Optionally push to a registry, and deploy.
 
+# Supported architectures
+
+Currently the Atlassian Docker images are built for the `linux/amd64` target
+platform; we do not have other architectures on our roadmap at this
+point. However the Dockerfiles and support tooling have now had all
+architecture-specific components removed, so if necessary it is possible to
+build images for any platform supported by Docker.
+
+## Building on the target architecture
+
+The simplest method of getting a platform image is to build it on a target
+machine; see "Building your own image" above.
+
+Note: This method is known to work on Mac M1 and AWS ARM64 machines, but has not
+be extensively tested.
+
 # Troubleshooting
 
 These images include built-in scripts to assist in performing common JVM diagnostic tasks.
