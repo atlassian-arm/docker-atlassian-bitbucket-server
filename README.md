@@ -7,6 +7,10 @@ of your servers.
 
 Learn more about Bitbucket Server: <https://www.atlassian.com/software/bitbucket/server>
 
+# Contents
+
+[TOC]
+
 # Overview
 
 This Docker container makes it easy to get an instance of Bitbucket up and
@@ -352,6 +356,11 @@ For product support, go to [support.atlassian.com](https://support.atlassian.com
 You can also visit the [Atlassian Data Center on
 Kubernetes](https://community.atlassian.com/t5/Atlassian-Data-Center-on/gh-p/DC_Kubernetes)
 forum for discussion on running Atlassian Data Center products in containers.
+
+# Changelog
+
+For a detailed list of changes to the Docker image configuration see [the Git
+commit history](https://bitbucket.org/atlassian-docker/docker-atlassian-bitbucket-server/commits/).
 
 # License
 
