@@ -8,8 +8,8 @@ images = {
         11: {
             'mac_key': 'bitbucket',
             'artefact': 'atlassian-bitbucket-software',
-            'start_version': '7.1',
-            'end_version': '8',
+            'start_version': '7.3',
+            'end_version': '9',
             'default_release': True,
             'base_image': 'adoptopenjdk/openjdk11',
             'tag_suffixes': ['jdk11','ubuntu-jdk11'],
