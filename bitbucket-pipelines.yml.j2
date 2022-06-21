@@ -19,7 +19,7 @@ pipelines:
       - parallel:
 {% for (name, pdata) in images.items() %}
   {% for (jdkver, appdata) in pdata.items() %}
-    {% for offset in range(0, batches) %}        
+    {% for offset in range(0, batches) %}
           - step:
               name: {{ name }} JDK {{ jdkver }} - Batch {{ offset + 1 }}
               services:
@@ -78,7 +78,6 @@ pipelines:
             - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
             - >
               docker build -t ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
-              --build-arg BASE_IMAGE=adoptopenjdk/openjdk11
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
             - /usr/src/app/post_build.sh ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
             - docker push ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
