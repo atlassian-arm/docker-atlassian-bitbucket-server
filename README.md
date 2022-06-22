@@ -118,7 +118,7 @@ mirror or as a Data Center node:
 
 * `SEARCH_ENABLED` (default: true)
 
-  Set 'false' to prevent OpenSearch (previously Elasticsearch) from starting in the 
+  Set 'false' to prevent OpenSearch (previously Elasticsearch) from starting in the
   container. This should be used if OpenSearch is running remotely, e.g. for if Bitbucket
   is running in a Data Center cluster. You may also use `ELASTICSEARCH_ENABLED` to
   set this property, however this is deprecated in favor of `SEARCH_ENABLED`.
@@ -270,7 +270,7 @@ install the latest `6.x.x` version that is available.
 # Supported JDK versions
 
 All the Atlassian Docker images are now JDK11 only, and generated from the
-[official AdoptOpenJDK Docker images](https://hub.docker.com/r/adoptopenjdk/openjdk11).
+[official Eclipse Temurin OpenJDK Docker images](https://hub.docker.com/_/eclipse-temurin).
 
 The Docker images follow the [Atlassian Support end-of-life
 policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html);

@@ -17,7 +17,6 @@ pipelines:
             - python3 pipelines-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
 
       - parallel:
-        
           - step:
               name: Bitbucket JDK 11 - Batch 1
               services:
@@ -31,7 +30,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -40,7 +39,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 2
               services:
@@ -54,7 +52,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -63,7 +61,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 3
               services:
@@ -77,7 +74,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -86,7 +83,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 4
               services:
@@ -100,7 +96,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -109,7 +105,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 5
               services:
@@ -123,7 +118,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -132,7 +127,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 6
               services:
@@ -146,7 +140,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -155,7 +149,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 7
               services:
@@ -169,7 +162,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -178,7 +171,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 8
               services:
@@ -192,7 +184,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -201,7 +193,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 9
               services:
@@ -215,7 +206,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -224,7 +215,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 10
               services:
@@ -238,7 +228,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -247,7 +237,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 11
               services:
@@ -261,7 +250,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -270,7 +259,6 @@ pipelines:
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 12
               services:
@@ -284,7 +272,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -324,7 +312,6 @@ pipelines:
             - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
             - >
               docker build -t ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
-              --build-arg BASE_IMAGE=adoptopenjdk/openjdk11
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
             - /usr/src/app/post_build.sh ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
             - docker push ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
@@ -351,7 +338,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -373,7 +360,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -395,7 +382,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -417,7 +404,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -439,7 +426,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -461,7 +448,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -483,7 +470,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -505,7 +492,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -527,7 +514,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -549,7 +536,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -571,7 +558,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
@@ -593,7 +580,7 @@ pipelines:
                     --start-version='7.3' \
                     --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \

@@ -11,7 +11,7 @@ images = {
             'start_version': '7.3',
             'end_version': '9',
             'default_release': True,
-            'base_image': 'adoptopenjdk/openjdk11',
+            'base_image': 'eclipse-temurin:11',
             'tag_suffixes': ['jdk11','ubuntu-jdk11'],
             'docker_repos': ['atlassian/bitbucket', 'atlassian/bitbucket-server'],
         }
