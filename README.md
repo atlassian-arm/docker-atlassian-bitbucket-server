@@ -33,12 +33,14 @@ run this image using a specific version tag instead of latest. This is because
 the image referenced by the latest tag changes often and we cannot guarantee
 that it will be backwards compatible. **
 
+** Use docker version >= 20.10.9. **
+
 # Quick Start
 
 For the `BITBUCKET_HOME` directory that is used to store the repository data
 (amongst other things) we recommend mounting a host directory as a
 [data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/data-volumes),
-or via a named volume if using a docker version >= 1.9.
+or via a named volume.
 
 Additionally, if running Bitbucket in Data Center mode it is required that a
 shared filesystem is mounted.
