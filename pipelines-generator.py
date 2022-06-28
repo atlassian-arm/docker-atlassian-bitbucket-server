@@ -8,10 +8,10 @@ images = {
         11: {
             'mac_key': 'bitbucket',
             'artefact': 'atlassian-bitbucket-software',
-            'start_version': '7.1',
-            'end_version': '8',
+            'start_version': '7.3',
+            'end_version': '9',
             'default_release': True,
-            'base_image': 'adoptopenjdk/openjdk11',
+            'base_image': 'eclipse-temurin:11',
             'tag_suffixes': ['jdk11','ubuntu-jdk11'],
             'docker_repos': ['atlassian/bitbucket', 'atlassian/bitbucket-server'],
         }
@@ -25,7 +25,7 @@ def main():
         lstrip_blocks=True,
         trim_blocks=True)
     template = jenv.get_template(TEMPLATE_FILE)
-    generated_output = template.render(images=images, batches=15)
+    generated_output = template.render(images=images, batches=12)
 
     print(generated_output)
 

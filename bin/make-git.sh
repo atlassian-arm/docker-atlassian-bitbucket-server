@@ -44,7 +44,9 @@ case ${BITBUCKET_MINOR_VERSION} in
     7.19) SUPPORTED_GIT_VERSION="2.34" ;;
     7.20) SUPPORTED_GIT_VERSION="2.34" ;;
     7.21) SUPPORTED_GIT_VERSION="2.35" ;;
-      *)  SUPPORTED_GIT_VERSION="2.35" ;;
+    8.0)  SUPPORTED_GIT_VERSION="2.36" ;;
+    8.1)  SUPPORTED_GIT_VERSION="2.36" ;;
+      *)  SUPPORTED_GIT_VERSION="2.36" ;;
 esac
 
 
@@ -53,7 +55,7 @@ mkdir -p ${DIST_DIR}
 # Install build dependencies
 echo "Installing git build dependencies"
 apt-get update
-apt-get install -y --no-install-recommends git dh-autoreconf libcurl4-gnutls-dev libexpat1-dev libz-dev libssl-dev
+apt-get install -y --no-install-recommends git dh-autoreconf libcurl4-gnutls-dev libexpat1-dev libssl-dev make zlib1g-dev
 
 # cut -c53- here drops the SHA (40), tab (1) and "refs/tags/v" (11), because some things, like the
 # snapshot URL and tarball root directory, don't have the leading "v" from the tag in them

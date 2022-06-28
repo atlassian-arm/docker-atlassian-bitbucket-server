@@ -7,6 +7,10 @@ of your servers.
 
 Learn more about Bitbucket Server: <https://www.atlassian.com/software/bitbucket/server>
 
+# Contents
+
+[TOC]
+
 # Overview
 
 This Docker container makes it easy to get an instance of Bitbucket up and
@@ -116,7 +120,7 @@ mirror or as a Data Center node:
 
 * `SEARCH_ENABLED` (default: true)
 
-  Set 'false' to prevent OpenSearch (previously Elasticsearch) from starting in the 
+  Set 'false' to prevent OpenSearch (previously Elasticsearch) from starting in the
   container. This should be used if OpenSearch is running remotely, e.g. for if Bitbucket
   is running in a Data Center cluster. You may also use `ELASTICSEARCH_ENABLED` to
   set this property, however this is deprecated in favor of `SEARCH_ENABLED`.
@@ -268,7 +272,7 @@ install the latest `6.x.x` version that is available.
 # Supported JDK versions
 
 All the Atlassian Docker images are now JDK11 only, and generated from the
-[official AdoptOpenJDK Docker images](https://hub.docker.com/r/adoptopenjdk/openjdk11).
+[official Eclipse Temurin OpenJDK Docker images](https://hub.docker.com/_/eclipse-temurin).
 
 The Docker images follow the [Atlassian Support end-of-life
 policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html);
@@ -290,6 +294,22 @@ If for some reason you need a different version, see "Building your own image"
   don't have to use template variables if you don't wish.
 * Build the new image with e.g: `docker build --tag my-bitbucket-image --build-arg BITBUCKET_VERSION=8.x.x .`
 * Optionally push to a registry, and deploy.
+
+# Supported architectures
+
+Currently the Atlassian Docker images are built for the `linux/amd64` target
+platform; we do not have other architectures on our roadmap at this
+point. However the Dockerfiles and support tooling have now had all
+architecture-specific components removed, so if necessary it is possible to
+build images for any platform supported by Docker.
+
+## Building on the target architecture
+
+The simplest method of getting a platform image is to build it on a target
+machine; see "Building your own image" above.
+
+Note: This method is known to work on Mac M1 and AWS ARM64 machines, but has not
+be extensively tested.
 
 # Troubleshooting
 
@@ -338,6 +358,11 @@ For product support, go to [support.atlassian.com](https://support.atlassian.com
 You can also visit the [Atlassian Data Center on
 Kubernetes](https://community.atlassian.com/t5/Atlassian-Data-Center-on/gh-p/DC_Kubernetes)
 forum for discussion on running Atlassian Data Center products in containers.
+
+# Changelog
+
+For a detailed list of changes to the Docker image configuration see [the Git
+commit history](https://bitbucket.org/atlassian-docker/docker-atlassian-bitbucket-server/commits/).
 
 # License
 

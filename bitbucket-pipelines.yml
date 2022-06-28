@@ -3,7 +3,7 @@
 #
 #     python pipelines-generator.py > bitbucket-pipelines.yml
 
-image: atlassian/docker-release-maker:latest
+image: docker-public.packages.atlassian.com/atlassian/docker-release-maker:latest
 
 pipelines:
   custom:
@@ -17,348 +17,267 @@ pipelines:
             - python3 pipelines-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
 
       - parallel:
-        
           - step:
               name: Bitbucket JDK 11 - Batch 1
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='0' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 2
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='1' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 3
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='2' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 4
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='3' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 5
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='4' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 6
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='5' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 7
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='6' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 8
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='7' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 9
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='8' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 10
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='9' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 11
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='10' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-        
           - step:
               name: Bitbucket JDK 11 - Batch 12
               services:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='11' \
-                    --jobs-total='15' \
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
-                    --push
-
-        
-          - step:
-              name: Bitbucket JDK 11 - Batch 13
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python /usr/src/app/make-releases.py \
-                    --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
-                    --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
-                    --dockerfile-version-arg='BITBUCKET_VERSION' \
-                    --mac-product-key='bitbucket' \
-                    --tag-suffixes='jdk11,ubuntu-jdk11' \
-                    --job-offset='12' \
-                    --jobs-total='15' \
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
-                    --push
-
-        
-          - step:
-              name: Bitbucket JDK 11 - Batch 14
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python /usr/src/app/make-releases.py \
-                    --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
-                    --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
-                    --dockerfile-version-arg='BITBUCKET_VERSION' \
-                    --mac-product-key='bitbucket' \
-                    --tag-suffixes='jdk11,ubuntu-jdk11' \
-                    --job-offset='13' \
-                    --jobs-total='15' \
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
-                    --push
-
-        
-          - step:
-              name: Bitbucket JDK 11 - Batch 15
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python /usr/src/app/make-releases.py \
-                    --create --create-eap \
-                    --start-version='7.1' \
-                    --end-version='8' \
-                    --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
-                    --dockerfile-version-arg='BITBUCKET_VERSION' \
-                    --mac-product-key='bitbucket' \
-                    --tag-suffixes='jdk11,ubuntu-jdk11' \
-                    --job-offset='14' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -375,12 +294,12 @@ pipelines:
             - docker
           script:
             - git submodule update --init --recursive
-            - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+            - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
             - >
-              docker build -t atlassian/bitbucket:${DOCKER_TAG}
+              docker build -t ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/post_build.sh atlassian/bitbucket:${DOCKER_TAG}
-            - docker push atlassian/bitbucket:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
+            - docker push ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
     jdk11-custom-release:
       - variables:
           - name: BITBUCKET_VERSION
@@ -390,13 +309,12 @@ pipelines:
             - docker
           script:
             - git submodule update --init --recursive
-            - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+            - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
             - >
-              docker build -t atlassian/bitbucket:${DOCKER_TAG}
-              --build-arg BASE_IMAGE=adoptopenjdk/openjdk11
+              docker build -t ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
               --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} .
-            - /usr/src/app/post_build.sh atlassian/bitbucket:${DOCKER_TAG}
-            - docker push atlassian/bitbucket:${DOCKER_TAG}
+            - /usr/src/app/post_build.sh ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
+            - docker push ${DOCKER_REGISTRY}/atlassian/bitbucket:${DOCKER_TAG}
   branches:
     ######################################################################
     # Master branch: Do full release for each image flavour
@@ -413,19 +331,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='0' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -435,19 +353,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='1' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -457,19 +375,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='2' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -479,19 +397,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='3' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -501,19 +419,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='4' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -523,19 +441,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='5' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -545,19 +463,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='6' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -567,19 +485,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='7' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -589,19 +507,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='8' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -611,19 +529,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='9' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -633,19 +551,19 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='10' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
@@ -655,99 +573,22 @@ pipelines:
                 - docker
               script:
                 - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+                - echo ${DOCKER_BOT_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_BOT_USERNAME} --password-stdin
                 - >
                   python /usr/src/app/make-releases.py \
                     --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
+                    --start-version='7.3' \
+                    --end-version='9' \
                     --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
+                    --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
                     --mac-product-key='bitbucket' \
                     --tag-suffixes='jdk11,ubuntu-jdk11' \
                     --job-offset='11' \
-                    --jobs-total='15' \
+                    --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
                     --push
 
-          - step:
-              name: Bitbucket JDK 11 - Batch 13
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python /usr/src/app/make-releases.py \
-                    --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
-                    --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
-                    --dockerfile-version-arg='BITBUCKET_VERSION' \
-                    --mac-product-key='bitbucket' \
-                    --tag-suffixes='jdk11,ubuntu-jdk11' \
-                    --job-offset='12' \
-                    --jobs-total='15' \
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
-                    --push
-
-          - step:
-              name: Bitbucket JDK 11 - Batch 14
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python /usr/src/app/make-releases.py \
-                    --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
-                    --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
-                    --dockerfile-version-arg='BITBUCKET_VERSION' \
-                    --mac-product-key='bitbucket' \
-                    --tag-suffixes='jdk11,ubuntu-jdk11' \
-                    --job-offset='13' \
-                    --jobs-total='15' \
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
-                    --push
-
-          - step:
-              name: Bitbucket JDK 11 - Batch 15
-              services:
-                - docker
-              script:
-                - git submodule update --init --recursive
-                - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-                - >
-                  python /usr/src/app/make-releases.py \
-                    --update \
-                    --start-version='7.1' \
-                    --end-version='8' \
-                    --default-release \
-                    --dockerfile-buildargs='BASE_IMAGE=adoptopenjdk/openjdk11' \
-                    --dockerfile-version-arg='BITBUCKET_VERSION' \
-                    --mac-product-key='bitbucket' \
-                    --tag-suffixes='jdk11,ubuntu-jdk11' \
-                    --job-offset='14' \
-                    --jobs-total='15' \
-                    --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
-                    --push
-
-      - step:
-          name: Update README
-          image: python:3.7-alpine3.14
-          script:
-            - apk add --no-cache git
-            - git submodule update --init --recursive
-            - pip install -q requests
-            - export DOCKER_REPO='atlassian/bitbucket-server'
-            - python shared-components/image/push-readme.py
-            - export DOCKER_REPO='atlassian/bitbucket'
-            - python shared-components/image/push-readme.py
 
     ######################################################################
     # All other branches & PRs; run unit tests & functional tests
@@ -782,7 +623,7 @@ pipelines:
             script:
               - apk add --no-cache git docker-compose jq curl
               - git submodule update --init --recursive
-              - export BITBUCKET_VERSION=$(curl -s https://marketplace.atlassian.com/rest/2/products/key/bitbucket/versions/latest | jq -r .name)
+              - export BITBUCKET_VERSION=$(curl -s https://marketplace.atlassian.com/rest/2/products/key/bitbucket/versions | jq -r '._embedded.versions | .[0].name')
               - docker build --build-arg BITBUCKET_VERSION=${BITBUCKET_VERSION} -t test-image .
               - export IS_RELEASE=false
               - /usr/src/app/post_build.sh test-image $IS_RELEASE
