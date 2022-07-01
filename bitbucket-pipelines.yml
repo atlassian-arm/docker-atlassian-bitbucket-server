@@ -28,7 +28,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -50,7 +49,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -72,7 +70,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -94,7 +91,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -116,7 +112,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -138,7 +133,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -160,7 +154,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -182,7 +175,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -204,7 +196,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -226,7 +217,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -248,7 +238,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -270,7 +259,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -336,7 +324,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -358,7 +345,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -380,7 +366,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -402,7 +387,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -424,7 +408,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -446,7 +429,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -468,7 +450,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -490,7 +471,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -512,7 +492,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -534,7 +513,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -556,7 +534,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
@@ -578,7 +555,6 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='7.5' \
-                    --end-version='9' \
                     --default-release \
                     --dockerfile-buildargs='BASE_IMAGE=eclipse-temurin:11' \
                     --dockerfile-version-arg='BITBUCKET_VERSION' \
