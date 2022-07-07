@@ -31,7 +31,9 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --create --create-eap \
                     --start-version='{{ appdata.start_version }}' \
+                    {% if appdata.end_version|length %}
                     --end-version='{{ appdata.end_version }}' \
+                    {% endif %}
                     {% if appdata.default_release %}
                     --default-release \
                     {% endif %}
@@ -105,7 +107,9 @@ pipelines:
                   python /usr/src/app/make-releases.py \
                     --update \
                     --start-version='{{ appdata.start_version }}' \
+                    {% if appdata.end_version|length %}
                     --end-version='{{ appdata.end_version }}' \
+                    {% endif %}
                     {% if appdata.default_release %}
                     --default-release \
                     {% endif %}

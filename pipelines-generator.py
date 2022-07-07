@@ -8,8 +8,7 @@ images = {
         11: {
             'mac_key': 'bitbucket',
             'artefact': 'atlassian-bitbucket-software',
-            'start_version': '7.3',
-            'end_version': '9',
+            'start_version': '7.5',
             'default_release': True,
             'base_image': 'eclipse-temurin:11',
             'tag_suffixes': ['jdk11','ubuntu-jdk11'],
