@@ -33,7 +33,7 @@ run this image using a specific version tag instead of latest. This is because
 the image referenced by the latest tag changes often and we cannot guarantee
 that it will be backwards compatible. **
 
-** Use docker version >= 20.10.9. **
+** Use docker version >= 20.10.10. **
 
 # Quick Start
 
