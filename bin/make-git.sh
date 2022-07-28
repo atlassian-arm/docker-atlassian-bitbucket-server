@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 SOURCE_DIR="/git_source"
 DIST_DIR="/usr"
 
@@ -25,7 +29,24 @@ case ${BITBUCKET_MINOR_VERSION} in
     7.4)  SUPPORTED_GIT_VERSION="2.27" ;;
     7.5)  SUPPORTED_GIT_VERSION="2.28" ;;
     7.6)  SUPPORTED_GIT_VERSION="2.28" ;;
-      *)  SUPPORTED_GIT_VERSION="2.28" ;;
+    7.7)  SUPPORTED_GIT_VERSION="2.29" ;;
+    7.8)  SUPPORTED_GIT_VERSION="2.29" ;;
+    7.9)  SUPPORTED_GIT_VERSION="2.30" ;;
+    7.10) SUPPORTED_GIT_VERSION="2.30" ;;
+    7.11) SUPPORTED_GIT_VERSION="2.30" ;;
+    7.12) SUPPORTED_GIT_VERSION="2.31" ;;
+    7.13) SUPPORTED_GIT_VERSION="2.31" ;;
+    7.14) SUPPORTED_GIT_VERSION="2.32" ;;
+    7.15) SUPPORTED_GIT_VERSION="2.32" ;;
+    7.16) SUPPORTED_GIT_VERSION="2.33" ;;
+    7.17) SUPPORTED_GIT_VERSION="2.33" ;;
+    7.18) SUPPORTED_GIT_VERSION="2.33" ;;
+    7.19) SUPPORTED_GIT_VERSION="2.34" ;;
+    7.20) SUPPORTED_GIT_VERSION="2.34" ;;
+    7.21) SUPPORTED_GIT_VERSION="2.35" ;;
+    8.0)  SUPPORTED_GIT_VERSION="2.36" ;;
+    8.1)  SUPPORTED_GIT_VERSION="2.36" ;;
+      *)  SUPPORTED_GIT_VERSION="2.36" ;;
 esac
 
 
@@ -34,7 +55,7 @@ mkdir -p ${DIST_DIR}
 # Install build dependencies
 echo "Installing git build dependencies"
 apt-get update
-apt-get install -y --no-install-recommends git dh-autoreconf libcurl4-gnutls-dev libexpat1-dev libz-dev libssl-dev
+apt-get install -y --no-install-recommends git dh-autoreconf libcurl4-gnutls-dev libexpat1-dev libssl-dev make zlib1g-dev
 
 # cut -c53- here drops the SHA (40), tab (1) and "refs/tags/v" (11), because some things, like the
 # snapshot URL and tarball root directory, don't have the leading "v" from the tag in them
@@ -49,7 +70,7 @@ apt-get purge -y git
 # Install git from source
 make configure
 ./configure --prefix=${DIST_DIR}
-make NO_TCLTK=1 NO_GETTEXT=1 install
+make -j`nproc` NO_TCLTK=1 NO_GETTEXT=1 install
 
 # Remove and clean up dependencies
 cd /

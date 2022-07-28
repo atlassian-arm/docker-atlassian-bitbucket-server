@@ -1,3 +1,11 @@
 __pycache__/
+\#*\#
+
+func-tests/bitbucket-home/
+
+.vscode/
+.idea/
+*.iml
+
 Pipfile
 Pipfile.lock

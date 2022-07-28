@@ -7,22 +7,40 @@ of your servers.
 
 Learn more about Bitbucket Server: <https://www.atlassian.com/software/bitbucket/server>
 
+# Contents
+
+[TOC]
+
 # Overview
 
 This Docker container makes it easy to get an instance of Bitbucket up and
 running.
+
+This Docker image is published as both `atlassian/bitbucket` and
+`atlassian/bitbucket-server`. These are the same image, but the `-server`
+version is deprecated and only kept for backwards-compatibility; for new
+installations it is recommended to use the shorter name.
+
+** NOTE: For backwards-compatibility, by default the image will start both
+Bitbucket and an embedded OpenSearch. However this is not a recommended
+configuration, especially in a clustered environment, and has known issues with
+shutdown. instead, we recommend running a separate OpenSearch instance
+(possibly in another Docker container); see below for instructions on connecting
+to an external OpenSearch cluster. **
 
 ** If running this image in a production environment, we strongly recommend you
 run this image using a specific version tag instead of latest. This is because
 the image referenced by the latest tag changes often and we cannot guarantee
 that it will be backwards compatible. **
 
+** Use docker version >= 20.10.10 **
+
 # Quick Start
 
 For the `BITBUCKET_HOME` directory that is used to store the repository data
 (amongst other things) we recommend mounting a host directory as a
 [data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/data-volumes),
-or via a named volume if using a docker version >= 1.9.
+or via a named volume.
 
 Additionally, if running Bitbucket in Data Center mode it is required that a
 shared filesystem is mounted.
@@ -31,13 +49,13 @@ Volume permission is managed by entry scripts. To get started you can use a data
 volume, or named volumes. In this example we'll use named volumes.
 
     $> docker volume create --name bitbucketVolume
-    $> docker run -v bitbucketVolume:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket-server
+    $> docker run -v bitbucketVolume:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket
 
 Note that this command can substitute folder paths with named volumes.
 
 Start Atlassian Bitbucket Server:
 
-    $> docker run -v /data/bitbucket:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket-server
+    $> docker run -v /data/bitbucket:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket
 
 **Success**. Bitbucket is now available on [http://localhost:7990](http://localhost:7990)*
 
@@ -110,17 +128,18 @@ or as part of a
 cluster.  You can specify the following properties to start Bitbucket as a
 mirror or as a Data Center node:
 
-* `ELASTICSEARCH_ENABLED` (default: true)
+* `SEARCH_ENABLED` (default: true)
 
-  Set 'false' to prevent Elasticsearch from starting in the container. This
-  should be used if Elasticsearch is running remotely, e.g. for if Bitbucket is
-  running in a Data Center cluster
+  Set 'false' to prevent OpenSearch (previously Elasticsearch) from starting in the
+  container. This should be used if OpenSearch is running remotely, e.g. for if Bitbucket
+  is running in a Data Center cluster. You may also use `ELASTICSEARCH_ENABLED` to
+  set this property, however this is deprecated in favor of `SEARCH_ENABLED`.
 
 * `APPLICATION_MODE` (default: default)
 
    The mode Bitbucket will run in. This can be set to 'mirror' to start
-   Bitbucket as a Smart Mirror. This will also disable Elasticsearch even if
-   `ELASTICSEARCH_ENABLED` has not been set to 'false'.
+   Bitbucket as a Smart Mirror. This will also disable OpenSearch even if
+   `SEARCH_ENABLED` has not been set to 'false'.
 
 ### Database Configuration
 
@@ -151,20 +170,20 @@ variables see
 [the relevant Spring Boot documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding).
 
 For example, a full command-line for a Bitbucket node with a PostgreSQL
-database, and an external ElasticSearch instance might look like:
+database, and an external OpenSearch instance might look like:
 
     $> docker network create --driver bridge --subnet=172.18.0.0/16 myBitbucketNetwork
     $> docker run --network=myBitbucketNetwork --ip=172.18.1.1 \
-        -e ELASTICSEARCH_ENABLED=false \
+        -e SEARCH_ENABLED=false \
         -e JDBC_DRIVER=org.postgresql.Driver \
         -e JDBC_USER=atlbitbucket \
         -e JDBC_PASSWORD=MYPASSWORDSECRET \
         -e JDBC_URL=jdbc:postgresql://my.database.host:5432/bitbucket \
-        -e PLUGIN_SEARCH_ELASTICSEARCH_BASEURL=http://my.elasticsearch.host \
+        -e PLUGIN_SEARCH_CONFIG_BASEURL=http://my.opensearch.host \
         -v /data/bitbucket-shared:/var/atlassian/application-data/bitbucket/shared \
         --name="bitbucket" \
         -d -p 7990:7990 -p 7999:7999 \
-        atlassian/bitbucket-server
+        atlassian/bitbucket
 
 ### Cluster settings
 
@@ -215,7 +234,7 @@ container and start a new one based on a more recent image:
 
     $> docker stop bitbucket
     $> docker rm bitbucket
-    $> docker pull atlassian/bitbucket-server:<desired_version>
+    $> docker pull atlassian/bitbucket:<desired_version>
     $> docker run ... (See above)
 
 As your data is stored in the data volume directory on the host it will still
@@ -239,6 +258,17 @@ approach in case you decided to use an external database.
 Read more about data recovery and backups:
 [https://confluence.atlassian.com/display/BitbucketServer/Data+recovery+and+backups](https://confluence.atlassian.com/display/BitbucketServer/Data+recovery+and+backups)
 
+# Shutdown
+
+Bitbucket allows a configurable grace period for active operations to finish
+before termination; by default this is 30s. If sending a `docker stop` this
+should be taken into account with the `--time` flag.
+
+Alternatively, the script `/shutdown-wait.sh` is provided, which will initiate a
+clean shutdown and wait for the process to complete. This is the recommended
+method for shutdown in environments which provide for orderly shutdown,
+e.g. Kubernetes via the `preStop` hook.
+
 # Versioning
 
 The `latest` tag matches the most recent version of this repository. Thus using
@@ -246,8 +276,50 @@ The `latest` tag matches the most recent version of this repository. Thus using
 running the most up to date version of this image.
 
 Alternatively, you can use a specific minor version of Bitbucket Server by
-using a version number tag: `atlassian/bitbucket-server:6`. This will
+using a version number tag: `atlassian/bitbucket:6`. This will
 install the latest `6.x.x` version that is available.
+
+# Supported JDK versions
+
+All the Atlassian Docker images are now JDK11 only, and generated from the
+[official Eclipse Temurin OpenJDK Docker images](https://hub.docker.com/_/eclipse-temurin).
+
+The Docker images follow the [Atlassian Support end-of-life
+policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html);
+images for unsupported versions of the products remain available but will no longer
+receive updates or fixes.
+
+Historically, we have also generated other versions of the images, including
+JDK8, Alpine, and 'slim' versions of the JDK. These legacy images still exist in
+Docker Hub, however they should be considered deprecated, and do not receive
+updates or fixes.
+
+If for some reason you need a different version, see "Building your own image"
+
+# Building your own image
+
+* Clone the Atlassian repository at https://bitbucket.org/atlassian-docker/docker-atlassian-bitbucket-server/
+* Modify or replace the [Jinja](https://jinja.palletsprojects.com/) templates
+  under `config`; _NOTE_: The files must have the `.j2` extensions. However you
+  don't have to use template variables if you don't wish.
+* Build the new image with e.g: `docker build --tag my-bitbucket-image --build-arg BITBUCKET_VERSION=8.x.x .`
+* Optionally push to a registry, and deploy.
+
+# Supported architectures
+
+Currently the Atlassian Docker images are built for the `linux/amd64` target
+platform; we do not have other architectures on our roadmap at this
+point. However the Dockerfiles and support tooling have now had all
+architecture-specific components removed, so if necessary it is possible to
+build images for any platform supported by Docker.
+
+## Building on the target architecture
+
+The simplest method of getting a platform image is to build it on a target
+machine; see "Building your own image" above.
+
+Note: This method is known to work on Mac M1 and AWS ARM64 machines, but has not
+be extensively tested.
 
 # Troubleshooting
 
@@ -292,6 +364,15 @@ in the running container:
 # Support
 
 For product support, go to [support.atlassian.com](https://support.atlassian.com/)
+
+You can also visit the [Atlassian Data Center on
+Kubernetes](https://community.atlassian.com/t5/Atlassian-Data-Center-on/gh-p/DC_Kubernetes)
+forum for discussion on running Atlassian Data Center products in containers.
+
+# Changelog
+
+For a detailed list of changes to the Docker image configuration see [the Git
+commit history](https://bitbucket.org/atlassian-docker/docker-atlassian-bitbucket-server/commits/).
 
 # License
 

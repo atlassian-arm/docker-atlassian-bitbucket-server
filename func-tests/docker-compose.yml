@@ -1,0 +1,63 @@
+version: '3.5'
+
+services:
+  postgresql:
+    image: postgres:12.6-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - 'POSTGRES_DB=bitbucket'
+      - 'POSTGRES_USER=bitbucket'
+      - 'POSTGRES_PASSWORD=bitbucket'
+
+  search:
+    image: elasticsearch:7.5.2
+    ports:
+      - '9200:9200'
+    environment:
+      - discovery.type=single-node
+    
+
+  bitbucket:
+    image: ${TEST_TARGET_IMAGE}
+    volumes:
+      - ./bitbucket-home:/var/atlassian/application-data/bitbucket
+    depends_on:
+      - postgresql
+      - search
+    ports:
+      - '7990:7990'
+    environment:
+      - JDBC_DRIVER=org.postgresql.Driver
+      - JDBC_URL=jdbc:postgresql://postgresql/bitbucket
+      - JDBC_USER=bitbucket
+      - JDBC_PASSWORD=bitbucket
+      - SETUP_DISPLAYNAME=Bitbucket Smoketest Instance
+      - SETUP_BASEURL=http://bitbucket:7990
+      - SETUP_LICENSE=${BITBUCKET_LICENSE}
+      - SETUP_SYSADMIN_USERNAME=admin
+      - SETUP_SYSADMIN_PASSWORD=${BITBUCKET_ADMIN_PWD}
+      - SETUP_SYSADMIN_DISPLAYNAME=Admin
+      - SETUP_SYSADMIN_EMAILADDRESS=admin@example.com
+      - SEARCH_ENABLED=false
+      - PLUGIN_SEARCH_CONFIG_BASEURL=http://search:9200
+    command: >
+      bash -c '
+          apt update -y && apt install -y netcat &&
+          /opt/atlassian/support/waitport postgresql 5432 &&
+          /opt/atlassian/support/waitport search 9200 &&
+          /entrypoint.py
+      '
+
+  smoketests:
+    build:
+      context: ./smoketests/
+    environment:
+      - BITBUCKET_BASE_URL=http://bitbucket:7990
+      - BITBUCKET_ADMIN=admin
+      - BITBUCKET_ADMIN_PWD=${BITBUCKET_ADMIN_PWD}
+    command: >
+      bash -c '
+          ./bin/bitbucket-wait &&
+          pipenv run pytest -s -v --cleanup
+      '
