@@ -99,8 +99,8 @@ setup. They can be controlled via the below environment variables.
 * `SERVER_FORWARD_HEADERS_STRATEGY` (default: NATIVE in the specified cloud environments, NONE otherwise)
 
    Can be explicitly set to a value of `NONE` if deploying to a cloud environment (specifically Kubernetes, Heroku and Cloud Foundry) and the preference is for `SERVER_SCHEME` 
-   to be used over the value of the `X-Forwarded-Proto` request header. A value of `NONE` will cause `X-Forwarded-*` headers to be ignored, 
-   which also means that `X-Forwarded-For` will not be utilized for Remote IP.
+   to be used over the value of the `X-Forwarded-Proto` request header. A value of NONE will cause X-Forwarded-* headers to no longer take priority when determining the 
+   origin of a request, which means the system will return to the default expected state.
 
 ### JVM Configuration (Bitbucket Server 5.0 + only)
 
