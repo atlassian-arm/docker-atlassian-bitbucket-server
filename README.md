@@ -86,11 +86,21 @@ setup. They can be controlled via the below environment variables.
 
 * `SERVER_SCHEME` (default: http)
 
-   The protocol via which bitbucket is accessed.
+   The protocol via which bitbucket is accessed. 
+   
+   In certain cloud environments (specifically Kubernetes, Heroku and Cloud Foundry), this setting
+   will be superseded by the value of the `X-Forwarded-Proto` request header if sent by a ingress or load balancer. 
+   See `SERVER_FORWARD_HEADERS_STRATEGY` below to alter this behaviour.
 
 * `SERVER_SECURE` (default: false)
 
-   Set 'true' if SERVER\_SCHEME is 'https'.
+   Set 'true' if SERVER\_SCHEME is 'https'. 
+
+* `SERVER_FORWARD_HEADERS_STRATEGY` (default: NATIVE in the specified cloud environments, NONE otherwise)
+
+   Can be explicitly set to a value of `NONE` if deploying to a cloud environment (specifically Kubernetes, Heroku and Cloud Foundry) and the preference is for `SERVER_SCHEME` 
+   to be used over the value of the `X-Forwarded-Proto` request header. A value of NONE will cause X-Forwarded-* headers to no longer take priority when determining the 
+   origin of a request, which means the system will return to the default expected state.
 
 ### JVM Configuration (Bitbucket Server 5.0 + only)
 
