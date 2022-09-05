@@ -14,6 +14,7 @@ pipelines:
       - step:
           name: Check if pipelines config is up-to-date...
           script:
+            - pip install Jinja2
             - python3 pipelines-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
 
       - parallel:
@@ -91,6 +92,7 @@ pipelines:
       - step:
           name: Check if pipelines config is up-to-date...
           script:
+            - pip install Jinja2
             - python3 pipelines-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
       - parallel:
 {% for (name, pdata) in images.items() %}
@@ -134,6 +136,7 @@ pipelines:
       - step:
           name: Check if pipelines config is up-to-date...
           script:
+            - pip install Jinja2
             - python3 pipelines-generator.py > bitbucket-piplines.yml.expected && diff bitbucket-pipelines.yml bitbucket-piplines.yml.expected
 
       - parallel:
