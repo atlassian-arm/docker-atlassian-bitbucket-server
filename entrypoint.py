@@ -7,7 +7,7 @@ RUN_USER = env['run_user']
 RUN_GROUP = env['run_group']
 BITBUCKET_INSTALL_DIR = env['bitbucket_install_dir']
 BITBUCKET_HOME = env['bitbucket_home']
-SEARCH_ENABLED = env.get('search_enabled') or env.get('elasticsearch_enabled')
+SEARCH_ENABLED = env.get('elasticsearch_enabled') or env.get('search_enabled')
 APPLICATION_MODE = env.get('application_mode')
 
 if str2bool(SEARCH_ENABLED) is False or APPLICATION_MODE == 'mirror':
