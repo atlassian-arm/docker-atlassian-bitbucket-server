@@ -98,8 +98,9 @@ def test_search_default(docker_cli, image, run_user):
     _search_jvm = wait_for_proc(container, search_jvm_proc)
 
 
-def test_search_disabled(docker_cli, image, run_user):
-    environment = {'SEARCH_ENABLED': 'false'}
+@pytest.mark.parametrize('search_env_var', ['SEARCH_ENABLED', 'ELASTICSEARCH_ENABLED'])
+def test_search_disabled(docker_cli, image, run_user, search_env_var):
+    environment = {search_env_var: 'false'}
     container = run_image(docker_cli, image, user=run_user, environment=environment)
     _jvm = wait_for_proc(container, get_bootstrap_proc(container))
 
