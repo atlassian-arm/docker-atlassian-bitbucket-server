@@ -332,6 +332,7 @@ pipelines:
                     --job-offset='0' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -353,6 +354,7 @@ pipelines:
                     --job-offset='1' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -374,6 +376,7 @@ pipelines:
                     --job-offset='2' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -395,6 +398,7 @@ pipelines:
                     --job-offset='3' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -416,6 +420,7 @@ pipelines:
                     --job-offset='4' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -437,6 +442,7 @@ pipelines:
                     --job-offset='5' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -458,6 +464,7 @@ pipelines:
                     --job-offset='6' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -479,6 +486,7 @@ pipelines:
                     --job-offset='7' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -500,6 +508,7 @@ pipelines:
                     --job-offset='8' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -521,6 +530,7 @@ pipelines:
                     --job-offset='9' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -542,6 +552,7 @@ pipelines:
                     --job-offset='10' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
           - step:
@@ -563,6 +574,7 @@ pipelines:
                     --job-offset='11' \
                     --jobs-total='12' \
                     --docker-repos='atlassian/bitbucket,atlassian/bitbucket-server' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
 

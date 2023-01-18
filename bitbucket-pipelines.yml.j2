@@ -120,6 +120,7 @@ pipelines:
                     --job-offset='{{ offset }}' \
                     --jobs-total='{{ batches }}' \
                     --docker-repos='{{ appdata.docker_repos|join(',') }}' \
+                    --post-build-hook='' --post-push-hook='' \
                     --push
 
     {% endfor %}
