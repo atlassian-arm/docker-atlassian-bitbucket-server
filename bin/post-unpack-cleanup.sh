@@ -11,5 +11,7 @@ BITBUCKET_INSTALL_DIR=$1
 # directories.
 # NOTE: Permissions are set in the Dockerfile for consistency
 for searchapp in ${BITBUCKET_INSTALL_DIR}/*search; do
-    mkdir ${searchapp}/logs
+    if [[ ! -e ${searchapp}/logs ]]; then
+        mkdir ${searchapp}/logs
+    fi
 done
